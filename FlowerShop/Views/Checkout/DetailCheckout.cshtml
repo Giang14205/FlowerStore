@@ -1,0 +1,260 @@
+﻿
+@{
+    ViewData["Title"] = "DetailCheckout";
+}
+
+<main>
+    <div class="content-search">
+
+        <div class="container container-100">
+            <i class="far fa-times-circle" id="close-search"></i>
+            <h3 class="text-center">what are your looking for ?</h3>
+            <form method="get" action="https://landing.engotheme.com/search" role="search" style="position: relative;">
+                <input type="text" class="form-control control-search" value="" autocomplete="off" placeholder="Enter Search ..." aria-label="SEARCH" name="q">
+
+                <button class="button_search" type="submit">search</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="banner">
+        <div class="container">
+            <figure id="banner-about"><a href="#"><img src="~/img/banner-about.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
+            <div class="title-banner">
+                
+                <h1>Checkout</h1>
+                <p><a href="#" title="Home">Home</a><i class="fa fa-caret-right"></i>Checkout</p>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container container-ver2 space-padding-tb-30">
+        <div class="row head-cart">
+            <div class="col-md-4 space-30">
+                <div class="item active center">
+                    <p class="icon">01</p>
+                    <h3>Shopping cart</h3>
+                </div>
+            </div>
+            <!-- End col-md-4 -->
+            <div class="col-md-4 space-30">
+                <div class="item active center">
+                    <p class="icon">02</p>
+                    <h3>Check out</h3>
+                </div>
+            </div>
+            <!-- End col-md-4 -->
+            <div class="col-md-4 space-30">
+                <div class="item center">
+                    <p class="icon">03</p>
+                    <h3>Order completed</h3>
+                </div>
+            </div>
+            <!-- End col-md-4 -->
+        </div>
+    </div>
+    <!-- End container -->
+    <div class="cart-box-container check-out">
+        <div class="container container-ver2">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="title-brand">BILLING ADDRESS</h3>
+                    <form class="form-horizontal">
+                        <div class="form-group col-md-6">
+                            <label for="inputfname" class=" control-label">First Name <span class="color">*</span></label>
+                            <input type="text" placeholder="Enter your first name..." id="inputfname" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputlname" class=" control-label">Last Name <span class="color">*</span></label>
+                            <input type="text" placeholder="Enter your last name..." id="inputlname" class="form-control">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="inputcompany" class=" control-label">Company Name<span class="color">*</span></label>
+                            <input type="text" placeholder="Enter your company name..." id="inputcompany" class="form-control">
+                        </div>
+                        <div>
+                            <div class="form-group col-md-6">
+                                <label for="inputemail" class=" control-label">Email<span class="color">*</span></label>
+                                <input type="text" placeholder="Enter your email..." id="inputemail" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputphone" class=" control-label">Phone<span class="color">*</span></label>
+                                <input type="text" placeholder="Enter your phone..." id="inputphone" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputcountry1" class=" control-label">COUNTRY<span class="color">*</span></label>
+                            <select id="inputcountry1" name="inputcountry1" class="country form-control">
+                                <option>COUNTRY 2</option>
+                                <option selected="selected">COUNTRY 1</option>
+                                <option>COUNTRY 3</option>
+                                <option>COUNTRY 4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputstreet" class=" control-label">Adress<span class="color">*</span></label>
+                            <input type="text" placeholder="Enter your street address..." id="inputstreet" class="form-control space-20">
+                            <input type="text" placeholder="Enter the apartment, floor, suite, etc..." id="inputapartment" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputcountry" class=" control-label">Town/City<span class="color">*</span></label>
+                            <input type="text" placeholder="Enter your Town..." id="inputcountry" class="form-control space-20">
+                        </div>
+                        <div>
+                            <div class="form-group col-md-6">
+                                <label for="inputfState" class=" control-label">COUNTY <span class="color">*</span></label>
+                                <input type="text" placeholder="Select your county..." id="inputfState" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputpostcode" class=" control-label">POSTCODE <span class="color">*</span></label>
+                                <input type="text" placeholder="Enter your postcode..." id="inputpostcode" class="form-control">
+                            </div>
+                        </div>
+                        <label for="check-1" class="form-check space-50"><input type="checkbox" name="check1" id="check-1"><span class="checkmark"></span> Create an account?</label>
+                        <label for="check-2" class="form-check space-20"><input type="checkbox" name="check2" id="check-2"><span class="checkmark"></span> Ship to a different address?</label>
+                    </form>
+
+
+                </div>
+                <!-- End col-md-8 -->
+                <div class="col-md-6 space-30">
+                    <div class="box">
+                        <h3 class="title-brand">YOUR ORDER</h3>
+                        <div class="info-order">
+                            <div class="product-name">
+                                <ul>
+                                    <li class="head">
+                                        <span class="name">PRODUCTS NAME</span>
+                                        <span class="qty"><b>QTY</b></span>
+                                        <span class="total"><b>SUB TOTAL</b></span>
+                                    </li>
+                                    <li>
+                                        <span class="name">Modern Chair</span>
+                                        <span class="qty">01</span>
+                                        <span class="total">$520.00</span>
+                                    </li>
+                                    <li>
+                                        <span class="name">Toldbod Lamp</span>
+                                        <span class="qty">02</span>
+                                        <span class="total">$190.00</span>
+                                    </li>
+                                    <li>
+                                        <span class="name">Getama Sofa</span>
+                                        <span class="qty">03</span>
+                                        <span class="total">$270.00</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End product-name -->
+                            <ul class="product-order">
+                                <li>
+                                    <span class="left">CART SUBTOTAL</span>
+                                    <span class="right">$980.00</span>
+                                </li>
+                                <li>
+                                    <span class="left">SHIPPING & HANDLING</span>
+                                    <span class="right">Free Shipping</span>
+                                </li>
+                                <li>
+                                    <span class="left">ORDER TOTAL</span>
+                                    <span class="right brand">$980.00</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End info-order -->
+                        <div class="payment-order box float-left">
+                            <h3 class="title-brand">PAYMENT MENTHOD</h3>
+                            <ul class="tabs">
+                                <li>
+                                    <i class="icon"></i>
+                                    <h4>Direct Bank Transfer</h4>
+                                    <p>
+                                        Make your payment directly info our bank account. Please use your order ID as the
+                                        payment reference. You product won't be shipped untill payment confiimation.
+                                    </p>
+                                </li>
+                                <li>
+                                    <i class="icon"></i>
+                                    <h4>Cheque Payment</h4>
+
+                                </li>
+                                <li>
+                                    <i class="icon"></i>
+                                    <h4>PayPal</h4>
+                                </li>
+                                <li>
+                                    <i class="icon"></i>
+                                    <h4>I've raed and accept the </h4><a href="#" title="Temr & conditions">Temr & conditions</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="link-v1 box lh-50 rt full" href="#" title="PLACE ORDER">PLACE ORDER</a>
+                    </div>
+                </div>
+            </div>
+            <!-- End row -->
+        </div>
+        <!-- End container -->
+    </div>
+    <!-- End cat-box-container -->
+    <div class="info-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <h3>About</h3>
+                        <ul>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">News & Stories</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">History</a> </li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Our Studio</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Shop</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Stockists</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <h3>Customer sevices</h3>
+                        <ul>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Contact Us</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Trade Services</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Login/Register</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Delivery & Returns</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <h3>Store</h3>
+                        <ul>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Shop</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Wedding</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Birthday</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Women's day</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <h3>Shop collection</h3>
+                        <ul>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">New Arrivals</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Hot</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Sale</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Deal of the day</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 social">
+                    <p>CONNECT WITH US:</p>
+                    <a href="#" id="link-insta"></a>
+                    <a href="#" id="link-fb"></a>
+                    <a href="#" id="link-tw"></a>
+                    <a href="#" id="link-sky"></a>
+                    <h1>Newsletter</h1>
+                    <h2>Sign up for our mailing list to get latest updates and offers</h2>
+                    <form class="form-group" action="https://landing.engotheme.com/html/jenstore/demo/mail" method="post">
+                        <input type="text" name="input-mail" placeholder="Your mail here" class="input-lg">
+                        <button type="submit"><img src="~/img/Send.png" alt="img-holiwood"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
