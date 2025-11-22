@@ -1,0 +1,49 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\DORAPHAP\\Giangmiu\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{37A223BE-3106-49D1-81B9-2684EED5DF4C}|FlowerShop\\FlowerShop.csproj|c:\\doraphap\\giangmiu\\flowershop\\giang.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{37A223BE-3106-49D1-81B9-2684EED5DF4C}|FlowerShop\\FlowerShop.csproj|solutionrelative:flowershop\\giang.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "giang.md",
+              "DocumentMoniker": "C:\\DORAPHAP\\Giangmiu\\FlowerShop\\giang.md",
+              "RelativeDocumentMoniker": "FlowerShop\\giang.md",
+              "ToolTip": "C:\\DORAPHAP\\Giangmiu\\FlowerShop\\giang.md",
+              "RelativeToolTip": "FlowerShop\\giang.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-11-22T16:05:48.191Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
