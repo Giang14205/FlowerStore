@@ -6,6 +6,7 @@
 @{
 	List<FeedbackCustomer> feedback = ViewBag.feedback;
 	List<Product> productrelate = ViewBag.productrelate;
+	List<ProductImage> imageproduct = ViewBag.imageproduct;
 
 }
 <main>
@@ -43,7 +44,7 @@
 					<div class="product-content">
 
 						<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 img-content">
-							<img src="@Model.ImagePopular" class="img-responsive" alt="img-holiwood">
+							<img id="mainProductImage" src="@Model.ImagePopular" class="img-responsive" alt="img-holiwood">
 						</div>
 						<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 detail">
 							<h1>@Model.ProductName</h1>
@@ -105,7 +106,7 @@
 
 							</div>
 							<div class="add-cart">
-								<a href="#" class="btn-add-cart">Add to cart</a>
+								<a href="#" class="btn-add-cart">Them Vao Gio</a>
 								<a href="#" class="list-icon icon-1"><i class="far fa-eye"></i></a>
 								<a href="#" class="list-icon icon-2"><i class="far fa-heart"></i></a>
 							</div>
@@ -115,11 +116,28 @@
 
 				
 
-						<div class="slider-nav col-lg-5 col-md-6 col-sm-12 col-xs-12" style="margin-top: 70px;">
+						@* <div class="slider-nav col-lg-5 col-md-6 col-sm-12 col-xs-12" style="margin-top: 70px;">
 							<div><img src="~/img/wedding-1.jpg" class="img-responsive" alt="img-holiwood"></div>
 							<div><img src="~/img/queen.jpg" class="img-responsive" alt="img-holiwood"></div>
 							<div><img src="~/img/laven.jpg" class="img-responsive" alt="img-holiwood"></div>
 							<div><img src="~/img/holiday-1.jpg" class="img-responsive" alt="img-holiwood"></div>
+						</div> *@
+
+						<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12" style="margin-top: 70px;">
+							<div class="row thumbnail-container">
+
+								<div class="col-xs-3 thumbnail-item">
+									<img src="@Model.ImagePopular" class="img-responsive product-thumbnail" alt="Main Thumbnail">
+								</div>
+
+								@* GIẢ ĐỊNH: Bạn có một danh sách ảnh phụ (paths) để lặp *@
+								@foreach (var imagePath in imageproduct)
+								{
+									<div class="col-xs-3 thumbnail-item">
+										<img src="@imagePath.ImageUrl" class="img-responsive product-thumbnail" alt="Thumbnail">
+									</div>
+								}
+							</div>
 						</div>
 						
 					</div>
@@ -616,3 +634,53 @@
 		</div>
 	</div>
 </main>
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+@* Đặt script này ở cuối file, trước thẻ </body> *@
+<script>
+	// Đợi cho toàn bộ DOM (bao gồm cả ảnh) được tải xong
+	$(document).ready(function() {
+		console.log('DOM Ready. Bắt đầu gắn sự kiện cho Thumbnails.');
+
+		// Sử dụng event delegation trên một phần tử cha ổn định (.thumbnail-container)
+		// để đảm bảo sự kiện hoạt động ngay cả khi ảnh được tải sau.
+		$('.thumbnail-container').on('click', '.product-thumbnail', function() {
+
+			// 1. Lấy đường dẫn (src) của ảnh nhỏ vừa được click
+			var $clickedThumbnail = $(this);
+			var newImageSrc = $clickedThumbnail.attr('src');
+
+			// 2. Lấy tham chiếu đến ảnh lớn
+			var $mainImage = $('#mainProductImage');
+
+			// KIỂM TRA ĐƯỜNG DẪN VÀ ẢNH LỚN
+			if (newImageSrc && $mainImage.length) {
+				// 3. Cập nhật thuộc tính 'src' của ảnh lớn
+				$mainImage.attr('src', newImageSrc);
+
+				// 4. Cập nhật trạng thái active (border)
+				$('.product-thumbnail').removeClass('active-thumbnail');
+				$clickedThumbnail.addClass('active-thumbnail');
+
+				console.log('Đã đổi ảnh thành: ' + newImageSrc);
+			} else {
+				console.error('Lỗi: Không tìm thấy ảnh lớn (#mainProductImage) hoặc đường dẫn ảnh nhỏ bị thiếu.');
+			}
+		});
+
+		// Tùy chọn: Đặt ảnh đầu tiên là active khi trang tải
+		$('.product-thumbnail').first().addClass('active-thumbnail');
+	});
+</script>
+
+<style>
+	/* CSS Tùy chọn để làm nổi bật ảnh đang được chọn */
+	.product-thumbnail {
+		cursor: pointer;
+		border: 2px solid transparent; /* Viền trong suốt mặc định */
+		transition: border 0.2s;
+	}
+
+		.product-thumbnail:hover, .product-thumbnail.active-thumbnail {
+			border: 2px solid #D63384; /* Màu viền khi hover hoặc được chọn */
+		}
+</style>

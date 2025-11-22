@@ -26,6 +26,7 @@ namespace FlowerShop.Controllers
             }
             ViewBag.feedback = _context.FeedbackCustomers.Where(i => i.ProductId == id && i.IsActive==true).ToList();
             ViewBag.productrelate = _context.Products.Where(i => i.ProductId != id && i.ProductCategoryId == product.ProductCategoryId).Where(i=>i.IsNew==true).Where(i=>i.IsActive==true).OrderByDescending(i => i.ProductId).ToList();
+            ViewBag.imageproduct = _context.ProductImages.Where(i => i.ProductId == id).Where(i => i.IsDefault == true).ToList();
             return View(product);
         }
 
