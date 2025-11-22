@@ -15,133 +15,131 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.TargetFrameworkIdentifier = .NETCoreApp
-build_property.TargetFrameworkVersion = v8.0
 build_property.RootNamespace = FlowerShop
 build_property.RootNamespace = FlowerShop
-build_property.ProjectDir = C:\DORAPHAP\Giangmiu\FlowerShop\
+build_property.ProjectDir = E:\Hoa\FlowerShop\FlowerShop\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = C:\DORAPHAP\Giangmiu\FlowerShop
+build_property.MSBuildProjectDirectory = E:\Hoa\FlowerShop\FlowerShop
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Areas/Admin/Views/Home2/Home2Index.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Areas/Admin/Views/Home2/Home2Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZTJcSG9tZTJJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Areas/Admin/Views/Home/Index.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Areas/Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Areas/Admin/Views/Home/Privacy.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Areas/Admin/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Areas/Admin/Views/Shared/Error.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Areas/Admin/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Blog/DetailBlog.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Blog/DetailBlog.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xEZXRhaWxCbG9nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Cart/DetailCart.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Cart/DetailCart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxEZXRhaWxDYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Checkout/DetailCheckout.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Checkout/DetailCheckout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcRGV0YWlsQ2hlY2tvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Contact/DetailContact.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Contact/DetailContact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxEZXRhaWxDb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Home1/DetailHome1.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Home1/DetailHome1.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZTFcRGV0YWlsSG9tZTEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Home2/DetailHome2.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Home2/DetailHome2.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZTJcRGV0YWlsSG9tZTIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Home3/DetailHome3.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Home3/DetailHome3.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZTNcRGV0YWlsSG9tZTMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Home/Index.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Home/Privacy.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Login/DetailLogin.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Login/DetailLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cRGV0YWlsTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Order/DetailOrder.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Order/DetailOrder.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRGV0YWlsT3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/PostFullCreen/DetailPostFullCreen.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/PostFullCreen/DetailPostFullCreen.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdEZ1bGxDcmVlblxEZXRhaWxQb3N0RnVsbENyZWVuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Product/DetailProduct.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Product/DetailProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWxQcm9kdWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Shared/Error.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/ShopFullScreen/IDetailShopFullScreen.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/ShopFullScreen/IDetailShopFullScreen.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcEZ1bGxTY3JlZW5cSURldGFpbFNob3BGdWxsU2NyZWVuLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/ShopLefftSidebar/DetailShopLeftSideBar.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/ShopLefftSidebar/DetailShopLeftSideBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcExlZmZ0U2lkZWJhclxEZXRhaWxTaG9wTGVmdFNpZGVCYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/ShopRightSideBar/DetailShopRightSideBar.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/ShopRightSideBar/DetailShopRightSideBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hvcFJpZ2h0U2lkZUJhclxEZXRhaWxTaG9wUmlnaHRTaWRlQmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/TrackOrder/DetailTrack.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/TrackOrder/DetailTrack.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHJhY2tPcmRlclxEZXRhaWxUcmFjay5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Wishlist/DetailWishlist.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Wishlist/DetailWishlist.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcV2lzaGxpc3RcRGV0YWlsV2lzaGxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/_ViewImports.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/_ViewStart.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Areas/Admin/Views/Shared/_Layout.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Areas/Admin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-uzwrj1wuwd
 
-[C:/DORAPHAP/Giangmiu/FlowerShop/Views/Shared/_Layout.cshtml]
+[E:/Hoa/FlowerShop/FlowerShop/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-xgr5h5zx2p
