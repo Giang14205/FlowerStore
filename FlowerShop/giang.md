@@ -1,6 +1,4 @@
 ﻿bé GiANG CUTE
-
-
  Bé giang k cute
 
 
@@ -8,3 +6,4 @@
 
  ko
  giangg
+ỏ
