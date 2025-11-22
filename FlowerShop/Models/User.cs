@@ -33,8 +33,6 @@ public partial class User
 
     public virtual ICollection<ContactReply> ContactReplies { get; set; } = new List<ContactReply>();
 
-    public virtual ICollection<FeedbackCustomer> FeedbackCustomers { get; set; } = new List<FeedbackCustomer>();
-
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual ICollection<TeamMember> TeamMembers { get; set; } = new List<TeamMember>();

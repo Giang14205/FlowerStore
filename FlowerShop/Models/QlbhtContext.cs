@@ -69,7 +69,7 @@ public partial class QlbhtContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("data source=LAPTOP-PPPI9RCS; initial catalog=QLBHT; integrated security=True; TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("data source=LAPTOP-PPPI9RCS; initial catalog=QLBHT; integrated security=True; \nTrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -114,7 +114,10 @@ public partial class QlbhtContext : DbContext
             entity.ToTable("Blog");
 
             entity.Property(e => e.BlogId).HasColumnName("BlogID");
+            entity.Property(e => e.Alias).HasMaxLength(250);
+            entity.Property(e => e.AuthorName).HasMaxLength(150);
             entity.Property(e => e.CreatedBlog).HasColumnType("datetime");
+            entity.Property(e => e.Image).HasMaxLength(500);
             entity.Property(e => e.ProductCategoryId).HasColumnName("ProductCategoryID");
             entity.Property(e => e.Summary).HasMaxLength(250);
             entity.Property(e => e.Title).HasMaxLength(255);
@@ -197,6 +200,10 @@ public partial class QlbhtContext : DbContext
 
             entity.Property(e => e.ColorId).HasColumnName("ColorID");
             entity.Property(e => e.ColorName).HasMaxLength(20);
+
+            entity.HasOne(d => d.Product).WithMany(p => p.Colors)
+                .HasForeignKey(d => d.ProductId)
+                .HasConstraintName("FK_Color_Product");
         });
 
         modelBuilder.Entity<ContactMessage>(entity =>
@@ -246,12 +253,14 @@ public partial class QlbhtContext : DbContext
             entity.Property(e => e.AvatarUrl)
                 .HasMaxLength(500)
                 .HasColumnName("AvatarURL");
-            entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.Property(e => e.Email)
+                .HasMaxLength(150)
+                .IsUnicode(false);
+            entity.Property(e => e.Ten).HasMaxLength(100);
 
-            entity.HasOne(d => d.User).WithMany(p => p.FeedbackCustomers)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__FeedbackC__UserI__02084FDA");
+            entity.HasOne(d => d.Product).WithMany(p => p.FeedbackCustomers)
+                .HasForeignKey(d => d.ProductId)
+                .HasConstraintName("FK_FeedbackCustomer_Product");
         });
 
         modelBuilder.Entity<Manufacturer>(entity =>
@@ -272,6 +281,7 @@ public partial class QlbhtContext : DbContext
             entity.ToTable("Menu");
 
             entity.Property(e => e.MenuId).HasColumnName("MenuID");
+            entity.Property(e => e.Alias).HasMaxLength(150);
             entity.Property(e => e.Description).HasMaxLength(80);
             entity.Property(e => e.MenuName).HasMaxLength(50);
             entity.Property(e => e.ParentId).HasColumnName("ParentID");
@@ -371,7 +381,11 @@ public partial class QlbhtContext : DbContext
             entity.ToTable("Product");
 
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            entity.Property(e => e.Alias)
+                .HasMaxLength(500)
+                .IsUnicode(false);
             entity.Property(e => e.DiscountPrice).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.ImagePopular).HasMaxLength(255);
             entity.Property(e => e.ManufacturerId).HasColumnName("ManufacturerID");
             entity.Property(e => e.ProductCategoryId).HasColumnName("ProductCategoryID");
             entity.Property(e => e.ProductDescription).HasMaxLength(500);
@@ -389,7 +403,7 @@ public partial class QlbhtContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Product__Product__440B1D61");
 
-            entity.HasMany(d => d.Colors).WithMany(p => p.Products)
+            entity.HasMany(d => d.ColorsNavigation).WithMany(p => p.Products)
                 .UsingEntity<Dictionary<string, object>>(
                     "ProductColor",
                     r => r.HasOne<Color>().WithMany()
@@ -416,6 +430,11 @@ public partial class QlbhtContext : DbContext
             entity.ToTable("ProductCategory");
 
             entity.Property(e => e.ProductCategoryId).HasColumnName("ProductCategoryID");
+            entity.Property(e => e.Alias)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("alias");
+            entity.Property(e => e.CreatedDate).HasColumnType("datetime");
             entity.Property(e => e.ProductCategoryDescription).HasMaxLength(150);
             entity.Property(e => e.ProductCategoryName).HasMaxLength(50);
         });

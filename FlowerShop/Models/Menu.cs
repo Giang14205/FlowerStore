@@ -15,6 +15,10 @@ public partial class Menu
 
     public int? SortOrder { get; set; }
 
+    public bool? IsActive { get; set; }
+
+    public string? Alias { get; set; }
+
     public virtual ICollection<Menu> InverseParent { get; set; } = new List<Menu>();
 
     public virtual Menu? Parent { get; set; }

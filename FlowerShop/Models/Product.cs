@@ -21,7 +21,25 @@ public partial class Product
 
     public int ManufacturerId { get; set; }
 
+    public int? PriceSale { get; set; }
+
+    public string? Alias { get; set; }
+
+    public bool? IsNew { get; set; }
+
+    public bool? IsBestSeller { get; set; }
+
+    public bool? IsActive { get; set; }
+
+    public string? ImagePopular { get; set; }
+
+    public int? Star { get; set; }
+
     public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
+
+    public virtual ICollection<Color> Colors { get; set; } = new List<Color>();
+
+    public virtual ICollection<FeedbackCustomer> FeedbackCustomers { get; set; } = new List<FeedbackCustomer>();
 
     public virtual Manufacturer Manufacturer { get; set; } = null!;
 
@@ -33,5 +51,5 @@ public partial class Product
 
     public virtual ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
 
-    public virtual ICollection<Color> Colors { get; set; } = new List<Color>();
+    public virtual ICollection<Color> ColorsNavigation { get; set; } = new List<Color>();
 }

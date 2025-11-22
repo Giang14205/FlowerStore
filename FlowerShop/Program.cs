@@ -1,7 +1,13 @@
 using AspNetCoreHero.ToastNotification;
+using FlowerShop.Models;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<QlbhtContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 
 // Add services to the container.builder.Services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");

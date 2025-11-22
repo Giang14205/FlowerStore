@@ -1,0 +1,84 @@
+﻿@* @model IEnumerable<FlowerShop.Models.Menu>
+@foreach ( var item in Model.Where(i=>i.SortOrder==1))
+{
+    <!--class="nav navbar-nav menu-main">   </li>-->
+        <ul >
+            <li class="dropdown menu-home shop-menu">
+            <a href="/@item.Alias">
+                @item.MenuName
+            </a>
+            </li>
+        </ul>
+       
+} *@
+@model IEnumerable<FlowerShop.Models.Menu>
+
+<ul class="nav navbar-nav menu-main li a ">
+    @{
+        // Lấy menu cha, đang hoạt động, sắp xếp theo thứ tự
+        var parents = Model.Where(x => (x.ParentId == null || x.ParentId == 0) && x.IsActive == true)
+        .OrderBy(x => x.SortOrder);
+    }
+
+    @foreach (var item in parents)
+    {
+        // --- BƯỚC 1: KHAI BÁO BIẾN GIAO DIỆN ---
+        string liClass = "";       // Class cho thẻ <li> (quy định màu/kiểu)
+        string figureId = "";      // ID cho thẻ <figure> (quy định hình ảnh)
+        string aId = "";           // ID cho thẻ <a> (nếu có)
+        string alias = item.Alias?.ToLower().Trim() ?? ""; // Lấy alias chuẩn hóa để so sánh
+
+        // --- BƯỚC 2: ÁNH XẠ ALIAS SANG CSS CỦA TEMPLATE ---
+        // Bạn cần đảm bảo Alias trong DB khớp với các từ khóa bên dưới (home, shop, about...)
+
+        if ( alias == "Trang-chu")
+        {
+            liClass = "menu-home";   // Class gốc: menu-home
+            figureId = "home-1";     // ID gốc: home-1
+            aId = "home-menu";
+        }
+        else if ( alias == "Cua-hang" )
+        {
+            liClass = "shop-menu";   // Class gốc: shop-menu
+            figureId = "shop-1";     // ID gốc: shop-1
+        }
+        else if ( alias == "Chung-toi")
+        {
+            liClass = "wedding-menu"; // Template gốc dùng 'wedding-menu' cho About Us
+            figureId = "wedding-1";
+            aId = "about-menu";
+        }
+        else if ( alias == "Bai-viet")
+        {
+            liClass = "blog-menu";    // Class gốc: blog-menu
+            figureId = "blog-1";
+        }
+        else if ( alias == "Lien-he")
+        {
+            liClass = "contact-menu"; // Class gốc: contact-menu
+            figureId = "contact-1";
+        }
+        else
+        {
+            // Các menu khác chưa định nghĩa style thì dùng style mặc định
+            liClass = "li-home";
+            figureId = "menu-" + item.MenuId;
+        }
+
+        // --- BƯỚC 3: HIỂN THỊ HTML (GIỮ NGUYÊN CẤU TRÚC GỐC) ---
+        <li class="@liClass">
+            @* Nếu có aId thì in ra, không thì thôi *@
+            <a href="/@item.Alias" @(string.IsNullOrEmpty(aId) ? "" : $"id={aId}")>
+                @item.MenuName
+            </a>
+
+            @* Thẻ figure quan trọng để hiện hình ảnh trang trí *@
+            <figure id="@figureId" class="hidden-sm hidden-md hidden-xs"></figure>
+        </li>
+    }
+
+    @* Các nút tĩnh giữ nguyên *@
+    <li class="hidden-lg hidden-md"><a href="#"><i class="far fa-user"></i> My Account</a></li>
+    <li><figure id="btn-close-menu" class="hidden-lg hidden-md"><i class="far fa-times-circle"></i></figure></li>
+</ul>
+

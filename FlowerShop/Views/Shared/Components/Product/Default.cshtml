@@ -1,0 +1,70 @@
+﻿@model IEnumerable<FlowerShop.Models.Product>
+@foreach (var item in Model)
+{
+	string sUrl = $"/product/{item.Alias}-{item.ProductId}.html";
+	<div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 product-flower">
+		<div class="product-image-flower">
+			
+
+				@if (item.PriceSale == 0)
+				{
+					<a href="#"><img src="@item.ImagePopular" class="img-responsive" alt="img-holiwood"></a>
+				}
+				else
+				{
+					<figure class="sale"><a href="#"><img src="@item.ImagePopular" class="img-responsive" alt="img-holiwood"></a></figure>
+				}
+
+				<div class="product-icon-flower">
+					<a href="@sUrl"><i class="far fa-eye"></i></a>
+					<a href="#"><i class="fas fa-shopping-basket"></i></a>
+					<a href="#"><i class="far fa-heart"></i></a>
+				</div>
+
+      
+			
+		</div>
+		<div class="product-title-flower">
+			<h5><a href="#">@item.ProductName</a></h5>
+			<p class="p-title">@item.ProductDescription<br class="hidden-sm hidden-xs"> page when looking at its layout.</p>
+			<div class="star">
+				
+				@for (var i = 0; i < item.Star; i++)
+				{
+					<i class="fas fa-star"></i>
+				}
+				<span class="rating"></span>
+			</div>
+		
+
+			
+				<div class="prince">
+
+				@if (item.PriceSale == 0)
+				{
+					@item.ProductPrice
+				}
+				else
+				{
+
+
+
+					<s class="strike">@item.ProductPrice</s>
+					@item.DiscountPrice
+				}
+				</div>
+			
+			
+
+
+
+			<div class="add-cart">
+				<a href="#" class="btn-add-cart">Add to cart</a>
+				<a href="#" class="list-icon icon-1"><i class="far fa-eye"></i></a>
+				<a href="#" class="list-icon icon-2"><i class="far fa-heart"></i></a>
+			</div>
+		</div>
+	</div>
+}
+
+

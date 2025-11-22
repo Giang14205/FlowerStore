@@ -19,6 +19,14 @@ public partial class Blog
 
     public DateTime? CreatedBlog { get; set; }
 
+    public string? Alias { get; set; }
+
+    public string? Image { get; set; }
+
+    public bool? IsActive { get; set; }
+
+    public string? AuthorName { get; set; }
+
     public virtual ProductCategory ProductCategory { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;

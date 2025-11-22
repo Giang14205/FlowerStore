@@ -1,0 +1,69 @@
+﻿@model FlowerShop.Models.FeedbackCustomer
+
+<style>
+    .form-control-custom {
+        border: 1px solid #ccc !important; /* Viền màu xám rõ ràng */
+        border-radius: 4px !important; /* Bo góc nhẹ */
+        padding: 10px !important; /* Khoảng cách chữ */
+        background-color: #fff !important; /* Nền trắng */
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 15px; /* Cách dòng giữa các ô */
+    }
+
+    label {
+        font-weight: bold;
+        color: #333;
+    }
+
+  
+    /* Code này dành cho Chrome, Edge, Safari */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: inner-spin-button !important;
+        opacity: 1 !important;
+        display: block !important;
+    }
+
+</style>
+
+<form asp-controller="Product" asp-action="AddFeedback" method="post">
+
+    <input type="hidden" asp-for="ProductId" />
+
+    <div class="form-group">
+        <label asp-for="Ten">Ho Ten: <span class="text-danger">*</span></label>
+        <input asp-for="Ten" class="form-control form-control-custom" placeholder="Nhap ho ten cua ban:..." />
+        <span asp-validation-for="Ten" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control form-control-custom" placeholder="Email lien he..." />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Star">Muc do danh gia: <span class="text-danger">*</span></label>
+
+        <input asp-for="Star" type="number" min="1" max="5" value="5"
+               class="form-control form-control-custom"
+               style="height: 45px;" />
+
+        <span asp-validation-for="Star" class="text-danger"></span>
+    </div>
+ 
+    <div class="form-group">
+        <label asp-for="Content">Noi dung danh gia: <span class="text-danger">*</span></label>
+        <textarea asp-for="Content" class="form-control form-control-custom" rows="4" placeholder="Viet cam nhan cua ban ve san pham..."></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+
+    <div class="form-group" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-primary" style="padding: 10px 30px; font-weight: bold;">GUI DANH GIA</button>
+    </div>
+
+</form>

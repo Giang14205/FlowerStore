@@ -2,7 +2,12 @@
 @{
     ViewData["Title"] = "DetailProduct";
 }
+@model Product
+@{
+	List<FeedbackCustomer> feedback = ViewBag.feedback;
+	List<Product> productrelate = ViewBag.productrelate;
 
+}
 <main>
 	<div class="content-search">
 
@@ -20,9 +25,9 @@
 	<div class="container">
 		<div class="menu-breadcrumb">
 			<ul class="breadcrumb">
-				<li><a href="homev3.html">Home</a></li>
-				<li><a href="flower.html">FLOWER</a></li>
-				<li><a href="#">Queen Rose - Pink</a></li>
+				<li><a href="homev3.html">Trang Chu</a></li>
+				<li><a href="flower.html">Cua Hang</a></li>
+				<li><a href="#">@Model.ProductName</a></li>
 			</ul>
 		</div>
 	</div>
@@ -33,39 +38,46 @@
 
 			<div class="row">
 				<div class="slider-for">
+					
+
 					<div class="product-content">
+
 						<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 img-content">
-							<img src="~/img/wedding-1.jpg" class="img-responsive" alt="img-holiwood">
+							<img src="@Model.ImagePopular" class="img-responsive" alt="img-holiwood">
 						</div>
 						<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 detail">
-							<h1>Queen Rose - Pink</h1>
-							<p class="p1">It is a long established fact that a reader will be distracted  by the readable<br class="hidden-md hidden-sm hidden-xs"> content of a page when looking at its layout.</p>
+							<h1>@Model.ProductName</h1>
+							<p class="p1">@Model.ProductCategory.ProductCategoryName<br class="hidden-md hidden-sm hidden-xs">(@Model.ProductCategory.ProductCategoryDescription)</p>
 							<div class="star">
-								<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-								<span>10 Rating(s) | Add Your Rating</span>
-							</div>
-							<div class="prince"><span>$250.9</span><s class="strike">$300.02</s></div>
-							<figure class="fi-option"><p class="option">Option</p></figure>
-							<div class="size col-lg-4 col-md-6 col-sm-6 col-xs-12">
-								<span class="lb-size">Size <span class="sta-red">*</span></span>
-								<div class="select-custom">
-									<select>
-										<option>S</option>
-										<option>M</option>
-										<option>L</option>
-										<option>XL</option>
-									</select>
-								</div>
-							</div>
-							<div class="color col-lg-8 col-md-6 col-sm-6 col-xs-12">
-								<div class="div-color"><span class="lb-color">Color <span class="sta-red">*</span></span></div>
-								<a href="#"><span class="color-1"></span></a> <a href="#"><span class="color-2"></span></a> <a href="#"><span class="color-3"></span></a>
-								<a href="#"><span class="color-4"></span></a> <a href="#"><span class="color-5"></span></a>
-							</div>
 
-							<p class="require">Required Fields <span>*</span></p>
+								@for (var i = 0; i < Model.Star; i++)
+								{
+									<i class="fas fa-star"></i>
+								}
+
+								<span>@feedback.Count()| Đanh Gia</span>
+							</div>
+							<div class="prince">
+								@if (Model.PriceSale == 0)
+								{
+									@Model.ProductPrice
+								}
+								else
+								{
+
+
+									<s class="strike">@Model.ProductPrice</s>
+									@Model.DiscountPrice
+								}
+								
+								
+								
+							</div>
+							
+
+							
 							<div class="Quality">
-
+							
 								<div class="input-group input-number-group">
 									<span class="text-qua">Quanty:</span>
 									<div class="input-group-button">
@@ -75,7 +87,20 @@
 									<div class="input-group-button">
 										<span class="input-number-increment">+</span>
 									</div>
-									<span class="dola">$ </span><span class="total-prince">250.9</span>
+									<span class="dola">đ </span><span class="total-prince">
+										@if (Model.PriceSale == 0)
+										{
+											@Model.ProductPrice
+										}
+										else
+										{
+											
+											@Model.DiscountPrice
+										}
+
+
+										
+									</span>
 								</div>
 
 							</div>
@@ -84,9 +109,21 @@
 								<a href="#" class="list-icon icon-1"><i class="far fa-eye"></i></a>
 								<a href="#" class="list-icon icon-2"><i class="far fa-heart"></i></a>
 							</div>
+							
 
 						</div>
+
+				
+
+						<div class="slider-nav col-lg-5 col-md-6 col-sm-12 col-xs-12" style="margin-top: 70px;">
+							<div><img src="~/img/wedding-1.jpg" class="img-responsive" alt="img-holiwood"></div>
+							<div><img src="~/img/queen.jpg" class="img-responsive" alt="img-holiwood"></div>
+							<div><img src="~/img/laven.jpg" class="img-responsive" alt="img-holiwood"></div>
+							<div><img src="~/img/holiday-1.jpg" class="img-responsive" alt="img-holiwood"></div>
+						</div>
+						
 					</div>
+					
 					<!-- ------ end content 1----- -->
 					<div class="product-content">
 						<div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 img-content">
@@ -229,7 +266,7 @@
 							<div class="Quality">
 
 								<div class="input-group input-number-group">
-									<span class="text-qua">Quanty:</span>
+									<span class="text-qua">So Luong:</span>
 									<div class="input-group-button">
 										<span class="input-number-decrement">-</span>
 									</div>
@@ -242,7 +279,7 @@
 
 							</div>
 							<div class="add-cart">
-								<a href="#" class="btn-add-cart">Add to cart</a>
+								<a href="#" class="btn-add-cart">Them vao gio</a>
 								<a href="#" class="list-icon icon-1"><i class="far fa-eye"></i></a>
 								<a href="#" class="list-icon icon-2"><i class="far fa-heart"></i></a>
 							</div>
@@ -251,12 +288,7 @@
 					</div>
 					<!-- ------ end content 4----- -->
 				</div>
-				<div class="slider-nav col-lg-5 col-md-6 col-sm-12 col-xs-12">
-					<div><img src="~/img/wedding-1.jpg" class="img-responsive" alt="img-holiwood"></div>
-					<div><img src="~/img/queen.jpg" class="img-responsive" alt="img-holiwood"></div>
-					<div><img src="~/img/laven.jpg" class="img-responsive" alt="img-holiwood"></div>
-					<div><img src="~/img/holiday-1.jpg" class="img-responsive" alt="img-holiwood"></div>
-				</div>
+				
 
 				<div class="col-lg-7 connect-us col-md-6 col-sm-12 col-xs-12">
 					<a href="#" id="like-fb"></a>
@@ -272,33 +304,184 @@
 		<div class="product-text">
 			<div class="container">
 				<ul class="nav nav-tabs menu-tab">
-					<li class="active"><a data-toggle="tab" href="#decription">Decription</a><figure id="fi-decription"></figure></li>
-					<li><a data-toggle="tab" href="#product-tag">Product Tags</a><figure id="fi-product-tag"></figure></li>
-					<li><a data-toggle="tab" href="#write">Write Your Own Review</a><figure id="fi-write"></figure></li>
-					<li><a data-toggle="tab" href="#addtional">Additional Information</a><figure id="fi-addtional"></figure></li>
+					<li class="active"><a data-toggle="tab" href="#decription">Mo ta San pham</a><figure id="fi-decription"></figure></li>
+					<li><a data-toggle="tab" href="#product-tag">Danh gia san pham</a><figure id="fi-product-tag"></figure></li>
+					<li><a data-toggle="tab" href="#write">Binh luan ve san pham</a><figure id="fi-write"></figure></li>
+					
 				</ul>
 
 				<div class="tab-content">
 					<div id="decription" class="tab-pane fade in active">
 						<p>
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
+							@Model.ProductDescription
+							
 							<br><br>
-							Fusce aliquet, ante cursus gravida sagittis, justo erat rhoncus sapien, eget condimentum ligula magna sed est. Suspendisse molestie ligula tortor. Suspendisse vitae orci ac purus eleifend malesuada at vel tellus. Sed ac semper magna. Mauris consequat blandit risus. Cras dictum eros libero, a scelerisque quam laoreet non. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam pharetra euismod felis, a eleifend magna.
+							
 						</p>
 					</div>
 					<div id="product-tag" class="tab-pane fade">
 						<p>
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-							<br><br>
-							Fusce aliquet, ante cursus gravida sagittis, justo erat rhoncus sapien, eget condimentum ligula magna sed est. Suspendisse molestie ligula tortor. Suspendisse vitae orci ac purus eleifend malesuada at vel tellus. Sed ac semper magna. Mauris consequat blandit risus. Cras dictum eros libero, a scelerisque quam laoreet non. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam pharetra euismod felis, a eleifend magna.
+							<style>
+								/* CSS này giúp 2 cột cao bằng nhau */
+								.row-equal-height {
+									display: flex;
+									flex-wrap: wrap;
+								}
+
+								/* Ép khung chứa ảnh cao 100% */
+								.img-container-full {
+									height: 100%;
+									display: block;
+								}
+
+									/* Ép thẻ a bên trong cao 100% */
+									.img-container-full a {
+										height: 100%;
+										display: block;
+									}
+
+								/* QUAN TRỌNG: Ép ảnh cao 100% và dùng object-fit để cắt ảnh đẹp, không bị méo */
+								.img-cover {
+									width: 100%;
+									height: 100% !important;
+									object-fit: cover; /* Ảnh sẽ tự zoom để lấp đầy khung mà không bị méo */
+									object-position: center;
+								}
+							</style>
+							<div class="message">
+								<div class="container">
+									<div class="row row-equal-height">
+
+										<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+											<figure id="img-contact" class="img-container-full">
+												<a href="#">
+													<img src="~/img/img-slide-h22.jpg" class="img-responsive img-cover" alt="img-flower">
+												</a>
+											</figure>
+										</div>
+
+										<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 message-contact">
+											<h1>Đánh Giá Sản Phẩm</h1>
+											<partial name="_FeedbackForm" model="new FlowerShop.Models.FeedbackCustomer { ProductId = Model.ProductId }" />
+										</div>
+
+									</div>
+								</div>
+							</div>
 						</p>
 					</div>
 					<div id="write" class="tab-pane fade">
-						<p>
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-							<br><br>
-							Fusce aliquet, ante cursus gravida sagittis, justo erat rhoncus sapien, eget condimentum ligula magna sed est. Suspendisse molestie ligula tortor. Suspendisse vitae orci ac purus eleifend malesuada at vel tellus. Sed ac semper magna. Mauris consequat blandit risus. Cras dictum eros libero, a scelerisque quam laoreet non. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam pharetra euismod felis, a eleifend magna.
-						</p>
+
+
+					
+
+
+							<style>
+								/* Khung bao quanh 1 review */
+								.review-item {
+									display: flex; /* Xếp hàng ngang */
+									align-items: flex-start;
+									padding: 20px 0;
+									border-bottom: 1px solid #eee; /* Gạch chân mờ ngăn cách các review */
+								}
+
+								/* Phần ảnh đại diện bên trái */
+								.review-avatar {
+									flex-shrink: 0; /* Không bị co lại */
+									margin-right: 15px;
+								}
+
+									.review-avatar img {
+										width: 60px;
+										height: 60px;
+										border-radius: 50%; /* Bo tròn ảnh */
+										object-fit: cover; /* Cắt ảnh vừa khung tròn */
+										border: 2px solid #f0f0f0;
+									}
+
+								/* Phần nội dung bên phải */
+								.review-content {
+									flex-grow: 1;
+								}
+
+								/* Tên người dùng */
+								.review-author {
+									font-weight: 700;
+									font-size: 16px;
+									color: #333;
+									margin-bottom: 2px;
+									text-transform: uppercase;
+								}
+
+								/* Ngày tháng */
+								.review-date {
+									font-size: 12px;
+									color: #999;
+									font-weight: normal;
+									margin-left: 10px;
+								}
+
+								/* Ngôi sao đánh giá */
+								.review-rating {
+									color: #ffc107; /* Màu vàng */
+									font-size: 14px;
+									margin-bottom: 8px;
+								}
+
+								/* Nội dung text */
+								.review-text {
+									color: #555;
+									font-size: 15px;
+									line-height: 1.6;
+									margin: 0;
+								}
+							</style>
+
+							<div class="review-list">
+								@foreach(var i in feedback)
+									{
+								<div class="review-item">
+									
+										<div class="review-avatar">
+
+											@if(i.AvatarUrl==null)
+										{
+											<img src="/img/avatar.jpg" alt="Avatar" style="width: 50px; height: 50px; object-fit: cover;">
+										}
+										else
+										{
+											<img src="@i.AvatarUrl" alt="Avatar" style="width: 50px; height: 50px; object-fit: cover;">
+										}
+                                      
+											
+										</div>
+										<div class="review-content">
+											<div class="review-author">
+												@i.Ten
+												
+											</div>
+											<div class="star">
+
+												@for (var a = 0; a < i.Star; a++)
+												{
+                                                    <i class="fas fa-star"></i>
+                                            
+                                                   
+												}
+
+											</div>
+											<p class="review-text" style="margin-bottom: 20px;">
+												@i.Content
+											</p>
+										</div>
+										
+
+									
+								</div>
+							}
+							</div>
+							
+						
 					</div>
 					<div id="addtional" class="tab-pane fade">
 						<p>
@@ -312,130 +495,61 @@
 		</div>
 		<div class="related">
 			<div class="container">
-				<h1>Related Products</h1>
+				<h1>San Pham Lien Quan </h1>
 				<div class="row">
+					@foreach(var a in productrelate)
+						{
+						string sUrl = $"/product/{a.Alias}-{a.ProductId}.html";
 					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 product-category">
+						
 						<div class="product-image-category">
-							<figure class="sale"><a href="#"><img src="~/img/wedding-1.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-							<div class="product-icon-category">
-								<a href="#"><i class="far fa-eye"></i></a>
-								<a href="#"><i class="fas fa-shopping-basket"></i></a>
-								<a href="#"><i class="far fa-heart"></i></a>
-							</div>
-						</div>
-						<div class="product-title-category">
-							<h5><a href="#">Queen Rose - Pink</a></h5>
-							<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-							<div class="prince">$300.2<s class="strike">$250.9</s></div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 product-category">
-						<div class="product-image-category">
-							<a href="#"><img src="~/img/wedding-2.jpg" class="img-responsive" alt="img-holiwood"></a>
-							<div class="product-icon-category">
-								<a href="#"><i class="far fa-eye"></i></a>
-								<a href="#"><i class="fas fa-shopping-basket"></i></a>
-								<a href="#"><i class="far fa-heart"></i></a>
-							</div>
-						</div>
-						<div class="product-title-category">
-							<h5><a href="#">Bouquet Lavender</a></h5>
-							<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-							<div class="prince">$160.8</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 product-category">
-						<div class="product-image-category">
-							<figure class="hot"><a href="#"><img src="~/img/holiday-1.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-							<div class="product-icon-category">
-								<a href="#"><i class="far fa-eye"></i></a>
-								<a href="#"><i class="fas fa-shopping-basket"></i></a>
-								<a href="#"><i class="far fa-heart"></i></a>
-							</div>
-						</div>
-						<div class="product-title-category">
-							<h5><a href="#">Fun & Flirty By BloomNation</a></h5>
-							<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-							<div class="prince">$200.7</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 product-category">
-						<div class="product-image-category">
-							<a href="#"><img src="~/img/wedding-4.jpg" class="img-responsive" alt="img-holiwood"></a>
-							<div class="product-icon-category">
-								<a href="#"><i class="far fa-eye"></i></a>
-								<a href="#"><i class="fas fa-shopping-basket"></i></a>
-								<a href="#"><i class="far fa-heart"></i></a>
-							</div>
-						</div>
-						<div class="product-title-category">
-							<h5><a href="#">Bouquet Rose</a></h5>
-							<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-							<div class="prince">$350.4</div>
-						</div>
-					</div>
-					<!-- ------------------------------------------------ -->
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 product-category">
-						<div class="product-image-category">
-							<a href="#"><img src="~/img/collec-2.jpg" class="img-responsive" alt="img-holiwood"></a>
-							<div class="product-icon-category">
-								<a href="#"><i class="far fa-eye"></i></a>
-								<a href="#"><i class="fas fa-shopping-basket"></i></a>
-								<a href="#"><i class="far fa-heart"></i></a>
-							</div>
-						</div>
-						<div class="product-title-category">
-							<h5><a href="#">Elegant by BloomNation</a></h5>
-							<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-							<div class="prince">$300.2<s class="strike">$250.9</s></div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 product-category">
-						<div class="product-image-category">
-							<figure class="hot"><a href="#"><img src="~/img/holiday-3.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-							<div class="product-icon-category">
-								<a href="#"><i class="far fa-eye"></i></a>
-								<a href="#"><i class="fas fa-shopping-basket"></i></a>
-								<a href="#"><i class="far fa-heart"></i></a>
-							</div>
-						</div>
-						<div class="product-title-category">
-							<h5><a href="#">Tulipa Floriade - Red</a></h5>
-							<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-							<div class="prince">$160.8</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 product-category">
-						<div class="product-image-category">
-							<a href="#"><img src="~/img/holiday-2.jpg" class="img-responsive" alt="img-holiwood"></a>
-							<div class="product-icon-category">
-								<a href="#"><i class="far fa-eye"></i></a>
-								<a href="#"><i class="fas fa-shopping-basket"></i></a>
-								<a href="#"><i class="far fa-heart"></i></a>
-							</div>
-						</div>
-						<div class="product-title-category">
-							<h5><a href="#">Winter White Bouquet</a></h5>
-							<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-							<div class="prince">$200.7</div>
-						</div>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 product-category">
-						<div class="product-image-category">
-							<figure class="hot"><a href="#"><img src="~/img/cate-1.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-							<div class="product-icon-category">
-								<a href="#"><i class="far fa-eye"></i></a>
-								<a href="#"><i class="fas fa-shopping-basket"></i></a>
-								<a href="#"><i class="far fa-heart"></i></a>
-							</div>
-						</div>
-						<div class="product-title-category">
-							<h5><a href="#">Rose - Red</a></h5>
-							<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-							<div class="prince">$350.4</div>
-						</div>
-					</div>
 
+								@if (a.PriceSale == 0)
+								{
+									<a href="#"><img src="@a.ImagePopular" class="img-responsive" alt="img-holiwood"></a>
+								}
+								else
+								{
+									<figure class="sale"><a href="#"><img src="@a.ImagePopular" class="img-responsive" alt="img-holiwood"></a></figure>
+								}
+
+							
+							<div class="product-icon-category">
+								<a href="@sUrl"><i class="far fa-eye"></i></a>
+								<a href="#"><i class="fas fa-shopping-basket"></i></a>
+								<a href="#"><i class="far fa-heart"></i></a>
+							</div>
+						</div>
+						<div class="product-title-category">
+							<h5><a href="#">@a.ProductName</a></h5>
+
+								@for (var i = 0; i < a.Star; i++)
+								{
+									<i class="fas fa-star"></i>
+								}
+								<div class="prince">
+
+									@if (a.PriceSale == 0)
+									{
+										@a.ProductPrice
+									}
+									else
+									{
+
+
+
+										<s class="strike">@a.ProductPrice</s>
+										@a.DiscountPrice
+									}
+								</div>
+							
+						</div>
+				
+							
+					</div>	
+					
+				
+					}
 				</div>
 			</div>
 
@@ -488,7 +602,7 @@
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 social">
 					<p>CONNECT WITH US:</p>
 					<a href="#" id="link-insta"></a>
-					<a href="#" id="link-fb"></a>
+                    <a href="#" id="link-fb"></a>
 					<a href="#" id="link-tw"></a>
 					<a href="#" id="link-sky"></a>
 					<h1>Newsletter</h1>

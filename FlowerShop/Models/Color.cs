@@ -9,5 +9,9 @@ public partial class Color
 
     public string? ColorName { get; set; }
 
+    public int? ProductId { get; set; }
+
+    public virtual Product? Product { get; set; }
+
     public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 }
