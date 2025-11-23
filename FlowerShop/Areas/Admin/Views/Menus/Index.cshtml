@@ -53,8 +53,9 @@
                                     <tr>
                                         <th>STT</th>
                                         <th>Tiêu đề:</th>
-                                        <th>Alias</th>
+                                        <th>Đường dẫn:</th>
                                         <th>Mô tả:</th>
+                                        <th>Mức:</th>
                                         <th>Vị trí:</th>
                                         <th>Hiện</th>
                                     </tr>
@@ -70,6 +71,7 @@
                                             <td>@Html.DisplayFor(modelItem => item.MenuName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Alias)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Levels)</td>
                                             <td>@Html.DisplayFor(modelItem => item.SortOrder)</td>
                                             <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
                                             <td>

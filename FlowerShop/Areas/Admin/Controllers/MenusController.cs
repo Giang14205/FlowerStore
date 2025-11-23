@@ -57,7 +57,7 @@ namespace FlowerShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MenuId,MenuName,Description,ParentId,SortOrder,IsActive,Alias")] Menu menu)
+        public async Task<IActionResult> Create([Bind("MenuId,MenuName,Description,ParentId,SortOrder,IsActive,Alias,Levels")] Menu menu)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace FlowerShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MenuId,MenuName,Description,ParentId,SortOrder,IsActive,Alias")] Menu menu)
+        public async Task<IActionResult> Edit(int id, [Bind("MenuId,MenuName,Description,ParentId,SortOrder,IsActive,Alias,Levels")] Menu menu)
         {
             if (id != menu.MenuId)
             {

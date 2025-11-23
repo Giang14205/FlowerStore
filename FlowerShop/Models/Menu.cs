@@ -19,6 +19,8 @@ public partial class Menu
 
     public string? Alias { get; set; }
 
+    public int? Levels { get; set; }
+
     public virtual ICollection<Menu> InverseParent { get; set; } = new List<Menu>();
 
     public virtual Menu? Parent { get; set; }

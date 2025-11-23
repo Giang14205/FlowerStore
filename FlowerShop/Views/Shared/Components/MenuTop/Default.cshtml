@@ -16,7 +16,7 @@
 <ul class="nav navbar-nav menu-main li a ">
     @{
         // Lấy menu cha, đang hoạt động, sắp xếp theo thứ tự
-        var parents = Model.Where(x => (x.ParentId == null || x.ParentId == 0) && x.IsActive == true)
+    var parents = Model.Where(i => i.Levels == 1 ).Where( x => x.IsActive == true)
         .OrderBy(x => x.SortOrder);
     }
 
