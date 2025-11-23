@@ -26,6 +26,9 @@
     <!-- summernote -->
     <link rel="stylesheet" href="~/admin/plugins/summernote/summernote-bs4.min.css">
 
+    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
+    <!--Jquery UI 1.11.4-->
+    <script src="~/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -193,9 +196,9 @@
     </div>
     <!-- ./wrapper -->
     <!-- jQuery -->
-    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
+    @* <script src="~/admin/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="~/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/admin/plugins/jquery-ui/jquery-ui.min.js"></script> *@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
@@ -217,7 +220,7 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="~/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
-    <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
+    @* <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script> *@
     <!-- overlayScrollbars -->
     <script src="~/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
@@ -250,3 +253,6 @@
    
 </body>
 </html>
+
+
+@RenderSection("Scripts", required: false)

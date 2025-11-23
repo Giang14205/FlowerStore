@@ -1,0 +1,158 @@
+﻿@model FlowerShop.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thêm sản phẩm </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">General Form</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm mới sản phẩm </h3>
+                        </div>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <!--thêm cái này ở enctype="multipart/form-data ở sau Create khi thêm ảnh -->
+                        <form asp-action="Create">
+
+                            <div class="card-body">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="ProductName" class="control-label">Tên sản phẩm:</label>
+                                    <input asp-for="ProductName" class="form-control" />
+                                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductCategoryId" class="control-label">Danh mục:</label>
+                                    <select asp-for="ProductCategoryId" class="form-control" asp-items="ViewBag.ProductCategoryId">
+                                        <option value="0" selected>--[Chọn danh mục]--</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Alias" class="control-label">Đường dẫn:</label>
+                                    <input asp-for="Alias" class="form-control" />
+                                    <span asp-validation-for="Alias" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label asp-for="ImagePopular" class="control-label">Ảnh sản phẩm:</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-success" onclick="openDialog()">Choose a picture</button>
+                                        </div>
+
+                                        <input type="text" class="form-control" id="file_input" asp-for="ImagePopular" aria-describedby="button-addon2" />
+
+                                    </div>
+                                    <span asp-validation-for="ImagePopular" class="text-danger"></span>
+
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ProductPrice" class="control-label">Giá sản phẩm:</label>
+                                    <input asp-for="ProductPrice" class="form-control" />
+                                    <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="DiscountPrice" class="control-label">Giá sản phẩm sau giảm:</label>
+                                    <input asp-for="DiscountPrice" class="form-control" />
+                                    <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="PriceSale" class="control-label">Giá giảm:</label>
+                                    <input asp-for="PriceSale" class="form-control" />
+                                    <span asp-validation-for="PriceSale" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Stock" class="control-label">Số lượng:</label>
+                                    <input asp-for="Stock" class="form-control" />
+                             
+                                    <span asp-validation-for="Stock" class="text-danger"></span>
+                                </div>
+                               
+                                <div class="form-group">
+                                    <label asp-for="ProductDescription"  class="control-label">Mô tả:</label>
+                                    <textarea asp-for="ProductDescription" class="form-control"></textarea>
+                                    <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ManufacturerId" class="control-label">Nhà cung cấp:</label>
+                                    <select asp-for="ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerId">
+                                        <option value="0" selected>--[Chọn nhà cung cấp]--</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label asp-for="Star" class="control-label">Sao:</label>
+                                    <input asp-for="Star" class="form-control" />
+                                    <span asp-validation-for="Star" class="text-danger"></span>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="IsNew" /> SP mới:
+                                    </label>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="IsBestSeller" /> SP bán chạy:
+                                    </label>
+                                </div>
+                                
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="IsActive" /> Hiển thị:
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Thêm mới" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+</div>
+
+@{
+    var summerNote = new FlowerShop.Areas.Admin.Models.SummerNote("#ProductDescription");
+    <partial name="_SummerNote" model="summerNote" />
+}
+<!--Phải có scrip này nhé lưu ý ở trang layout phải có-->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

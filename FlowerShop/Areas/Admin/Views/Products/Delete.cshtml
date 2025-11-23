@@ -1,0 +1,162 @@
+﻿@model FlowerShop.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Xóa menu</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">General Form</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Xóa menu</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exempleInputEmail1">Tên sản phẩm:</label>
+                                @Html.DisplayFor(model => model.ProductName)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Danh mục:</label>
+                                @Html.DisplayFor(model => model.ProductCategory.ProductCategoryName)
+
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Đường dẫn:</label>
+                                @Html.DisplayFor(model => model.Alias)
+
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Ảnh sản phẩm:</label>
+
+                                <div class="mt-2">
+                                    <img src="@Model.ImagePopular"
+                                         style="max-width:200px; max-height:200px; border:1px solid #ccc;" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Giá sản phẩm:</label>
+                                @Html.DisplayFor(model => model.ProductPrice)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Giá sản phẩm sau giảm:</label>
+                                @Html.DisplayFor(model => model.DiscountPrice)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Giá giảm:</label>
+                                @Html.DisplayFor(model => model.PriceSale)
+                            </div>
+                           
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Số lượng:</label>
+                                @Html.DisplayFor(model => model.Stock)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Mô tả:</label>
+                                @Html.DisplayFor(model => model.ProductDescription)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Nhà cung cấp:</label>
+                                @Html.DisplayFor(model => model.Manufacturer.ManufacturerName)
+                            </div>
+                           
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Sản phẩm mới:</label>
+                                @Html.DisplayFor(model => model.IsNew)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Sản phẩm bán chạy:</label>
+                                @Html.DisplayFor(model => model.IsBestSeller)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Sao:</label>
+                                @Html.DisplayFor(model => model.Star)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Hiển thị:</label>
+                                @Html.DisplayFor(model => model.IsActive)
+                                <form asp-action="Delete">
+                                    <input type="hidden" asp-for="ProductId" />
+                                    <input type="submit" value="Xóa" class="btn btn-danger" />
+                                    <a asp-action="Index" class="btn btn-primary">Quay lại</a>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+        <!-- /.container-fluid -->
+
+    </section>
+    <!-- /.content -->
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Hàm này được gọi khi bạn chọn một file
+        function previewImage(event) {
+            var input = event.target;
+            var preview = document.getElementById('image_preview');
+            var filePathInput = document.getElementById('file_path');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    // Hiển thị ảnh preview
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+
+                    // Hiển thị tên file trong ô input text (tùy chọn)
+                    filePathInput.value = input.files[0].name;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                // Xóa preview nếu không có file nào được chọn
+                preview.style.display = 'none';
+                preview.src = '#';
+                filePathInput.value = '';
+            }
+        }
+    </script>
+}
+

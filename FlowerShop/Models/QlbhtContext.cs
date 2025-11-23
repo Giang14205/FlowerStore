@@ -388,19 +388,16 @@ public partial class QlbhtContext : DbContext
             entity.Property(e => e.ImagePopular).HasMaxLength(255);
             entity.Property(e => e.ManufacturerId).HasColumnName("ManufacturerID");
             entity.Property(e => e.ProductCategoryId).HasColumnName("ProductCategoryID");
-            entity.Property(e => e.ProductDescription).HasMaxLength(500);
             entity.Property(e => e.ProductName).HasMaxLength(50);
             entity.Property(e => e.ProductPrice).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.Stock).HasDefaultValue(0);
 
             entity.HasOne(d => d.Manufacturer).WithMany(p => p.Products)
                 .HasForeignKey(d => d.ManufacturerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Product__Manufac__44FF419A");
 
             entity.HasOne(d => d.ProductCategory).WithMany(p => p.Products)
                 .HasForeignKey(d => d.ProductCategoryId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Product__Product__440B1D61");
 
             entity.HasMany(d => d.ColorsNavigation).WithMany(p => p.Products)

@@ -9,7 +9,7 @@ public partial class Product
 
     public string? ProductName { get; set; }
 
-    public int ProductCategoryId { get; set; }
+    public int? ProductCategoryId { get; set; }
 
     public decimal ProductPrice { get; set; }
 
@@ -19,17 +19,17 @@ public partial class Product
 
     public string? ProductDescription { get; set; }
 
-    public int ManufacturerId { get; set; }
+    public int? ManufacturerId { get; set; }
 
     public int? PriceSale { get; set; }
 
     public string? Alias { get; set; }
 
-    public bool? IsNew { get; set; }
+    public bool IsNew { get; set; }
 
-    public bool? IsBestSeller { get; set; }
+    public bool IsBestSeller { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     public string? ImagePopular { get; set; }
 
@@ -41,11 +41,11 @@ public partial class Product
 
     public virtual ICollection<FeedbackCustomer> FeedbackCustomers { get; set; } = new List<FeedbackCustomer>();
 
-    public virtual Manufacturer Manufacturer { get; set; } = null!;
+    public virtual Manufacturer? Manufacturer { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
-    public virtual ProductCategory ProductCategory { get; set; } = null!;
+    public virtual ProductCategory? ProductCategory { get; set; }
 
     public virtual ICollection<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
 
