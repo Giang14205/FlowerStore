@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Hoa\\FlowerShop\\FlowerShop\\FlowerShop.csproj": {}
+    "C:\\ptudw\\Đồ án\\FlowerStore\\FlowerShop\\FlowerShop.csproj": {}
   },
   "projects": {
-    "E:\\Hoa\\FlowerShop\\FlowerShop\\FlowerShop.csproj": {
+    "C:\\ptudw\\Đồ án\\FlowerStore\\FlowerShop\\FlowerShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Hoa\\FlowerShop\\FlowerShop\\FlowerShop.csproj",
+        "projectUniqueName": "C:\\ptudw\\Đồ án\\FlowerStore\\FlowerShop\\FlowerShop.csproj",
         "projectName": "FlowerShop",
-        "projectPath": "E:\\Hoa\\FlowerShop\\FlowerShop\\FlowerShop.csproj",
+        "projectPath": "C:\\ptudw\\Đồ án\\FlowerStore\\FlowerShop\\FlowerShop.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\Hoa\\FlowerShop\\FlowerShop\\obj\\",
+        "outputPath": "C:\\ptudw\\Đồ án\\FlowerStore\\FlowerShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -108,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

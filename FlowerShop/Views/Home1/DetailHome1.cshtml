@@ -2,10 +2,10 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-}
-
-@{
-	Layout = null;
+	ViewData["Title"] = "DetailHome1";
+	List<ProductCategory> productCategories = ViewBag.ProductCategories;
+	var productNew = ViewBag.productNew as List<Product> ?? new List<Product>();
+	List<ProductImage> imageproduct = ViewBag.imageproduct;
 }
 <!DOCTYPE html>
 <html>
@@ -30,6 +30,7 @@
 </head>
 <body>
 	<header class="navbar-fixed-top pos-header" id="header-v1">
+	@*
 		<nav class="hidden-xs">
 			<div class="container">
 				<ul class="nav navbar-nav nav-help">
@@ -63,7 +64,7 @@
 						<input type="text" name="search" placeholder="Search here..." class="form-control">
 						<button type="submit"><img src="~/img/Search.png" alt="search" class="img-responsive"></button>
 					</form>
-					@await Component.InvokeAsync("MenuTop")
+					
 
 					<!--<ul class="nav navbar-nav menu-main">
 						<li><figure id="btn-close-menu" class="hidden-lg hidden-md"><i class="far fa-times-circle"></i></figure></li>
@@ -192,6 +193,7 @@
 				</ul>
 			</div>
 		</div>
+*@
 	</header>
 	<main>
 		<div class="content-search">
@@ -222,9 +224,9 @@
 				<div class="item active slide-1">
 					<img src="~/img/slider-1.png" alt="img-holiwood">
 					<div class="carousel-caption">
-						<h3>EXPLORE THE</h3>
-						<h1>New Arrivals</h1>
-						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p>
+						<h3>Khám Phá</h3>
+						<h1>Sản Phẩm Mới</h1>
+						<p>Khám phá ngay những sản phẩm mới với thiết kế tinh tế, chất lượng vượt trội và trải nghiệm hứa hẹn mang đến cho bạn nhiều điều bất ngờ thú vị</p>
 						<img src="~/img/Pattern.png" alt="img-holiwood"><br>
 						<a href="#">Shop now</a>
 					</div>
@@ -234,10 +236,10 @@
 				<div class="item slide-2">
 					<img src="~/img/slider-2.png" alt="img-holiwood">
 					<div class="carousel-caption">
-						<h3>A Ferfect</h3>
-						<h1>Bouquet</h1>
+						<h3>Một Bó Hoa</h3>
+						<h1>Hoàn Hảo</h1>
 						<div class="line"></div>
-						<p>It is a long established fact that a reader will be distracted by the redable content of a page when looking at its latout</p>
+						<p>Một bó hoa hoàn hảo được kết tinh từ sắc màu tinh tế, hương thơm nhẹ nhàng và ý nghĩa trọn vẹn dành riêng cho khoảnh khắc bạn muốn lưu giữ</p>
 						<a href="#">Shop now</a>
 					</div>
 
@@ -246,9 +248,9 @@
 				<div class="item slide-1">
 					<img src="~/img/slider-1.png" alt="img-holiwood">
 					<div class="carousel-caption">
-						<h3>EXPLORE THE</h3>
-						<h1>New Arrivals</h1>
-						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p>
+						<h3>Khám Phá</h3>
+						<h1>Sản Phẩm Mới</h1>
+						<p>Khám phá ngay những sản phẩm mới với thiết kế tinh tế, chất lượng vượt trội và trải nghiệm hứa hẹn mang đến cho bạn nhiều điều bất ngờ thú vị</p>
 						<img src="~/img/Pattern.png" alt="img-holiwood"><br>
 						<a href="#">Shop now</a>
 					</div>
@@ -258,10 +260,10 @@
 				<div class="item slide-2">
 					<img src="~/img/slider-2.png" alt="img-holiwood">
 					<div class="carousel-caption">
-						<h3>A Ferfect</h3>
-						<h1>Bouquet</h1>
+						<h3>Một Bó Hoa</h3>
+						<h1>Hoàn Hảo</h1>
 						<div class="line"></div>
-						<p>It is a long established fact that a reader will be distracted by the redable content of a page when looking at its latout</p>
+						<p>Một bó hoa hoàn hảo được kết tinh từ sắc màu tinh tế, hương thơm nhẹ nhàng và ý nghĩa trọn vẹn dành riêng cho khoảnh khắc bạn muốn lưu giữ</p>
 						<a href="#">Shop now</a>
 					</div>
 
@@ -274,13 +276,13 @@
 			<div class="gallery clearfix">
 				<figure>
 					<img src="~/img/who.png" alt="img-holiwood">
-					<h1>who we are ?</h1>
-					<h1 class="h2">who we are ?</h1>
+					<h1>Chúng Tôi Là Ai ?</h1>
+					<h1 class="h2">Chúng Tôi Là Ai ?</h1>
 					<p>
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has<br class="hidden-md hidden-sm hidden-xs">
-						been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type<br class="hidden-md hidden-sm hidden-xs"> and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into<br class="hidden-md hidden-sm hidden-xs"> electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of <br class="hidden-md hidden-sm hidden-xs">
-						Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing <br class="hidden-md hidden-sm hidden-xs">
-						software like Aldus PageMaker including versions of Lorem Ipsum
+						Jenstore Flower là cửa hàng hoa mang phong cách tinh tế và hiện đại<br class="hidden-md hidden-sm hidden-xs">
+						chuyên cung cấp những bó hoa tươi đẹp, được chăm chút tỉ mỉ trong từng<br class="hidden-md hidden-sm hidden-xs">chi tiết. Với sự kết hợp hài hòa giữa màu sắc, hương thơm và ý nghĩa, Jenstore Flower luôn<br class="hidden-md hidden-sm hidden-xs"> 
+						mong muốn mang đến cho khách hàng những sản phẩm chất <br class="hidden-md hidden-sm hidden-xs">
+						lượng cao cùng trải nghiệm mua hoa trọn vẹn và ấm áp
 					</p>
 					<div class="media"><div class="media-left"><img src="~/img/avatar.jpg" id="avatar" class="media-object" alt="img-holiwood"></div><div class="media-body"><h3>Laura Ellie</h3><span>Founder</span></div></div>
 				</figure>
@@ -291,35 +293,71 @@
 
 
 		<div class="container collection" id="showcase-2">
-			<h1>Shop by collection</h1>
-			<h2>- All Category of Jenstore -</h2>
+			<h1>Mua Sắm Theo Bộ Sưu Tập</h1>
+			<h2>- Tất cả các danh mục của Jenstore -</h2>
 			<div class="gallery clearfix">
 				<figure>
 					<div class="row">
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 banner-collec">
 
 							<img src="~/img/collection.png" class="img-responsive" alt="img-holiwood">
-							<h3>HELLO SUMMER</h3>
+							<h3>Xin Chào Mùa Hè</h3>
 							<h1>Sale 10%</h1>
 							<a href="#">Shop now</a>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-collection">
-								<div class="product-image-collec">
-									<figure class="hot"><a href="#"><img src="~/img/collec-1.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-									<div class="product-icon-collec">
-										<a href="#" data-toggle="modal" data-target="#myModal"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="fas fa-shopping-basket"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-									</div>
-								</div>
-								<div class="product-title-collec">
-									<h5><a href="#"> Pink roses</a></h5>
-									<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-									<div class="prince">$207.2</div>
-								</div>
 
-							</div>
+							@if (productNew.Any())
+							{
+								@foreach (var item in productNew.Take(4))
+								{
+
+
+
+									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-collection">
+
+										<div class="product-image-collec">
+											<figure class="hot"><a href="/product/@(item.Alias)-@(item.ProductId).html"><img src="@item.ImagePopular" class="img-responsive" alt="img-holiwood"></a></figure>
+											<div class="product-icon-collec">
+												<a href="/product/@(item.Alias)-@(item.ProductId).html"><i class="far fa-eye"></i></a>
+												<a href="#"><i class="fas fa-shopping-basket"></i></a>
+												<a href="#"><i class="far fa-heart"></i></a>
+											</div>
+										</div>
+										<div class="product-title-collec">
+											<h5><a href="/product/@(item.Alias)-@(item.ProductId).html"> @item.ProductName</a></h5>
+											<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+											<div class="prince">
+												@if (item.PriceSale == 0)
+												{
+													@item.ProductPrice
+												}
+												else
+												{
+
+
+													<s class="strike">@item.ProductPrice</s>
+													@item.DiscountPrice
+												}
+
+											</div>
+											<div class="stars">
+												@for (int i = 0; i < item.Star; i++)
+												{
+													<i class="fas fa-star"></i>
+												}
+											</div>
+										</div>
+
+									</div>
+								}
+
+							}
+							else
+							{
+								<p>Hiện chưa có sản phẩm mới nào.</p>
+							}
+@*
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-collection">
 								<div class="product-image-collec">
 									<a href="#"><img src="~/img/collec-2.jpg" class="img-responsive" alt="img-holiwood"></a>
@@ -365,6 +403,7 @@
 									<div class="prince">$100.9<s class="strike">$150.9</s></div>
 								</div>
 							</div>
+*@
 						</div>
 					</div>
 				</figure>
@@ -374,28 +413,60 @@
 
 
 
-			<h1>Wedding</h1>
-			<h2>- Lorem Ipsum is<span class="hidden-xs"> simply dummy</span> text of the printing -</h2>
+			<h1>Hoa Lễ Cưới</h1>
+			<h2>- Hoa lễ cưới không chỉ là điểm nhấn trang trí, mà còn gửi gắm lời chúc phúc cho hạnh phúc và sự khởi đầu trọn vẹn của đôi uyên ương -</h2>
 			<div class="gallery clearfix">
 				<figure>
 					<div class="img-wedding"><img src="~/img/wedding.png" alt="img-holiwood"></div>
 					<div class="container wedding-content">
 						<div class="row">
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 product-wedding">
-								<div class="product-image-wedding">
-									<figure class="sale"><a href="#"><img src="~/img/wedding-1.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-									<div class="product-icon-wedding">
-										<a href="#"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="fas fa-shopping-basket"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
+							@if (productNew.Any())
+							{
+								@foreach (var item in productNew.Take(4))
+								{
+									<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 product-wedding">
+										<div class="product-image-wedding">
+											<figure class="sale"><a href="/product/@(item.Alias)-@(item.ProductId).html"><img src="@item.ImagePopular" class="img-responsive" alt="@item.ProductName"></a></figure>
+											<div class="product-icon-wedding">
+												<a href="/product/@(item.Alias)-@(item.ProductId).html"><i class="far fa-eye"></i></a>
+												<a href="#"><i class="fas fa-shopping-basket"></i></a>
+												<a href="#"><i class="far fa-heart"></i></a>
+											</div>
+										</div>
+										<div class="product-title-wedding">
+											<h5><a href="/product/@(item.Alias)-@(item.ProductId).html">@item.ProductName</a></h5>
+											<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+											<div class="prince">
+												@if (item.PriceSale == 0)
+												{
+													@item.ProductPrice
+												}
+												else
+												{
+
+
+													<s class="strike">@item.ProductPrice</s>
+													@item.DiscountPrice
+												}
+											</div>
+											<div class="stars">
+												@for (int i = 0; i < item.Star; i++)
+												{
+													<i class="fas fa-star"></i>
+												}
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="product-title-wedding">
-									<h5><a href="#">Queen Rose - Pink</a></h5>
-									<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-									<div class="prince">$300.2<s class="strike">$250.9</s></div>
-								</div>
-							</div>
+
+								}
+							}
+							else
+							{
+								<p>Hiện chưa có sản phẩm mới nào.</p>
+							}
+
+
+@*
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 product-wedding">
 								<div class="product-image-wedding">
 									<a href="#"><img src="~/img/wedding-2.jpg" class="img-responsive" alt="img-holiwood"></a>
@@ -441,6 +512,7 @@
 									<div class="prince">$350.4</div>
 								</div>
 							</div>
+*@
 						</div>
 					</div>
 
@@ -450,29 +522,60 @@
 		</div>
 		<div class="holiday" id="showcase-4">
 			<div class="container">
-				<h1>Holiday</h1>
-				<h2>- Lorem Ipsum is<span class="hidden-xs"> simply dummy</span> text of the printing -</h2>
+				<h1>Hoa Ngày Cưới</h1>
+				<h2>- Hoa ngày lễ mang đến sắc màu tươi mới, truyền tải lời chúc ý nghĩa và tạo nên không khí ấm áp cho mọi dịp đặc biệt -</h2>
 				<div class="gallery clearfix">
 					<figure>
 						<div class="row">
 
 
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-holiday">
-									<div class="product-image-holiday">
-										<figure class="hot"><a href="#"><img src="~/img/holiday-1.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-										<div class="product-icon-holiday">
-											<a href="#"><i class="far fa-eye"></i></a>
-											<a href="#"><i class="fas fa-shopping-basket"></i></a>
-											<a href="#"><i class="far fa-heart"></i></a>
+
+								@if (productNew.Any())
+								{
+									@foreach (var item in productNew.Take(4))
+									{
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-holiday">
+											<div class="product-image-holiday">
+												<figure class="hot"><a href="/product/@(item.Alias)-@(item.ProductId).html"><img src="@item.ImagePopular" class="img-responsive" alt="img-holiwood"></a></figure>
+												<div class="product-icon-holiday">
+													<a href="#"><i class="far fa-eye"></i></a>
+													<a href="#"><i class="fas fa-shopping-basket"></i></a>
+													<a href="#"><i class="far fa-heart"></i></a>
+												</div>
+											</div>
+											<div class="product-title-holiday">
+												<h5><a href="#">@item.ProductName</a></h5>
+												<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+												<div class="prince">
+													@if (item.PriceSale == 0)
+													{
+														@item.ProductPrice
+													}
+													else
+													{
+
+
+														<s class="strike">@item.ProductPrice</s>
+														@item.DiscountPrice
+													}
+												</div>
+
+												<div class="stars">
+													@for (int i = 0; i < item.Star; i++)
+													{
+														<i class="fas fa-star"></i>
+													}
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="product-title-holiday">
-										<h5><a href="#">Fun & Flirty By BloomNation</a></h5>
-										<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-										<div class="prince">$200.2</div>
-									</div>
-								</div>
+									}
+								}
+								else
+								{
+									<p>Hiện chưa có sản phẩm mới nào.</p>
+								}
+								@*
 								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-holiday">
 									<div class="product-image-holiday">
 										<a href="#"><img src="~/img/holiday-2.jpg" class="img-responsive" alt="img-holiwood"></a>
@@ -518,6 +621,7 @@
 										<div class="prince">$209.2<s class="strike">$180.9</s></div>
 									</div>
 								</div>
+*@
 							</div>
 
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 banner-holiday">
@@ -542,8 +646,8 @@
 				<img src="~/img/counter.png" alt="img-holiwood">
 			</div>
 			<div class="title-count">
-				<h1>Sale up to 40%</h1>
-				<p>It is a long established facr that a reader will be distracted by the<br> readable content of a page when looking at its layout</p>
+				<h1>Giảm Giá Lên Tới 40%</h1>
+				<p>Nhanh tay sở hữu sản phẩm yêu thích với ưu đãi giảm 40% hấp dẫn chỉ trong hôm nay!</p>
 				<div id="countdown">
 					<div id='tiles'></div>
 					<ul class="labels">
@@ -681,6 +785,7 @@
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 					</div>
+					@*
 					<div class="modal-body">
 						<div class="tab-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div id="img-pill-1" class="tab-pane fade in active">
@@ -904,7 +1009,7 @@
 							<li class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><a data-toggle="pill" href="#img-pill-4"><img src="~/img/collec-3.jpg" class="img-responsive" alt="holiwood"></a></li>
 						</ul>
 					</div>
-
+*@
 				</div>
 
 			</div>

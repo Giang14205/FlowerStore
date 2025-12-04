@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8FnlY34T/vc=",
+  "dgSpecHash": "0yZ+xg6Mjz4=",
   "success": true,
-  "projectFilePath": "E:\\Hoa\\FlowerShop\\FlowerShop\\FlowerShop.csproj",
+  "projectFilePath": "C:\\ptudw\\Đồ án\\FlowerStore\\FlowerShop\\FlowerShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\aspnetcorehero.toastnotification\\1.1.0\\aspnetcorehero.toastnotification.1.1.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
