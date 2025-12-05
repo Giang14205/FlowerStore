@@ -504,7 +504,12 @@ public partial class QlbhtContext : DbContext
             entity.ToTable("Tag");
 
             entity.Property(e => e.TagId).HasColumnName("TagID");
+            entity.Property(e => e.BlogId).HasColumnName("BlogID");
             entity.Property(e => e.TagName).HasMaxLength(50);
+
+            entity.HasOne(d => d.Blog).WithMany(p => p.TagsNavigation)
+                .HasForeignKey(d => d.BlogId)
+                .HasConstraintName("FK_Tag_Blog");
         });
 
         modelBuilder.Entity<TeamMember>(entity =>

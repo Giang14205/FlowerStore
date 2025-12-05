@@ -1,0 +1,241 @@
+﻿@model Blog
+@{
+	List<Tag> TagBlog = ViewBag.BlogTag;
+}
+<main>
+	<div class="content-search">
+
+		<div class="container container-100">
+			<i class="far fa-times-circle" id="close-search"></i>
+			<h3 class="text-center">what are your looking for ?</h3>
+			<form method="get" action="https://landing.engotheme.com/search" role="search" style="position: relative;">
+				<input type="text" class="form-control control-search" value="" autocomplete="off" placeholder="Enter Search ..." aria-label="SEARCH" name="q">
+
+				<button class="button_search" type="submit">search</button>
+			</form>
+		</div>
+
+	</div>
+	<div class="container content">
+		<div class="row">
+			<!-- sidebar -->
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 menu-breadcrumb sidebar">
+				<ul class="breadcrumb">
+					<li><a href="homev3.html">Home</a></li>
+					<li><a href="#">Blogs</a></li>
+				</ul>
+				<div class="collapse navbar-collapse" id="mysidebar">
+					<ul class="list-group list-1">
+						<li class="list-group-item">CATEGORIES</li>
+						<li class="list-group-item">
+							<a href="#">NEW NOW</a><button class="accordion"></button>
+							<ul class="panel">
+								<li><a href="#">Tuylip</a></li>
+								<li><a href="#">lavender</a></li>
+								<li><a href="#">Rose</a></li>
+							</ul>
+						</li>
+						<li class="list-group-item">
+							<a href="flower.html">FLOWER</a><button class="accordion"></button>
+							<ul class="panel">
+								<li><a href="product-detail.html">Rose</a></li>
+								<li><a href="#">Tulips</a></li>
+								<li><a href="#">Daisy</a></li>
+								<li><a href="#">Carnation</a></li>
+								<li><a href="#">Gerbera</a></li>
+								<li><a href="#">Other</a></li>
+							</ul>
+						</li>
+						<li class="list-group-item">
+							<a href="#">PLANT</a><button class="accordion"></button>
+							<ul class="panel">
+								<li><a href="#">Tuylip</a></li>
+								<li><a href="#">lavender</a></li>
+								<li><a href="#">Rose</a></li>
+							</ul>
+						</li>
+						<li class="list-group-item">
+							<a href="#">RING OF PROFESSION</a><button class="accordion"></button>
+							<ul class="panel">
+								<li><a href="#">Tuylip</a></li>
+								<li><a href="#">lavender</a></li>
+								<li><a href="#">Rose</a></li>
+							</ul>
+						</li>
+					</ul>
+					<!--  -->
+					<ul class="list-group list-2">
+						<li class="list-group-item">RECENT POSTS</li>
+						<li class="list-group-item list-item-2">
+							<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+								<a href="#"><img src="img/blog-4.jpg" class="img-responsive" alt="img-holiwood"></a>
+							</div>
+							<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 title-post">
+								<a href="#"><h1>Choose for yourself the most style</h1></a>
+								<p>April, 30 2018</p>
+							</div>
+						</li>
+						<li class="list-group-item list-item-2">
+							<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+								<a href="#"><img src="img/blog-1.jpg" class="img-responsive" alt="img-holiwood"></a>
+							</div>
+							<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 title-post">
+								<a href="#"><h1>Choose for yourself the most style</h1></a>
+								<p>April, 30 2018</p>
+							</div>
+						</li>
+						<li class="list-group-item list-item-2">
+							<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+								<a href="#"><img src="img/blog-3.jpg" class="img-responsive" alt="img-holiwood"></a>
+							</div>
+							<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 title-post">
+								<a href="#"><h1>Choose for yourself the most style</h1></a>
+								<p>April, 30 2018</p>
+							</div>
+						</li>
+						<li class="list-group-item list-item-2">
+							<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+								<a href="#"><img src="img/blog-2.jpg" class="img-responsive" alt="img-holiwood"></a>
+							</div>
+							<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 title-post">
+								<a href="#"><h1>Choose for yourself the most style</h1></a>
+								<p>April, 30 2018</p>
+							</div>
+						</li>
+					</ul>
+					<!--  -->
+					<div class="panel-default">
+						<div class="panel-header">
+							ARCHIVE
+						</div>
+						<div class="panel-body">
+							<p>April, 30 2018</p>
+							<p>Februaly, 30 2018</p>
+						</div>
+					</div>
+					<div class="blog-tag">
+						<h1>BLOG TAGS</h1>
+						<a href="#">Rose</a> <a href="#">Tulips</a> <a href="#" class="active-tags">Carnation</a> <a href="#">Daisy</a> <a href="#">Gerbera</a>
+					</div>
+				</div>
+			</div>
+			<div class="navbar-header mobile-sidebar">
+				<button type="button" class="navbar-toggle btn-mobile-sidebar" data-toggle="collapse" data-target="#mysidebar">
+					<i class="fas fa-angle-left" id="icon-sidebar"></i>
+				</button>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 content-blog">
+				<div class="product-blog">
+					<a href="#"><img src="@Model.Image" class="img-responsive" alt="img-holiwood"></a>
+				</div>
+				<div class="title-blog">
+					<div class="time-blog">
+						<span class="time"><i class="far fa-calendar-alt"></i><span>@Model.CreatedBlog.Value.ToString("dd/MM/yyyy")</span></span>
+						<span class="time"><i class="far fa-edit"></i><span>Pixel-Creative</span></span>
+					</div>
+					<h2><a href="blog-post.html">@Model.Title</a></h2>
+
+					<p class="p1">@Model.Content</p>
+
+					<p class="p2">Donec faucibus enim vitae volutpat sollicitudin. Mauris gravida nulla turpis, sit amet feugiat magna laoreet nec. Phasellus ut velit at tortor euismod placerat. Sed vulputate quam vel convallis convallis.</p>
+
+					<p class="p1">Donec faucibus enim vitae volutpat sollicitudin. Mauris gravida nulla turpis, sit amet feugiat magna laoreet nec. Phasellus ut velit at tortor euismod placerat. Sed vulputate quam vel convallis convallis. Fusce gravida maximus elit non ullamcorper. Integer urna nuncve hicula eu elit pharetra, condimentum tempor justo. Proin ac laoreet enim.</p>
+				</div>
+				<div class="posted">
+					<i class="far fa-edit"></i><span>Thuc hien boi</span><a href="#">@Model.AuthorName</a>
+
+				</div>
+				<div class="social">
+					<span>SHARE TO FRIENDS</span>
+					<a href="#" id="link-insta1"></a>
+					<a href="#" id="link-fb1"></a>
+					<a href="#" id="link-tw1"></a>
+					<a href="#" id="link-sky1"></a>
+				</div>
+				<div class="article">
+					<div class="number-cmt col-lg-9 col-md-9 col-sm-6 col-xs-6">
+						<span>02 Comments</span>
+					</div>
+					<div class="sort col-lg-3 col-md-3 col-sm-6 col-xs-6">
+						<span>Sort By</span>
+						<select>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select>
+					</div>
+
+					<div class="media col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="media-left">
+							<a href="#"><img src="img/avatar-cmt.jpg" class="media-object img-responsive" alt="img-holiwood"></a>
+						</div>
+						<div class="media-body">
+							<input type="text" name="input-cmt" class="input-lg" placeholder="Add a comments">
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div class="info-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+						<h3>About</h3>
+						<ul>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">News & Stories</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">History</a> </li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Our Studio</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Shop</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Stockists</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+						<h3>Customer sevices</h3>
+						<ul>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Contact Us</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Trade Services</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Login/Register</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Delivery & Returns</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">FAQs</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+						<h3>Store</h3>
+						<ul>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Shop</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Wedding</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Birthday</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Women's day</a></li>
+						</ul>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+						<h3>Shop collection</h3>
+						<ul>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">New Arrivals</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Hot</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Sale</a></li>
+							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Deal of the day</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 social">
+					<p>CONNECT WITH US:</p>
+					<a href="#" id="link-insta"></a>
+					<a href="#" id="link-fb"></a>
+					<a href="#" id="link-tw"></a>
+					<a href="#" id="link-sky"></a>
+					<h1>Newsletter</h1>
+					<h2>Sign up for our mailing list to get latest updates and offers</h2>
+					<form class="form-group" action="https://landing.engotheme.com/html/jenstore/demo/mail" method="post">
+						<input type="text" name="input-mail" placeholder="Your mail here" class="input-lg">
+						<button type="submit"><img src="img/Send.png" alt="img-holiwood"></button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

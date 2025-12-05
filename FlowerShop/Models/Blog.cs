@@ -29,6 +29,8 @@ public partial class Blog
 
     public virtual ProductCategory ProductCategory { get; set; } = null!;
 
+    public virtual ICollection<Tag> TagsNavigation { get; set; } = new List<Tag>();
+
     public virtual User User { get; set; } = null!;
 
     public virtual ICollection<Tag> Tags { get; set; } = new List<Tag>();
