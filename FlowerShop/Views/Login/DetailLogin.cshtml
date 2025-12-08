@@ -1,7 +1,7 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "DetailLogin";
 }
+
 <main>
     <div class="content-search">
 
@@ -20,8 +20,8 @@
         <div class="container">
             <figure id="banner-about"><a href="#"><img src="~/img/banner-about.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
             <div class="title-banner">
-                <h1>Login/Register</h1>
-                <p><a href="#" title="Home">Home</a><i class="fa fa-caret-right"></i>Login/Register</p>
+                <h1>ĐANG NHAP/ DANG KY</h1>
+               
             </div>
 
         </div>
@@ -31,64 +31,77 @@
         <div class="page-login box space-50">
             <div class="row">
                 <div class="col-md-6 sign-in space-30">
-                    <h3>sign in</h3>
-                    <p>Hello, welcome to your account.</p>
-                    <div class="social space-30 box">
-                        <a class="float-left" href="#" title="facebook">
-                            <i class="fab fa-facebook-f"></i>
-                            SIGN IN WITH FACEBOOK
-                        </a>
-                        <a class="float-right" href="#" title="TWITTER">
-                            <i class="fab fa-twitter"></i>
-                            SIGN IN WITH TWITTER
-                        </a>
-                    </div>
+                    <h3>ĐANG NHAP</h3>
+                    <p>Chao mung ban quay tro lai! Vui long dang nhap tai khoan.</p>
+                    
                     <!-- End social -->
-                    <form class="form-horizontal" method="POST">
+                    <form class="form-horizontal" method="POST" asp-action="Login" asp-controller="Login">
                         <div class="group box space-20">
-                            <label class="control-label" for="inputemail">EMAIL ADDRESS *</label>
-                            <input class="form-control" type="text" placeholder="Your email" id="inputemail">
+                            <label class="control-label" for="inputemail">EMAIL *</label>
+                            <input class="form-control"
+                                   type="email"
+                                   name="Email"
+                                   placeholder="Email cuaa ban"
+                                   required>
                         </div>
                         <div class="group box">
-                            <label class="control-label" for="inputemail">PASSWORD *</label>
-                            <input class="form-control" type="text" placeholder="Password" id="inputpass">
+                            <label class="control-label" for="inputemail">Mat khau *</label>
+                            <input class="form-control"
+                                   type="password"
+                                   name="Password"
+                                   placeholder="Mat khau cua ban"
+                                   required>
                         </div>
+
                         <div class="remember">
                             <input id="remeber" type="checkbox" name="check" value="remeber">
-                            <label for="remeber" class="label-check">remember me!</label>
-                            <a class="help" href="#" title="help ?">Fogot your password?</a>
+                            <label for="remeber" class="label-check">Luu thong tin dang nhap!</label>
+                            <a class="help" href="#" title="help ?">Quen mat khau?</a>
                         </div>
-                        <button type="submit" class="link-v1 rt">LOGIN NOW</button>
+                        <button type="submit" class="link-v1 rt">Đăng Nhập</button>
+                        @if (ViewBag.LoginError != null)
+                        {
+                            <p style="color:red; margin-top:10px">@ViewBag.LoginError</p>
+                        }
                     </form>
                     <!-- End form -->
                 </div>
                 <!-- End col-md-6 -->
                 <div class="col-md-6">
                     <div class="register box space-50">
-                        <h3>Create A New Account</h3>
-                        <p>Create your own Rimbus account.</p>
-                        <form class="form-horizontal" method="POST">
+                        <h3>TAO TAI KHOAN MOI</h3>
+                        <p>Tao tai khoan nhanh chong, mua sam de dang.</p>
+                        <form class="form-horizontal" method="POST" asp-action="Register" asp-controller="Login">
                             <div class="group box space-20">
-                                <label class="control-label" for="inputemailres">Email Adress *</label>
-                                <input class="form-control" type="text" placeholder="Your email" id="inputemailres">
+                                <label class="control-label" for="inputemailres">Email *</label>
+                                <input class="form-control"
+                                       type="email"
+                                       name="Email"
+                                       placeholder="Email cua ban"
+                                       required>
                             </div>
-                            <button type="submit" class="link-v1 rt">Sign Up</button>
+                            <div class="group box space-20">
+                                <label class="control-label">Mat khau *</label>
+                                <input class="form-control"
+                                       type="password"
+                                       name="Password"
+                                       placeholder="Mat khau cua ban"
+                                       required>
+                            </div>
+                            <button type="submit" class="link-v1 rt " style="margin-top: 20px">Đăng Ký</button>
+                            @if (ViewBag.RegisterError != null)
+                            {
+                                <p style="color:red; margin-top:10px">@ViewBag.RegisterError</p>
+                            }
+
+                            @if (ViewBag.RegisterSuccess != null)
+                            {
+                                <p style="color:green; margin-top:10px">@ViewBag.RegisterSuccess</p>
+                            }
                         </form>
                     </div>
                     <!-- End register -->
-                    <div class="sigg-to-day box">
-                        <h3>SIGN UP TODAY</h3>
-                        <form class="form-horizontal" method="POST">
-                            <div class="checkbox">
-                                <input id="check1" type="checkbox" name="check" value="check1">
-                                <label class="label-check" for="check1">Speed your way through the checkout.</label>
-                                <input id="check2" type="checkbox" name="check" value="check2">
-                                <label class="label-check" for="check2">Track your orders easily.</label>
-                                <input id="check3" type="checkbox" name="check" value="check3">
-                                <label class="label-check" for="check3">Keep a record of all purchases.</label>
-                            </div>
-                        </form>
-                    </div>
+                    
                 </div>
                 <!-- End col-md-6 -->
             </div>

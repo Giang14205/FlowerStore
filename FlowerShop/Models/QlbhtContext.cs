@@ -64,12 +64,12 @@ public partial class QlbhtContext : DbContext
     public virtual DbSet<TeamSocial> TeamSocials { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
+    public virtual DbSet<UserRole> UserRoles { get; set; }
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("data source=(local); initial catalog=QLBHT; integrated security=True; \nTrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("data source=LAPTOP-PPPI9RCS; initial catalog=QLBHT; integrated security=True; \nTrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -253,10 +253,15 @@ public partial class QlbhtContext : DbContext
             entity.Property(e => e.AvatarUrl)
                 .HasMaxLength(500)
                 .HasColumnName("AvatarURL");
+            entity.Property(e => e.BlogId).HasColumnName("BlogID");
             entity.Property(e => e.Email)
                 .HasMaxLength(150)
                 .IsUnicode(false);
             entity.Property(e => e.Ten).HasMaxLength(100);
+
+            entity.HasOne(d => d.Blog).WithMany(p => p.FeedbackCustomers)
+                .HasForeignKey(d => d.BlogId)
+                .HasConstraintName("FK_FeedbackCustomer_Blog");
 
             entity.HasOne(d => d.Product).WithMany(p => p.FeedbackCustomers)
                 .HasForeignKey(d => d.ProductId)
@@ -565,25 +570,16 @@ public partial class QlbhtContext : DbContext
             entity.Property(e => e.Phone).HasMaxLength(50);
             entity.Property(e => e.UserName).HasMaxLength(50);
 
-            entity.HasMany(d => d.Roles).WithMany(p => p.Users)
-                .UsingEntity<Dictionary<string, object>>(
-                    "UserRole",
-                    r => r.HasOne<Role>().WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__UserRole__RoleID__3C69FB99"),
-                    l => l.HasOne<User>().WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__UserRole__UserID__3B75D760"),
-                    j =>
-                    {
-                        j.HasKey("UserId", "RoleId").HasName("PK__UserRole__AF27604FF1DA8816");
-                        j.ToTable("UserRole");
-                        j.IndexerProperty<int>("UserId").HasColumnName("UserID");
-                        j.IndexerProperty<int>("RoleId").HasColumnName("RoleID");
-                    });
+            
         });
+        modelBuilder.Entity<UserRole>(entity =>
+        {
+            entity.ToTable("UserRole");
+            // Khai báo kết hợp UserId và RoleId là khóa chính
+            entity.HasKey(e => new { e.UserId, e.RoleId });
+        });
+
+
 
         modelBuilder.Entity<Voucher>(entity =>
         {

@@ -1,0 +1,120 @@
+﻿@model FlowerShop.Models.Blog
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Xóa Bài viết</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">General Form</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Xóa Bài viết</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exempleInputEmail1">Bài viết:</label>
+                                @Html.DisplayFor(model => model.Title)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Danh mục:</label>
+                                @Html.DisplayFor(model => model.ProductCategory.ProductCategoryName)
+
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Khách hàng :</label>
+                                @Html.DisplayFor(model => model.User.FullName)
+
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Tóm tắt:</label>
+                                @Html.DisplayFor(model => model.Summary)
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Bình luận:</label>
+                                @Html.DisplayFor(model => model.Content)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Ngày:</label>
+                                @Html.DisplayFor(model => model.CreatedBlog)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Bí danh:</label>
+                                @Html.DisplayFor(model => model.Alias)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Ảnh:</label>
+
+                                <div class="mt-2">
+                                    <img src="@Model.Image"
+                                         style="max-width:200px; max-height:200px; border:1px solid #ccc;" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Tác giả:</label>
+                                @Html.DisplayFor(model => model.AuthorName)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Hiển thị:</label>
+                                @Html.DisplayFor(model => model.IsActive)
+                                <form asp-action="Delete">
+                                    <input type="hidden" asp-for="BlogId" />
+                                    <input type="submit" value="Xóa" class="btn btn-danger" />
+                                    <a asp-action="Index" class="btn btn-primary">Quay lại</a>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+        <!-- /.container-fluid -->
+
+    </section>
+    <!-- /.content -->
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+}
+

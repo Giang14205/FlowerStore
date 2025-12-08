@@ -80,14 +80,16 @@
 							<div class="Quality">
 							
 								<div class="input-group input-number-group">
-									<span class="text-qua">Quanty:</span>
+									@* <span class="text-qua">Quanty:</span>
 									<div class="input-group-button">
 										<span class="input-number-decrement">-</span>
 									</div>
 									<input class="input-number" type="number" min="0" max="1000" value="01">
 									<div class="input-group-button">
 										<span class="input-number-increment">+</span>
-									</div>
+									</div> *@
+
+									<div>Tong tien can san pham:</div>
 									<span class="dola">đ </span><span class="total-prince">
 										@if (Model.PriceSale == 0)
 										{
@@ -98,7 +100,7 @@
 											
 											@Model.DiscountPrice
 										}
-
+									
 
 										
 									</span>
@@ -106,7 +108,10 @@
 
 							</div>
 							<div class="add-cart">
-								<a href="#" class="btn-add-cart">Them Vao Gio</a>
+								
+								<a asp-controller="ShoppingCart"
+								   asp-action="AddToCart"
+								   asp-route-productId="@Model.ProductId" class="btn-add-cart">Them Vao Gio</a>
 								<a href="#" class="list-icon icon-1"><i class="far fa-eye"></i></a>
 								<a href="#" class="list-icon icon-2"><i class="far fa-heart"></i></a>
 							</div>
@@ -334,14 +339,7 @@
 							
 						
 					</div>
-					<div id="addtional" class="tab-pane fade">
-						<p>
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages.
-							<br><br>
-							Fusce aliquet, ante cursus gravida sagittis, justo erat rhoncus sapien, eget condimentum ligula magna sed est. Suspendisse molestie ligula tortor. Suspendisse vitae orci ac purus eleifend malesuada at vel tellus. Sed ac semper magna. Mauris consequat blandit risus. Cras dictum eros libero, a scelerisque quam laoreet non. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nullam pharetra euismod felis, a eleifend magna.
-						</p>
-					</div>
-				</div>
+					
 			</div>
 		</div>
 		<div class="related">

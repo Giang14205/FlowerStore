@@ -1,0 +1,164 @@
+﻿@{
+    ViewData["Title"] = "Thanh toán";
+    // Lấy danh sách giỏ hàng và Tổng tiền từ Controller gửi sang
+    var cart = ViewBag.Cart as List<FlowerShop.Models.CartItemVM>;
+    var totalAmount = ViewBag.Total as decimal?; // Hoặc decimal? tùy model của bạn
+   
+}
+
+<main>
+    <div class="banner">
+        <div class="container">
+            <figure id="banner-about"><a href="#"><img src="~/img/banner-about.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
+            <div class="title-banner">
+                <h1>THANH TOAN</h1>
+                <p><a href="/" title="Home">Trang Chu</a><i class="fa fa-caret-right"></i>Thanh Toan</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container container-ver2 space-padding-tb-30">
+        <div class="row head-cart">
+            <div class="col-md-4 space-30">
+                <div class="item center"><p class="icon">01</p><h3>GIO HANG</h3></div>
+            </div>
+            <div class="col-md-4 space-30">
+                <div class="item active center"><p class="icon">02</p><h3>THANH TOAN</h3></div>
+            </div>
+            <div class="col-md-4 space-30">
+                <div class="item center"><p class="icon">03</p><h3>THANH CONG</h3></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-box-container check-out">
+        <div class="container container-ver2">
+            <form method="post" asp-action="Checkout" asp-controller="ShoppingCart" class="form-horizontal">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <h3 class="title-brand">THÔNG TIN GIAO HÀNG</h3>
+
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Ho Va Ten <span class="color">*</span></label>
+                            <input type="text" name="HoTen" placeholder="Nhap ho va ten cua ban..." class="form-control" required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label class="control-label">So Dien Thoai <span class="color">*</span></label>
+                            <input type="text" name="DienThoai" placeholder="Nhap so dien thoai..." class="form-control" required>
+                        </div>
+
+
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Đia chi giao hang <span class="color">*</span></label>
+                            <input type="text" name="DiaChi" placeholder="So nha, đuong, phuong/xa..." class="form-control" required>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label class="control-label">Ghi chu don hang</label>
+
+                            <textarea name="GhiChu" class="form-control"
+                                      style="height: 150px !important; resize: vertical;"
+                                      placeholder="Ví dụ: Giao gio hanh chinh..."></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6 space-30">
+                        <div class="box">
+                            <h3 class="title-brand">ĐON HANG CUA BẠN</h3>
+                            <div class="info-order">
+                                <div class="product-name">
+                                    <ul>
+                                        <li class="head">
+                                            <span class="name">TEN SAN PHAM</span>
+                                            <span class="qty"><b>SO LUONG</b></span>
+                                            <span class="total"><b>TONG</b></span>
+                                        </li>
+
+                                        @if (cart != null)
+                                        {
+                                            foreach (var item in cart)
+                                            {
+                                                <li>
+                                                    <span class="name">@item.ProductName</span>
+                                                    <span class="qty">@item.Quantity</span>
+                                                    <span class="total">@item.Total.ToString("#,##0") đ</span>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+
+                                <ul class="product-order">
+                                    <li>
+                                        <span class="left">TAM TINH</span>
+                                        <span class="right">@((totalAmount ?? 0).ToString("#,##0")) đ</span>
+                                    </li>
+                                    <li>
+                                        <span class="left">PHI VAN CHUYEN</span>
+                                        <span class="right">Mien Phi</span>
+                                    </li>
+                                    <li>
+                                        <span class="left">TONG CONG</span>
+                                        <span class="right brand">@((totalAmount ?? 0).ToString("#,##0")) đ</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="payment-order box float-left">
+                                <hr />
+                                <h3 class="title-brand">PHUONG THUC THANH TOAN</h3>
+                                <ul class="tabs">
+
+                                    <li style="list-style: none; margin-bottom: 15px; border-bottom: 1px dashed #eee; padding-bottom: 10px;">
+                                        <label style="cursor: pointer; display: flex; align-items: center;">
+                                            <input type="radio" name="PaymentMethod" value="COD" checked style="width: 20px; height: 20px; margin-right: 10px;">
+                                            <div>
+                                                <h4 style="margin: 0;">Thanh toan khi nhan hang (COD)</h4>
+                                                <p style="margin: 0; color: #888; font-size: 12px;">Ban se thanh toan tien mat cho shipper khi nhan hang .</p>
+                                            </div>
+                                        </label>
+                                    </li>
+
+                                    <div class="card mt-2 border-0 bg-transparent">
+                                        <div class="card-header border-0 bg-transparent p-0">
+                                            <h5 class="panel-title mb-0">
+                                                <div class="form-check d-flex align-items-center">
+                                                    <input class="form-check-input mt-0"
+                                                           type="radio"
+                                                           name="PaymentMethod"
+                                                           id="paymentVnPay"
+                                                           value="VNPAY"
+                                                           style="width: 20px; height: 20px; cursor: pointer;">
+
+                                                    <label class="form-check-label fw-bold ms-2" for="paymentVnPay" style="cursor: pointer; color: #333; display: flex; align-items: center;">
+                                                        <div style="margin-right: 10px;">
+                                                            <h4 style="margin: 0; font-size: 1rem;">
+                                                                Thanh toán qua VNPAY
+                                                                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-VNPAY-QR.png"
+                                                                     alt="VNPay"
+                                                                     style="height: 25px; margin-left: 10px; vertical-align: middle;">
+                                                            </h4>
+                                                            <p style="margin: 0; color: #888; font-size: 12px; font-weight: normal;">
+                                                                Thanh toán online qua thẻ ATM/Internet Banking.
+                                                            </p>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </h5>
+                                        </div>
+                                    </div>
+
+                                </ul>
+                            </div>
+
+                            <button type="submit" class="link-v1 box lh-50 rt full" style="border: none; cursor: pointer;">
+                                ĐAT HANG NGAY
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

@@ -17,7 +17,11 @@
 
 				<div class="product-icon-flower">
 					<a href="@sUrl"><i class="far fa-eye"></i></a>
-					<a href="#"><i class="fas fa-shopping-basket"></i></a>
+				<a asp-controller="ShoppingCart"
+				   asp-action="AddToCart"
+				   asp-route-productId="@item.ProductId">
+					<i class="fas fa-shopping-basket"></i>
+				</a>
 					<a href="#"><i class="far fa-heart"></i></a>
 				</div>
 

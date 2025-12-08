@@ -10,7 +10,7 @@
             <img src="~/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block">Xin chào Admin!</a>
         </div>
     </div>
 
@@ -32,89 +32,62 @@
             <!-- Add icons to the links using the .nav-icon class
                  with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-                <a href="@Url.Action("Index", "Category", new { area = "Admin" })" class="nav-link active">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                        Danh mục
-                        <i class="right fas fa-angle-left"></i>
-                    </p>
-                </a>
+                
             <li class="nav-item">
-                <a href="/new" class="nav-link">
+                <a href="@Url.Action("Index", "Products", new { area = "Admin" })" class="nav-link ">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
-                        Tin tức
+                        Quản Lý Sản Phẩm
                         <span class="right badge badge-danger">New</span>
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/new" class="nav-link">
+                <a href="@Url.Action("Index", "Blogs", new { area = "Admin" })" class="nav-link ">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
-                        Bài viết
+                         Quản Lý Bài viết
                         <span class="right badge badge-danger">New</span>
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/new" class="nav-link">
+                <a href="@Url.Action("Index", "Users", new { area = "Admin" })" class="nav-link ">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
-                        Quảng cáo
-                        <span class="right badge badge-danger">New</span>
-                    </p>
-                </a>
-            </li>
-            @*<ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="./index.html" class="nav-link active">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Tin tức</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./index2.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Bài viết</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./index3.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p> Quảng cáo</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>*@
-            @*<li class="nav-item">
-                <a href="/new" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                      Tin tức
-                        @*<span class="right badge badge-danger">New</span>
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/new" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                        Bài viết
+                        Quản Lý Người Dùng
                         <span class="right badge badge-danger">New</span>
                     </p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="/new" class="nav-link">
+                <a href="@Url.Action("Index", "Menus", new { area = "Admin" })" class="nav-link ">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
-                        Quảng cáo
-                        @*<span class="right badge badge-danger">New</span>
+                        Quản Lý Menu
+                        <span class="right badge badge-danger">New</span>
                     </p>
                 </a>
-            </li>  *@
-            <li class="nav-item menu-open">
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Orders", new { area = "Admin" })" class="nav-link ">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Quản Lý Đơn Hàng
+                        <span class="right badge badge-danger">New</span>
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "FeedbackCustomers", new { area = "Admin" })" class="nav-link ">
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>
+                        Quản Lý Feedback
+                        <span class="right badge badge-danger">New</span>
+                    </p>
+                </a>
+            </li>
+            @* <li class="nav-item menu-open">
                 <a href="/Category" class="nav-link active">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
@@ -137,16 +110,8 @@
                     </li>
                     
                 </ul>
-            </li>
-            <li class="nav-item">
-                <a href="/new" class="nav-link">
-                    <i class="nav-icon fas fa-th"></i>
-                    <p>
-                      Cấu hình hệ thống
-                        <span class="right badge badge-danger">New</span>
-                    </p>
-                </a>
-            </li>
+            </li> *@
+            
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

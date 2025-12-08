@@ -13,13 +13,17 @@ public partial class FeedbackCustomer
 
     public int? Star { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     public int? ProductId { get; set; }
 
     public string? Ten { get; set; }
 
     public string? Email { get; set; }
+
+    public int? BlogId { get; set; }
+
+    public virtual Blog? Blog { get; set; }
 
     public virtual Product? Product { get; set; }
 }

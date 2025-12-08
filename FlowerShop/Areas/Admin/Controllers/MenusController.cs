@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FlowerShop.Models;
-
+using FlowerShop.Utilities;
 namespace FlowerShop.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -22,6 +22,9 @@ namespace FlowerShop.Areas.Admin.Controllers
         // GET: Admin/Menus
         public async Task<IActionResult> Index()
         {
+            if (!Function.IsLogin())
+                return RedirectToAction("Index", "Login");
+
             var qlbhtContext = _context.Menus.Include(m => m.Parent);
             return View(await qlbhtContext.ToListAsync());
         }

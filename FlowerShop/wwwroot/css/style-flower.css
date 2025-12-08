@@ -994,7 +994,7 @@ header {
   header .icon-menu {
     position: relative;
     padding-top: 20px; }
-    header .icon-menu::before {
+/*    header .icon-menu::before {
       content: "3";
       width: 20px;
       height: 20px;
@@ -1004,7 +1004,7 @@ header {
       right: 18px;
       border-radius: 50%;
       top: 30px;
-      color: white; }
+      color: white; }*/
     header .icon-menu li .fa-user {
       font-size: 22px;
       padding-right: 30px;

@@ -23,9 +23,11 @@ public partial class Blog
 
     public string? Image { get; set; }
 
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
 
     public string? AuthorName { get; set; }
+
+    public virtual ICollection<FeedbackCustomer> FeedbackCustomers { get; set; } = new List<FeedbackCustomer>();
 
     public virtual ProductCategory ProductCategory { get; set; } = null!;
 

@@ -1,8 +1,9 @@
 ﻿using FlowerShop.Models;
-
+using FlowerShop.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection;
+using FlowerShop.Utilities;
 
 namespace FlowerShop.Areas.Admin.Controllers
 {
@@ -17,6 +18,8 @@ namespace FlowerShop.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            if (!Function.IsLogin())
+                return RedirectToAction("Index", "Login");
             var items = _context.ProductCategories;
             return View(items);
         }

@@ -1,6 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using System.Text.Json
+@using FlowerShop.Models
+@using Microsoft.AspNetCore.Http
+@{
+	Layout = null;
+}
 @{
 	ViewData["Title"] = "DetailHome1";
 	List<ProductCategory> productCategories = ViewBag.ProductCategories;
@@ -30,7 +33,6 @@
 </head>
 <body>
 	<header class="navbar-fixed-top pos-header" id="header-v1">
-	@*
 		<nav class="hidden-xs">
 			<div class="container">
 				<ul class="nav navbar-nav nav-help">
@@ -49,11 +51,40 @@
 				</ul>
 			</div>
 		</nav>
-
 		<div class="container">
 			<div class="row">
 
+				@await Component.InvokeAsync("MenuTop")
+				<ul class="logo col-lg-2 col-md-2 col-sm-7 col-xs-7">
+					<li><a href="#"><img src="~/img/logo.png" class="img-responsive" alt="img-holiwood"></a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right icon-menu col-lg-4 col-md-4 col-sm-5 col-xs-5">
+					<li class="icon-user hidden-sm hidden-xs"><a href="#"><i class="far fa-user"></i></a></li>
+					<li class="dropdown cart-menu">
+						<a asp-controller="ShoppingCart" asp-action="Index" class="dropdown-toggle">
+        
+						 <img src="~/img/cart.png" id="img-cart" alt="cart">
 
+							@{
+								var sessionCart = Context.Session.GetString("GioHang");
+								var cart = sessionCart != null
+								? System.Text.Json.JsonSerializer.Deserialize<List<FlowerShop.Models.CartItemVM>>(sessionCart)
+								: new List<FlowerShop.Models.CartItemVM>();
+								int soLuong = cart.Sum(item => item.Quantity);
+							}
+
+							@if (soLuong > 0)
+							{
+								<span class="badge" style="background:red; position:absolute; top:11px; right:120px; z-index:999;">
+									@soLuong
+								</span>
+							}
+						 </a>
+					</li>
+					<li id="input-search" class="hidden-sm hidden-xs">
+						<a href="#"><img src="~/img/Search.png" alt="img-holiwood"></a>
+					</li>
+				</ul>
 				<div class="navbar-header mobile-menu">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 						<i class="fas fa-bars"></i>
@@ -64,136 +95,12 @@
 						<input type="text" name="search" placeholder="Search here..." class="form-control">
 						<button type="submit"><img src="~/img/Search.png" alt="search" class="img-responsive"></button>
 					</form>
-					
-
-					<!--<ul class="nav navbar-nav menu-main">
-						<li><figure id="btn-close-menu" class="hidden-lg hidden-md"><i class="far fa-times-circle"></i></figure></li>
-						<li class="dropdown menu-home">
-							<a href="#" id="home-menu" class="dropdown-toggle" data-toggle="dropdown">Home</a>
-							<ul class="menu-home-lv2 dropdown-menu">
-								<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-md hidden-sm hidden-xs"></i><a href="homev1.html">Home 1</a></li>
-								<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-md hidden-sm hidden-xs"></i><a href="homev2.html">Home 2</a></li>
-								<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-md hidden-sm hidden-xs"></i><a href="homev3.html">Home 3</a></li>
-
-							</ul>
-						</li>
-						<li class="shop-menu dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop +</a>
-							<figure id="shop-1" class="hidden-sm hidden-xs"></figure>
-							<div class="dropdown-menu">
-								<div class="container container-menu">
-									<ul class="row">
-										<li class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-											<ul>
-												<li class="col-lg-4 col-md-4 col-sm-12 col-xs-12 menu-home-lv2">
-													<ul>
-														<li><a href="#">SHOP PAGE</a> </li>
-														<li class="li-home li-one"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="shop-right-sidebar.html">Right sidebar</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="shop-left-sidebar.html">Left sidebar</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="shop-full-screen.html">Full screen</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="shop-full-width.html">Full width</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="singel-detail.html">Singel detail</a></li>
-
-													</ul>
-												</li>
-												<li class="col-lg-4 col-md-4 col-sm-12 col-xs-12 menu-home-lv2">
-													<ul>
-														<li><a href="#">CHECKING PAGE</a></li>
-														<li class="li-home li-one"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="shopping-cart.html">Shopping Cart</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="checkout.html">Checkout</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="order.html">Order</a></li>
-													</ul>
-												</li>
-												<li class="col-lg-4 col-md-4 col-sm-12 col-xs-12 menu-home-lv2">
-													<ul>
-														<li><a href="#">OTHER PAGE</a></li>
-														<li class="li-home li-one"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="FAQ.html">FAQ</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="login_register.html">Login/Register</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="page404.html">Page404</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="tracking.html">Tracking</a></li>
-														<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="wishlist.html">Wishlist</a></li>
-													</ul>
-												</li>
-
-											</ul>
-										</li>
-										<li class="col-lg-4 col-md-4 hidden-sm hidden-xs li-banner">
-											<a href="#"><img src="~/img/Shop-now-banner.png" alt="img-holiwood"></a>
-										</li>
-
-									</ul>
-								</div>
-							</div>
-						</li>
-						<li class="wedding-menu"><a href="about.html">About Us</a><figure id="wedding-1" class="hidden-sm hidden-xs"></figure></li>
-						<li class="blog-menu dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog</a>
-							<figure id="blog-1" class=" hidden-sm hidden-md hidden-xs"></figure>
-							<ul class="menu-home-lv2 dropdown-menu">
-								<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="blog.html">Blog right sidebar</a></li>
-								<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="blog-left-sidebar.html">Blog Left sidebar</a></li>
-								<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="blog-no-sidebar.html">Blog no sidebar</a></li>
-								<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="singel-post-left-sidebar.html">Singel post left sidebar</a></li>
-								<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="singel-post-right-sidebar.html">Singel post right sidebar</a></li>
-								<li class="li-home"><i class="fas fa-long-arrow-alt-right hidden-sm hidden-md hidden-xs"></i><a href="singel-post-no-sidebar.html">Singel post no sidebar</a></li>
-							</ul>
-						</li>
-						<li class="contact-menu"><a href="contact.html">Contact</a><figure id="contact-1" class="hidden-sm hidden-xs"></figure></li>
-						<li class="hidden-lg hidden-md"><a href="#"><i class="far fa-user"></i> My Account</a></li>
-						<li class="hidden-lg hidden-md hidden-sm phone-mobile"><strong>P:</strong>800 123 654 78</li>
-						<li class="hidden-lg hidden-md hidden-sm phone-mobile"><strong>E:</strong><a href="https://landing.engotheme.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="39735c574a4d564b5c795e54585055175a5654">[email&#160;protected]</a></li>
-					</ul>-->
-					
 				</div>
-				<ul class="logo col-lg-2 col-md-2 col-sm-7 col-xs-7">
-					<li><a href="#"><img src="~/img/logo.png" class="img-responsive" alt="img-holiwood"></a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right icon-menu col-lg-4 col-md-4 col-sm-5 col-xs-5">
-					<li class="icon-user hidden-sm hidden-xs"><a href="#"><i class="far fa-user"></i></a></li>
-					<li class="dropdown cart-menu">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="~/img/cart.png" id="img-cart" alt="img-holiwood"></a>
-						<div class="dropdown-menu">
-							<div class="cart-1">
-								<div class="img-cart"><img src="~/img/collec-1.jpg" class="img-responsive" alt="img-holiwood"></div>
-								<div class="info-cart">
-									<h1>Pink roses</h1>
-									<span class="number">x1</span>
-									<span class="prince-cart">$207.2</span>
-								</div>
-							</div>
-							<div class="cart-1">
-								<div class="img-cart"><img src="~/img/collec-2.jpg" class="img-responsive" alt="img-holiwood"></div>
-								<div class="info-cart">
-									<h1>Eleganr by BloomNation</h1>
-									<span class="number">x1</span>
-									<span class="prince-cart">$207.2</span>
-								</div>
-							</div>
-							<div class="cart-1">
-								<div class="img-cart"><img src="~/img/collec-3.jpg" class="img-responsive" alt="img-holiwood"></div>
-								<div class="info-cart">
-									<h1>Queen Rose - Yellow</h1>
-									<span class="number">x1</span>
-									<span class="prince-cart">$207.2</span>
-								</div>
-							</div>
-							<div class="total">
-								<span>Total:</span>
-								<span>$621.6</span>
-							</div>
-							<div id="div-cart-menu">
-								<a href="#">ADD TO CART</a>
-								<a href="#" class="check">CHECK VIEW</a>
-							</div>
-						</div>
-					</li>
-					<li id="input-search" class="hidden-sm hidden-xs">
-						<a href="#"><img src="~/img/Search.png" alt="img-holiwood"></a>
-					</li>
-				</ul>
+				
 			</div>
+
 		</div>
-*@
+	
 	</header>
 	<main>
 		<div class="content-search">
@@ -224,9 +131,9 @@
 				<div class="item active slide-1">
 					<img src="~/img/slider-1.png" alt="img-holiwood">
 					<div class="carousel-caption">
-						<h3>Khám Phá</h3>
-						<h1>Sản Phẩm Mới</h1>
-						<p>Khám phá ngay những sản phẩm mới với thiết kế tinh tế, chất lượng vượt trội và trải nghiệm hứa hẹn mang đến cho bạn nhiều điều bất ngờ thú vị</p>
+						<h3>Kham Pha</h3>
+						<h1>San Pham Moi</h1>
+						<p>Kham pha ngay nhung san pham moi voi thiet ke tinh te, chat luong vuot troi va trai nghiem hua hen mang den cho ban nhieu dieu bat ngo thu vi</p>
 						<img src="~/img/Pattern.png" alt="img-holiwood"><br>
 						<a href="#">Shop now</a>
 					</div>
@@ -320,13 +227,17 @@
 											<figure class="hot"><a href="/product/@(item.Alias)-@(item.ProductId).html"><img src="@item.ImagePopular" class="img-responsive" alt="img-holiwood"></a></figure>
 											<div class="product-icon-collec">
 												<a href="/product/@(item.Alias)-@(item.ProductId).html"><i class="far fa-eye"></i></a>
-												<a href="#"><i class="fas fa-shopping-basket"></i></a>
+												<a asp-controller="ShoppingCart"
+												   asp-action="AddToCart"
+												   asp-route-productId="@item.ProductId">
+													<i class="fas fa-shopping-basket"></i>
+												</a>
 												<a href="#"><i class="far fa-heart"></i></a>
 											</div>
 										</div>
 										<div class="product-title-collec">
 											<h5><a href="/product/@(item.Alias)-@(item.ProductId).html"> @item.ProductName</a></h5>
-											<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+											
 											<div class="prince">
 												@if (item.PriceSale == 0)
 												{
@@ -357,53 +268,8 @@
 							{
 								<p>Hiện chưa có sản phẩm mới nào.</p>
 							}
-@*
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-collection">
-								<div class="product-image-collec">
-									<a href="#"><img src="~/img/collec-2.jpg" class="img-responsive" alt="img-holiwood"></a>
-									<div class="product-icon-collec">
-										<a href="#" data-toggle="modal" data-target="#myModal"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="fas fa-shopping-basket"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-									</div>
-								</div>
-								<div class="product-title-collec">
-									<h5><a href="#"> Eleganr by BloomNation</a></h5>
-									<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-									<div class="prince">$115.4</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-collection">
-								<div class="product-image-collec">
-									<a href="#"><img src="~/img/collec-3.jpg" class="img-responsive" alt="img-holiwood"></a>
-									<div class="product-icon-collec">
-										<a href="#" data-toggle="modal" data-target="#myModal"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="fas fa-shopping-basket"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-									</div>
-								</div>
-								<div class="product-title-collec">
-									<h5><a href="#">Queen Rose - Yellow</a></h5>
-									<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-									<div class="prince">$250.6</div>
-								</div>
-							</div>
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-collection">
-								<div class="product-image-collec">
-									<figure class="sale"><a href="#"><img src="~/img/collec-4.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-									<div class="product-icon-collec">
-										<a href="#" data-toggle="modal" data-target="#myModal"><i class="far fa-eye"></i></a>
-										<a href="#"><i class="fas fa-shopping-basket"></i></a>
-										<a href="#"><i class="far fa-heart"></i></a>
-									</div>
-								</div>
-								<div class="product-title-collec">
-									<h5><a href="#">Cottage Rose Bouquet</a></h5>
-									<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-									<div class="prince">$100.9<s class="strike">$150.9</s></div>
-								</div>
-							</div>
-*@
+
+							
 						</div>
 					</div>
 				</figure>
@@ -429,13 +295,17 @@
 											<figure class="sale"><a href="/product/@(item.Alias)-@(item.ProductId).html"><img src="@item.ImagePopular" class="img-responsive" alt="@item.ProductName"></a></figure>
 											<div class="product-icon-wedding">
 												<a href="/product/@(item.Alias)-@(item.ProductId).html"><i class="far fa-eye"></i></a>
-												<a href="#"><i class="fas fa-shopping-basket"></i></a>
+												<a asp-controller="ShoppingCart"
+												   asp-action="AddToCart"
+												   asp-route-productId="@item.ProductId">
+													<i class="fas fa-shopping-basket"></i>
+												</a>
 												<a href="#"><i class="far fa-heart"></i></a>
 											</div>
 										</div>
 										<div class="product-title-wedding">
 											<h5><a href="/product/@(item.Alias)-@(item.ProductId).html">@item.ProductName</a></h5>
-											<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+											
 											<div class="prince">
 												@if (item.PriceSale == 0)
 												{
@@ -537,16 +407,20 @@
 									{
 										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-holiday">
 											<div class="product-image-holiday">
-												<figure class="hot"><a href="/product/@(item.Alias)-@(item.ProductId).html"><img src="@item.ImagePopular" class="img-responsive" alt="img-holiwood"></a></figure>
+												<figure class="sale"><a href="/product/@(item.Alias)-@(item.ProductId).html"><img src="@item.ImagePopular" class="img-responsive" alt="@item.ProductName"></a></figure>
 												<div class="product-icon-holiday">
-													<a href="#"><i class="far fa-eye"></i></a>
-													<a href="#"><i class="fas fa-shopping-basket"></i></a>
+													<a href="/product/@(item.Alias)-@(item.ProductId).html"><i class="far fa-eye"></i></a>
+													<a asp-controller="ShoppingCart"
+													   asp-action="AddToCart"
+													   asp-route-productId="@item.ProductId">
+														<i class="fas fa-shopping-basket"></i>
+													</a>
 													<a href="#"><i class="far fa-heart"></i></a>
 												</div>
 											</div>
 											<div class="product-title-holiday">
 												<h5><a href="#">@item.ProductName</a></h5>
-												<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+												
 												<div class="prince">
 													@if (item.PriceSale == 0)
 													{
@@ -575,53 +449,7 @@
 								{
 									<p>Hiện chưa có sản phẩm mới nào.</p>
 								}
-								@*
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-holiday">
-									<div class="product-image-holiday">
-										<a href="#"><img src="~/img/holiday-2.jpg" class="img-responsive" alt="img-holiwood"></a>
-										<div class="product-icon-holiday">
-											<a href="#"><i class="far fa-eye"></i></a>
-											<a href="#"><i class="fas fa-shopping-basket"></i></a>
-											<a href="#"><i class="far fa-heart"></i></a>
-										</div>
-									</div>
-									<div class="product-title-holiday">
-										<h5><a href="#">Winter White Bouquet</a></h5>
-										<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-										<div class="prince">$240.2</div>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-holiday">
-									<div class="product-image-holiday">
-										<a href="#"><img src="~/img/holiday-3.jpg" class="img-responsive" alt="img-holiwood"></a>
-										<div class="product-icon-holiday">
-											<a href="#"><i class="far fa-eye"></i></a>
-											<a href="#"><i class="fas fa-shopping-basket"></i></a>
-											<a href="#"><i class="far fa-heart"></i></a>
-										</div>
-									</div>
-									<div class="product-title-holiday">
-										<h5><a href="#">Tulipa Floriade - Red</a></h5>
-										<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-										<div class="prince">$105.7</div>
-									</div>
-								</div>
-								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 product-holiday">
-									<div class="product-image-holiday">
-										<figure class="sale"><a href="#"><img src="~/img/holiday-4.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-										<div class="product-icon-holiday">
-											<a href="#"><i class="far fa-eye"></i></a>
-											<a href="#"><i class="fas fa-shopping-basket"></i></a>
-											<a href="#"><i class="far fa-heart"></i></a>
-										</div>
-									</div>
-									<div class="product-title-holiday">
-										<h5><a href="#">West Palm Beach Florist</a></h5>
-										<div class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-										<div class="prince">$209.2<s class="strike">$180.9</s></div>
-									</div>
-								</div>
-*@
+								
 							</div>
 
 							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 banner-holiday">
@@ -674,38 +502,13 @@
 
 		</div>
 		<div class="container blog">
-			<h1>Latest Blogs</h1>
-			<p>- Lorem Ipsum is<span class="hidden-xs"> simply dummy</span> text of the printing -</p>
+			<h1>Trang Blog</h1>
+			<p>- Cập nhật <span class="hidden-xs">thông tin mới nhất</span> về thế giới hoa tươi -</p>
 			<div class="row">
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 product-blog">
-					<a href="#"><img src="~/img/blog-1.jpg" class="img-responsive" title="img-blog" alt="img-holiwood"></a>
-					<div class="time-blog">
-						<span class="time"><i class="far fa-calendar-alt"></i><span>May, 12 2018</span></span>
-						<span class="time"><i class="far fa-edit"></i><span>Pixel-Creative</span></span>
-					</div>
-					<h2><a href="#">Choose for yourself the Flobal chiffon dress</a></h2>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 product-blog">
-					<a href="#"><img src="~/img/blog-2.jpg" class="img-responsive" title="img-blog" alt="img-holiwood"></a>
-					<div class="time-blog">
-						<span class="time"><i class="far fa-calendar-alt"></i><span>May, 12 2018</span></span>
-						<span class="time"><i class="far fa-edit"></i><span>Pixel-Creative</span></span>
-					</div>
-					<h2><a href="#">Choose for yourself the Flobal chiffon dress</a></h2>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+				
 
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 product-blog">
-					<a href="#"><img src="~/img/blog-3.jpg" class="img-responsive" title="img-blog" alt="img-holiwood"></a>
-					<div class="time-blog">
-						<span class="time"><i class="far fa-calendar-alt"></i><span>May, 12 2018</span></span>
-						<span class="time"><i class="far fa-edit"></i><span>Pixel-Creative</span></span>
-					</div>
-					<h2><a href="#">Choose for yourself the Flobal chiffon dress</a></h2>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
-
-				</div>
+				@await Component.InvokeAsync("Blog")
+				
 			</div>
 		</div>
 	</main>
@@ -1016,9 +819,9 @@
 		</div>
 		<!-- --------------------------- -->
 	</footer>
-
+    
 	<!-- boostrap & jquery -->
-	<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+	<script data-cfasync="false" src="~/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 	<script src="~/js/jquery.min_af.js"></script>
 	<script src="~/js/bootstrap.min_0028.js"></script>
 	<!-- js file -->

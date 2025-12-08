@@ -1,16 +1,4 @@
-﻿@* @model IEnumerable<FlowerShop.Models.Menu>
-@foreach ( var item in Model.Where(i=>i.SortOrder==1))
-{
-    <!--class="nav navbar-nav menu-main">   </li>-->
-        <ul >
-            <li class="dropdown menu-home shop-menu">
-            <a href="/@item.Alias">
-                @item.MenuName
-            </a>
-            </li>
-        </ul>
-       
-} *@
+﻿
 @model IEnumerable<FlowerShop.Models.Menu>
 
 <ul class="nav navbar-nav menu-main li a ">

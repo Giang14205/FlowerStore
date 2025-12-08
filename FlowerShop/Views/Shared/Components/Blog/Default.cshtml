@@ -1,18 +1,20 @@
 ﻿@model IEnumerable<FlowerShop.Models.Blog>
-@foreach(var item in Model)
+
+@foreach (var item in Model.Take(3))
 {
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 product-blog">
-		<a href="blog-post.html"><img src="@item.Image" class="img-responsive" alt="img-holiwood"></a>
-	</div>
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 title-blog">
-		<h2><a href="blog-post.html">@item.Title</a></h2>
-		<div class="time-blog">
-			<span class="time"><i class="far fa-calendar-alt"></i><span>@item.CreatedBlog.Value.ToString("dd/MM/yyyy")</span></span>
-			<span class="time"><i class="far fa-edit"></i><span>@item.AuthorName</span></span>
-		</div>
-		<p>@item.Summary</p>
-		<a href="#">Xem them...</a>
-	</div>
+
+    string sUrl = $"/blog/{item.Alias}-{item.BlogId}.html";
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 product-blog">
+        <a href="@sUrl"><img src=@item.Image class="img-responsive" title="img-blog" alt="img-holiwood"></a>
+        <div class="time-blog">
+            <span class="time"><i class="far fa-calendar-alt"></i><span>(@item.CreatedBlog.Value.ToString("dd/MM/yyyy"))</span></span>
+            <span class="time"><i class="far fa-edit"></i><span>@item.AuthorName</span></span>
+        </div>
+        <h2><a href="@sUrl">@item.Title</a></h2>
+        <p>@item.Summary</p>
+
+    </div>
+
+
+
 }
-
-

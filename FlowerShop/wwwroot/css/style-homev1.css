@@ -766,8 +766,8 @@ nav {
   clear: none !important;
   position: relative;
   padding: 35px 0 0 140px; }
-  .icon-menu::before {
-    content: "3";
+/*  .icon-menu::before {
+    content: "";
     width: 20px;
     height: 20px;
     background-color: black;
@@ -776,7 +776,7 @@ nav {
     left: 247px;
     border-radius: 50%;
     top: 46px;
-    color: white; }
+    color: white; }*/
   .icon-menu li .fa-user {
     font-size: 22px;
     padding-right: 30px;

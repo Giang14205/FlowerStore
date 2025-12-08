@@ -1,0 +1,102 @@
+﻿@model FlowerShop.Models.User
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Xóa menu</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">General Form</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Xóa tông tin</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exempleInputEmail1">Tên:</label>
+                                @Html.DisplayFor(model => model.UserName)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Mật khẩu:</label>
+                                @Html.DisplayFor(model => model.Password)
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Họ và tên:</label>
+                                @Html.DisplayFor(model => model.FullName)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">SĐT:</label>
+                                @Html.DisplayFor(model => model.Phone)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Email:</label>
+                                @Html.DisplayFor(model => model.Email)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Trạng thái:</label>
+                                @Html.DisplayFor(model => model.Status)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Mô tả:</label>
+                                @Html.DisplayFor(model => model.Description)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Đăng nhập lần cuối:</label>
+                                @Html.DisplayFor(model => model.LastLogin)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Địa chỉ:</label>
+                                @Html.DisplayFor(model => model.Address)
+                            </div>
+                            <div class="form-group">
+
+                                <form asp-action="Delete">
+                                    <input type="hidden" asp-for="UserId" />
+                                    <input type="submit" value="Xóa" class="btn btn-danger" />
+                                    <a asp-action="Index" class="btn btn-primary">Quay lại</a>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

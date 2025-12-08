@@ -1,0 +1,126 @@
+﻿@model FlowerShop.Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thêm sản phẩm </h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">General Form</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm mới đơn hàng </h3>
+                        </div>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <!--thêm cái này ở enctype="multipart/form-data ở sau Create khi thêm ảnh -->
+                        <form asp-action="Create">
+
+                            <div class="card-body">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="UserId" class="control-label">Khách hàng:</label>
+                                    <select asp-for="UserId" form-control" asp-items="ViewBag.UserId">
+                                        <option value="0" selected>--[Khách hàng]--</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="ShippingAddress" class="control-label">Địa chỉ:</label>
+                                    <input asp-for="ShippingAddress" class="form-control" />
+                                    <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="OrderNumber" class="control-label">Mã số đơn:</label>
+                                    <input asp-for="OrderNumber" class="form-control" />
+                                    <span asp-validation-for="OrderNumber" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="VoucherId" class="control-label">Voucher:</label>
+                                    <select asp-for="VoucherId" class="form-control" asp-items="ViewBag.VoucherId">
+                                        <option value="0" selected>--[Chọn voucher]--</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="TotalAmount" class="control-label">Tổng tiền:</label>
+                                    <input asp-for="TotalAmount" class="form-control" />
+                                    <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label asp-for="ShippingAmount" class="control-label">Phí vận chuyển:</label>
+                                    <input asp-for="ShippingAmount" class="form-control" />
+                                    <span asp-validation-for="ShippingAmount" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="PayMethodId" class="control-label">Thanh toán:</label>
+                                    <select asp-for="PayMethodId" class="form-control" asp-items="ViewBag.PayMethodId">
+                                        <option value="0" selected>--[chọn phương thức]--</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="OrderStatusId" class="control-label">Trạng thái:</label>
+                                    <select asp-for="OrderStatusId" class="form-control" asp-items="ViewBag.OrderStatusId">
+                                        <option value="0" selected>--[chọn trạng thái]--</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="OrderDate" class="control-label">Ngày đặt:</label>
+                                    <input asp-for="OrderDate" class="form-control" />
+
+                                    <span asp-validation-for="OrderDate" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Thêm mới" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+</div>
+
+
+<!--Phải có scrip này nhé lưu ý ở trang layout phải có-->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
