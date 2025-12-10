@@ -24,6 +24,8 @@
 
 	<link rel="stylesheet" type="text/css" href="~/css/style-contact.css">
 	<link rel="stylesheet" type="text/css" href="~/css/style-res-contact.css">
+    
+	<link rel="stylesheet" href="~/css/chatbot.css" />
 	<!-- slick -->
 
 	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
@@ -221,6 +223,40 @@
 		<div class="hidden-lg hidden-md back-to-top fade"><i class="fas fa-caret-up"></i></div>
 		<div class="BG-menu"></div>
 	</footer>
+
+
+
+	<div class="chat-launcher" onclick="toggleChat()">
+		<img src="https://cdn-icons-png.flaticon.com/512/3069/3069172.png" alt="Panda">
+	</div>
+
+	<div class="chat-window" id="chatWindow">
+		<div class="chat-header">
+			<div class="avatar-wrapper">
+				<img src="https://cdn-icons-png.flaticon.com/512/3069/3069172.png" class="avatar" alt="PanPan">
+				<div class="status-dot"></div>
+			</div>
+			<div class="bot-info">
+				<h3>PanPan 🐼</h3>
+				<p>Thích gặm tre & Tư vấn</p>
+			</div>
+			<button class="close-btn" onclick="toggleChat()">×</button>
+		</div>
+		<div class="chat-body" id="chatBody"></div>
+		<div class="quick-replies">
+			<button class="quick-btn" onclick="sendQuickReply('Tư vấn mua hoa 🌸')">Tư vấn hoa 🌸</button>
+			<button class="quick-btn" onclick="sendQuickReply('Hôm nay có rau gì? 🥦')">Rau củ hôm nay 🥦</button>
+			<button class="quick-btn" onclick="sendQuickReply('Ship hàng thế nào? 🛵')">Ship hàng 🛵</button>
+		</div>
+		<div class="chat-footer">
+			<input type="text" class="chat-input" id="userInput" placeholder="Nhắn cho PanPan nha..." onkeypress="handleEnter(event)">
+			<button class="send-btn" onclick="sendMessage()">➤</button>
+		</div>
+	</div>
+
+
+
+
 	<!-- script cho trang detail checkout -->
 	<script src="~/js/jquery.min_af.js"></script>
 	<script src="~/js/bootstrap.min_0028.js"></script>
@@ -255,8 +291,8 @@
 	<script src="~/js/function-input-number.js"></script>
 
     <script src="~/toastr/toastr.min.js"></script>
-	
-
+	<script src="~/js/chatbot.js"></script>
+    
 	
 	@await RenderSectionAsync("Scripts", required: false)
 
