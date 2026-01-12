@@ -75,8 +75,8 @@
 			<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 menu-mobile">
 				<div class=" collapse navbar-collapse" id="myNavbar">
 
-					<form class="hidden-lg hidden-md form-group form-search-mobile">
-						<input type="text" name="search" placeholder="Search here..." class="form-control">
+					<form asp-controller="Search" asp-action="Index" method="get" class="hidden-lg hidden-md form-group form-search-mobile">
+						<input type="text" name="q" placeholder="Nhap hoa can tim...." class="form-control">
 						<button type="submit"><img src="~/img/Search.png" alt="search" class="img-responsive"></button>
 					</form>
 
@@ -173,7 +173,9 @@
 					<li id="input-search" class="hidden-sm hidden-xs">
 						<a href="#"><img id="search-img" src="~/img/Search.png" alt="img-holiwood"></a>
 					</li>
-					<li class="icon-user hidden-sm hidden-xs"><a href="#"><i class="far fa-user"></i></a></li>
+					<li class="icon-user hidden-sm hidden-xs">
+						<a asp-controller="Login" asp-action="DetailLogin"><i class="far fa-user"></i></a>
+						</li>
 					<li class="dropdown cart-menu">
 						<a asp-controller="ShoppingCart" asp-action="Index" class="dropdown-toggle">
         

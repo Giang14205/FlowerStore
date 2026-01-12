@@ -13,12 +13,7 @@
                 <div class="col-sm-6">
                     <h1>Quản lý sản phẩm </h1>
                 </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Simple Tables</li>
-                    </ol>
-                </div>
+               
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -35,7 +30,25 @@
                             <h3 class="card-title"><a asp-action="Create">Thêm mới</a></h3>
 
                             <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
+                                <form asp-action="Index" method="get">
+                                    <div class="input-group input-group-sm" style="width: 250px;">
+                                        <input type="text" name="q" value="@ViewContext.HttpContext.Request.Query["q"]"
+                                               class="form-control float-right" placeholder="Tìm tên sản phẩm...">
+
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-default">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                            @if (!string.IsNullOrEmpty(ViewContext.HttpContext.Request.Query["q"]))
+                                            {
+                                                <a asp-action="Index" class="btn btn-default" title="Hủy tìm kiếm">
+                                                    <i class="fas fa-times"></i>
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </form>
+                                @* <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
                                     <div class="input-group-append">
@@ -43,7 +56,7 @@
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
-                                </div>
+                                </div> *@
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -60,7 +73,7 @@
                                         <th>Giá  sản phẩm sau giảm:</th>
                                         <th>Giá giảm:</th>
                                         <th>Số lượng:</th>
-                                        <th>Mô tả:</th>
+                                        
                                         <th>Nhà cung cấp:</th>
                                         <th>Sản phẩm mới:</th>
                                         <th>Bán chạy:</th>
@@ -85,7 +98,7 @@
                                             <td>@Html.DisplayFor(modelItem => item.DiscountPrice)</td>
                                             <td>@Html.DisplayFor(modelItem => item.PriceSale)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Stock)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.ProductDescription)</td>
+                                          
                                             <td>@Html.DisplayFor(modelItem => item.Manufacturer)</td>
                                             <td>@Html.DisplayFor(modelItem => item.IsNew)</td>
                                             <td>@Html.DisplayFor(modelItem => item.IsBestSeller)</td>
@@ -93,7 +106,7 @@
                                             <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-primary">Sửa</a>
-                                               
+                                                <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-success">Chi tiết</a>
                                                 <a asp-action="Delete" asp-route-id="@item.ProductId" class=" btn btn-danger">Xóa</a>
                                             </td>
                                         </tr>

@@ -41,7 +41,7 @@ namespace FlowerShop.Controllers
 
             var check = _context.Users
                 .FirstOrDefault(m => m.Email.ToLower() == email && m.Password == password);
-
+           
             if (check == null)
             {
                 ViewBag.LoginError = "Email hoặc mật khẩu không đúng!";
@@ -49,6 +49,26 @@ namespace FlowerShop.Controllers
                 return View("DetailLogin");
             }
 
+
+            var roleName = (from ur in _context.UserRoles
+                            join r in _context.Roles on ur.RoleId equals r.RoleId
+                            where ur.UserId == check.UserId
+                            select r.RoleName).FirstOrDefault() ?? "Customer";
+
+
+
+            var a = new List<Claim>
+             {
+             new Claim(ClaimTypes.NameIdentifier, check.UserId.ToString()),
+             new Claim(ClaimTypes.Name, check.FullName ?? check.Email),
+             new Claim(ClaimTypes.Role, roleName) // <--- QUAN TRỌNG: Lưu quyền ở đây
+             };
+
+            var claimsIdentityy = new ClaimsIdentity(a, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentityy));
             // 🛑 BƯỚC SỬA 1: TẠO CLAIMS VÀ SIGN IN (Authentication)
             var claims = new List<Claim>
             {
@@ -77,6 +97,13 @@ namespace FlowerShop.Controllers
             {
                 return Redirect(returnUrl); // Chuyển thẳng về trang Checkout
             }
+
+            if (roleName == "Admin")
+            {
+                // Chuyển hướng đến Area Admin, Controller Home, Action Index
+                return RedirectToAction("Index", "Login", new { area = "Admin" });
+            }
+
 
             return RedirectToAction("DetailHome1", "Home1");
         }

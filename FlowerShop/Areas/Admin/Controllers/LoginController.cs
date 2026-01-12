@@ -24,10 +24,10 @@ namespace FlowerShop.Areas.Admin.Controllers
                 return NotFound();
             }
             string password = HashMD5.GetMD5(account.Password);
-            var check = _context.Users.Where(m => m.UserName == account.UserName && m.Password == password).FirstOrDefault();
+            var check = _context.Users.Where(m => m.Email == account.Email && m.Password == password).FirstOrDefault();
             if (check == null)
             {
-                Function._Message = "Invalid Username or Password";
+                Function._Message = "Email hoặc mật khẩu của bạn không đúng";
                 return RedirectToAction("Index", "Login");
 
 

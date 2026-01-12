@@ -1,0 +1,158 @@
+﻿@model List<FlowerShop.Models.Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Kết quả tìm kiếm: " + ViewBag.Keyword;
+}
+
+<style>
+    /* Tổng thể layout */
+    .search-page-wrapper {
+        padding: 50px 0;
+        background-color: #fff;
+    }
+
+    .search-header h2 {
+        text-transform: uppercase;
+        font-weight: 300;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+    }
+
+    /* Vùng chứa ảnh sản phẩm */
+    .product-card-item {
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .product-img-wrapper {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    /* Điều chỉnh Icon: To hơn, màu đen, cân xứng */
+    .product-buttons-overlay {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; /* Khoảng cách giữa các icon */
+        padding: 15px 0;
+        border-top: 1px solid #eee; /* Tạo đường kẻ nhẹ tách biệt nếu muốn */
+    }
+
+        .product-buttons-overlay a {
+            color: #000 !important; /* Màu đen */
+            font-size: 22px; /* Kích thước icon to hơn */
+            transition: transform 0.2s ease, color 0.2s ease;
+            display: inline-block;
+        }
+
+            .product-buttons-overlay a:hover {
+                color: #666 !important;
+                transform: scale(1.2); /* Phóng to khi hover */
+            }
+
+    /* Thông tin sản phẩm */
+    .product-info-text h5 a {
+        color: #333;
+        font-size: 16px;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .product-info-text .price {
+        font-weight: bold;
+        color: #000;
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+    /* Sao đánh giá màu đen */
+    .stars {
+        color: #000;
+        font-size: 12px;
+    }
+
+    .no-result-box {
+        padding: 100px 0;
+    }
+
+        .no-result-box i {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+</style>
+
+<div class="search-page-wrapper">
+    <div class="container">
+        <div class="row search-header text-center">
+            <div class="col-md-12">
+                <h2>Kết quả tìm kiếm</h2>
+                <p>Từ khóa: <strong>"@ViewBag.Keyword"</strong> — Tìm thấy @Model.Count() kết quả</p>
+                <hr style="width: 50px; border-top: 2px solid #000; margin: 20px auto;">
+            </div>
+        </div>
+
+        <div class="row">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 product-card-item">
+                        <div class="product-img-wrapper text-center">
+                            <a href="/product/@(item.Alias)-@(item.ProductId).html">
+                                <img src="@item.ImagePopular" class="img-responsive" alt="@item.ProductName" style="margin: 0 auto; max-height: 300px;">
+                            </a>
+
+                            <div class="product-buttons-overlay">
+                                <a href="/product/@(item.Alias)-@(item.ProductId).html" title="Xem nhanh">
+                                    <i class="far fa-eye"></i>
+                                </a>
+                                <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-productId="@item.ProductId" title="Thêm vào giỏ">
+                                    <i class="fas fa-shopping-basket"></i>
+                                </a>
+                                <a href="#" title="Yêu thích">
+                                    <i class="far fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-info-text text-center">
+                            <h5><a href="/product/@(item.Alias)-@(item.ProductId).html">@item.ProductName</a></h5>
+                            <div class="prince">
+                                @if (item.PriceSale == 0)
+                                {
+                                    @item.ProductPrice
+                                }
+                                else
+                                {
+
+
+                                    <s class="strike">@item.ProductPrice</s>
+                                    @item.DiscountPrice
+                                }
+
+                            </div>
+                            <div class="stars">
+                                @for (int i = 0; i < (item.Star ?? 5); i++)
+                                {
+                                    <i class="fas fa-star"></i>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-md-12 text-center no-result-box">
+                    <i class="fas fa-search"></i>
+                    <p>Rất tiếc, Jenstore không tìm thấy sản phẩm nào khớp với từ khóa của bạn.</p>
+                    <a href="/" class="btn btn-dark" style="border-radius: 0; padding: 10px 30px;">TIẾP TỤC MUA SẮM</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

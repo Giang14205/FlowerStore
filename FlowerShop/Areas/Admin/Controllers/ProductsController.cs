@@ -20,12 +20,27 @@ namespace FlowerShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string q)
         {
             if (!Function.IsLogin())
                 return RedirectToAction("Index", "Login");
-            var qlbhtContext = _context.Products.Include(p => p.Manufacturer).Include(p => p.ProductCategory);
-            return View(await qlbhtContext.ToListAsync());
+            // 2. Khởi tạo truy vấn cơ bản (bao gồm Manufacturer và Category)
+            var qlbhContext = _context.Products
+                .Include(p => p.Manufacturer)
+                .Include(p => p.ProductCategory)
+                .AsQueryable(); // Chuyển về dạng truy vấn để lọc thêm
+
+            // 3. Nếu có từ khóa tìm kiếm
+            if (!string.IsNullOrEmpty(q))
+            {
+                q = q.Trim();
+                qlbhContext = qlbhContext.Where(p => p.ProductName.Contains(q)
+                                            || p.ProductDescription.Contains(q));
+                ViewBag.Keyword = q; // Gửi từ khóa lại View để hiển thị trong ô nhập
+            }
+           
+            return View(await qlbhContext.ToListAsync());
+           
         }
 
         // GET: Admin/Products/Details/5

@@ -1,73 +1,95 @@
 ﻿@model FlowerShop.Models.User
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Xem chi tiết menu</h1>
+                </div>
+                
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastLogin)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastLogin)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.UserId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Xem thông tin</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exempleInputEmail1">Tên:</label>
+                                @Html.DisplayFor(model => model.UserName)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Mật khẩu:</label>
+                                @Html.DisplayFor(model => model.Password)
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Họ và tên:</label>
+                                @Html.DisplayFor(model => model.FullName)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">SĐT:</label>
+                                @Html.DisplayFor(model => model.Phone)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Email:</label>
+                                @Html.DisplayFor(model => model.Email)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Trạng thái:</label>
+                                @Html.DisplayFor(model => model.Status)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Mô tả:</label>
+                                @Html.DisplayFor(model => model.Description)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Đăng nhập lần cuối:</label>
+                                @Html.DisplayFor(model => model.LastLogin)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Địa chỉ:</label>
+                                @Html.DisplayFor(model => model.Address)
+                            </div>
+                            <div class="form-group">
+
+                                <p><a asp-action="Index" class="btn btn-primary">Quay lại</a></p>
+                                    
+                               
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>

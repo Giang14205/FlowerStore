@@ -35,15 +35,24 @@
                             <h3 class="card-title"><a asp-action="Create">Thêm mới</a></h3>
 
                             <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                <form asp-action="Index" method="get">
+                                    <div class="input-group input-group-sm" style="width: 250px;">
+                                        <input type="text" name="q" value="@ViewContext.HttpContext.Request.Query["q"]"
+                                               class="form-control float-right" placeholder="Tìm đánh giá...">
 
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
-                                            <i class="fas fa-search"></i>
-                                        </button>
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-default">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                            @if (!string.IsNullOrEmpty(ViewContext.HttpContext.Request.Query["q"]))
+                                            {
+                                                <a asp-action="Index" class="btn btn-default" title="Hủy tìm kiếm">
+                                                    <i class="fas fa-times"></i>
+                                                </a>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -52,7 +61,7 @@
                                 <thead>
                                     <tr>
                                         <th>STT:</th>
-                                        <th>Bình luận:</th>
+                                        
                                         <th>Avata:</th>
                                         <th>sao:</th>
                                         <th>Hiển thị:</th>
@@ -70,7 +79,7 @@
                                     {
                                         <tr>
                                             <td>@(i++)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Content)</td>
+                                          
                                             <td><img src="@Html.Raw(item.AvatarUrl)" alt="@item.Ten" width="50" height="50" /></td>
                                             <td>@Html.DisplayFor(modelItem => item.Star)</td>
                                             <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
@@ -80,7 +89,7 @@
 
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.FeedbackCustomerId" class="btn btn-primary">Sửa</a>
-
+                                                <a asp-action="Details" asp-route-id="@item.FeedbackCustomerId" class="btn btn-success">Chi tiết</a>
                                                 <a asp-action="Delete" asp-route-id="@item.FeedbackCustomerId" class=" btn btn-danger">Xóa</a>
                                             </td>
                                         </tr>

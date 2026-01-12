@@ -1,79 +1,113 @@
 ﻿@model FlowerShop.Models.Blog
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Chi Tiết Bài viết</h1>
+                </div>
+                
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
-<div>
-    <h4>Blog</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Summary)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Summary)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedBlog)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedBlog)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alias)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alias)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AuthorName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AuthorName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductCategory)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductCategory.ProductCategoryId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.User.UserId)
-        </dd>
-    </dl>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Chi Tiết Bài viết</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exempleInputEmail1">Bài viết:</label>
+                                @Html.DisplayFor(model => model.Title)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Danh mục:</label>
+                                @Html.DisplayFor(model => model.ProductCategory.ProductCategoryName)
+
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Khách hàng :</label>
+                                @Html.DisplayFor(model => model.User.FullName)
+
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Tóm tắt:</label>
+                                @Html.DisplayFor(model => model.Summary)
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Bình luận:</label>
+                                @Html.DisplayFor(model => model.Content)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Ngày:</label>
+                                @Html.DisplayFor(model => model.CreatedBlog)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Bí danh:</label>
+                                @Html.DisplayFor(model => model.Alias)
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Ảnh:</label>
+
+                                <div class="mt-2">
+                                    <img src="@Model.Image"
+                                         style="max-width:200px; max-height:200px; border:1px solid #ccc;" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Tác giả:</label>
+                                @Html.DisplayFor(model => model.AuthorName)
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exempleInputPassword1">Hiển thị:</label>
+                                @Html.DisplayFor(model => model.IsActive)
+                                <p> <a asp-action="Index" class="btn btn-primary">Quay lại</a></p>
+                                   
+                                
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+        <!-- /.container-fluid -->
+
+    </section>
+    <!-- /.content -->
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.BlogId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+}
+
