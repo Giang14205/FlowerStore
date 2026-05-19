@@ -44,10 +44,11 @@
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
                                     <label asp-for="UserId" class="control-label">Khách hàng:</label>
-                                    <select asp-for="UserId" form-control" asp-items="ViewBag.UserId">
+                                    <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId">
                                         <option value="0" selected>--[Khách hàng]--</option>
                                     </select>
                                 </div>
+                               
 
                                 <div class="form-group">
                                     <label asp-for="ShippingAddress" class="control-label">Địa chỉ:</label>

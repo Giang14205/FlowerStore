@@ -25,7 +25,7 @@ namespace FlowerShop.Areas.Admin.Controllers
             if (!Function.IsLogin())
                 return RedirectToAction("Index", "Login");
             
-            var qlbhtContext = _context.Orders.Include(o => o.OrderStatus).Include(o => o.PayMethod).Include(o => o.User).Include(o => o.Voucher);
+            var qlbhtContext = _context.Orders.Include(o => o.OrderStatus).Include(o => o.PayMethod).Include(o => o.User).Include(o => o.Voucher).OrderByDescending(o => o.OrderDate);
             return View(await qlbhtContext.ToListAsync());
         }
 
