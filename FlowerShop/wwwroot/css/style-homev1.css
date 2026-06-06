@@ -93,7 +93,7 @@ ul.breadcrumb li {
 /* Add a slash symbol (/) before/behind each list item */
 ul.breadcrumb li + li:before {
   padding: 5px 10px;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 16px;
   color: black;
@@ -102,7 +102,7 @@ ul.breadcrumb li + li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 14px;
   color: black;
@@ -178,7 +178,7 @@ ul.breadcrumb li a:hover {
 
 .range-p input {
   border: 0;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -200,7 +200,7 @@ ul.breadcrumb li a:hover {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -229,7 +229,7 @@ ul.breadcrumb li a:hover {
     right: 12px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    font-family: Baloo 2; }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -325,17 +325,17 @@ body {
   bottom: unset;
   top: 220px; }
   .carousel-inner .slide-1 .carousel-caption h3 {
-    font-family: poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 48px;
     color: black; }
   .carousel-inner .slide-1 .carousel-caption h1 {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 110px;
     color: black; }
   .carousel-inner .slide-1 .carousel-caption p {
-    font-family: poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -344,7 +344,7 @@ body {
     padding: 30px 0 80px 0;
     width: unset; }
   .carousel-inner .slide-1 .carousel-caption a {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -360,7 +360,7 @@ body {
     background-position: 0%;
     -webkit-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -379,17 +379,17 @@ body {
   top: 280px;
   left: 280px; }
   .carousel-inner .slide-2 .carousel-caption h3 {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 88px;
     color: black; }
   .carousel-inner .slide-2 .carousel-caption h1 {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 146px;
     color: black; }
   .carousel-inner .slide-2 .carousel-caption p {
-    font-family: poppins;
+    font-family: Baloo 2;
     font-weight: 300;
     font-size: 18px;
     color: black;
@@ -397,7 +397,7 @@ body {
     width: 700px;
     color: #888888; }
   .carousel-inner .slide-2 .carousel-caption a {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -413,7 +413,7 @@ body {
     background-position: 0%;
     -webkit-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -448,7 +448,7 @@ nav {
   border-bottom: 1px solid rgba(136, 136, 136, 0.15); }
   nav #language-figure::before {
     content: "+";
-    font-family: poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 13px;
     color: black;
@@ -458,14 +458,14 @@ nav {
     right: 15px;
     transition: all .3s ease; }
   nav ul li {
-    font-family: poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 13px;
     color: black;
     padding-right: 90px;
     color: grey; }
     nav ul li span {
-      font-family: poppins;
+      font-family: Baloo 2;
       font-weight: 500;
       font-size: 13px;
       color: black;
@@ -473,7 +473,7 @@ nav {
   nav ul.navbar-right li {
     padding-right: 26px; }
     nav ul.navbar-right li a {
-      font-family: poppins;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 13px;
       color: black;
@@ -547,7 +547,7 @@ nav {
           .menu-main li.menu-home .dropdown-menu.menu-home-lv2 .li-home a {
             display: inline-block;
             transition: all .3s ease;
-            font-family: Poppins;
+            font-family: Baloo 2;
             font-weight: 400;
             font-size: 14px;
             color: black;
@@ -600,7 +600,7 @@ nav {
       .menu-main li.shop-menu .dropdown-menu ul {
         padding: 10px 0; }
         .menu-main li.shop-menu .dropdown-menu ul a {
-          font-family: Poppins;
+          font-family: Baloo 2;
           font-weight: 600;
           font-size: 14px;
           color: black; }
@@ -621,7 +621,7 @@ nav {
               padding-top: 30px; }
             .menu-main li.shop-menu .dropdown-menu ul li .menu-home-lv2 ul .li-home a {
               transition: all .3s ease;
-              font-family: Poppins;
+              font-family: Baloo 2;
               font-weight: 400;
               font-size: 14px;
               color: black;
@@ -702,7 +702,7 @@ nav {
           .menu-main li.blog-menu .dropdown-menu.menu-home-lv2 .li-home a {
             display: inline-block;
             transition: all .3s ease;
-            font-family: Poppins;
+            font-family: Baloo 2;
             font-weight: 400;
             font-size: 14px;
             color: black;
@@ -744,7 +744,7 @@ nav {
       transform: translateX(5px);
       transition: all .35s ease; }
     .menu-main li a {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 300;
       font-size: 18px;
       color: black; }
@@ -825,7 +825,7 @@ nav {
     .icon-menu .cart-menu .dropdown-menu #div-cart-menu {
       display: inline-flex; }
     .icon-menu .cart-menu .dropdown-menu a {
-      font-family: Abril Fatface;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 18px;
       color: black;
@@ -841,7 +841,7 @@ nav {
       background-position: 0%;
       -webkit-transition: background .3s ease-in-out;
       transition: background .3s ease-in-out;
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 14px;
       color: black;
@@ -865,13 +865,13 @@ nav {
     padding-left: 15px;
     float: left; }
     .icon-menu .cart-menu .info-cart h1 {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 600;
       font-size: 14px;
       color: black;
       margin-top: 0; }
     .icon-menu .cart-menu .info-cart span {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 500;
       font-size: 14px;
       color: black; }
@@ -881,7 +881,7 @@ nav {
         font-weight: 600; }
   .icon-menu .cart-menu .total {
     padding: 0 15px 30px 0;
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 600;
     font-size: 16px;
     color: black; }
@@ -893,7 +893,7 @@ nav {
   .who img {
     width: 100%; }
   .who h1 {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 188px;
     color: black;
@@ -903,7 +903,7 @@ nav {
     text-align: center;
     width: 100%; }
   .who .h2 {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 60px;
     color: black;
@@ -913,7 +913,7 @@ nav {
     text-align: center;
     width: 100%; }
   .who p {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 16px;
     color: black;
@@ -934,14 +934,14 @@ nav {
       width: 115px;
       border-radius: 50%; }
     .who .media h3 {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 500;
       font-size: 18px;
       color: black;
       padding: 20px 20px 0 20px;
       margin-bottom: 0; }
     .who .media span {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 14px;
       color: black;
@@ -951,7 +951,7 @@ nav {
 .collection, .wedding, .holiday {
   padding-bottom: 60px; }
   .collection h1, .wedding h1, .holiday h1 {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 60px;
     color: black;
@@ -959,7 +959,7 @@ nav {
     margin-bottom: 0;
     text-align: center; }
   .collection h2, .wedding h2, .holiday h2 {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 500;
     font-size: 16px;
     color: black;
@@ -973,14 +973,14 @@ nav {
     padding: 0;
     margin-bottom: 10px; }
   .collection .banner-collec h3, .wedding .banner-collec h3, .holiday .banner-collec h3 {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 36px;
     color: black;
     text-align: center;
     margin-top: -640px; }
   .collection .banner-collec a, .wedding .banner-collec a, .holiday .banner-collec a {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -996,7 +996,7 @@ nav {
     background-position: 0%;
     -webkit-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -1018,7 +1018,7 @@ nav {
     .collection .product-collection .product-title-collec h5, .wedding .product-collection .product-title-collec h5, .holiday .product-collection .product-title-collec h5 {
       margin-top: 20px; }
       .collection .product-collection .product-title-collec h5 a, .wedding .product-collection .product-title-collec h5 a, .holiday .product-collection .product-title-collec h5 a {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 16px;
         color: black; }
@@ -1030,7 +1030,7 @@ nav {
       .collection .product-collection .product-title-collec .star i, .wedding .product-collection .product-title-collec .star i, .holiday .product-collection .product-title-collec .star i {
         padding-right: 2px; }
     .collection .product-collection .product-title-collec .prince, .wedding .product-collection .product-title-collec .prince, .holiday .product-collection .product-title-collec .prince {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 600;
       font-size: 18px;
       color: black;
@@ -1072,7 +1072,7 @@ nav {
         .collection .product-collection .product-image-collec .product-icon-collec a:hover, .wedding .product-collection .product-image-collec .product-icon-collec a:hover, .holiday .product-collection .product-image-collec .product-icon-collec a:hover {
           color: black; }
     .collection .product-collection .product-image-collec .hot::before, .wedding .product-collection .product-image-collec .hot::before, .holiday .product-collection .product-image-collec .hot::before {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 500;
       font-size: 14px;
       color: black;
@@ -1085,7 +1085,7 @@ nav {
       padding: 2px 0 0 9px;
       right: 0; }
     .collection .product-collection .product-image-collec .sale::before, .wedding .product-collection .product-image-collec .sale::before, .holiday .product-collection .product-image-collec .sale::before {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 500;
       font-size: 14px;
       color: black;
@@ -1115,7 +1115,7 @@ nav {
       .wedding .wedding-content .product-wedding .product-title-wedding h5 {
         margin-top: 20px; }
         .wedding .wedding-content .product-wedding .product-title-wedding h5 a {
-          font-family: Poppins;
+          font-family: Baloo 2;
           font-weight: 400;
           font-size: 16px;
           color: black; }
@@ -1127,7 +1127,7 @@ nav {
         .wedding .wedding-content .product-wedding .product-title-wedding .star i {
           padding-right: 2px; }
       .wedding .wedding-content .product-wedding .product-title-wedding .prince {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 600;
         font-size: 18px;
         color: black;
@@ -1169,7 +1169,7 @@ nav {
           .wedding .wedding-content .product-wedding .product-image-wedding .product-icon-wedding a:hover {
             color: black; }
       .wedding .wedding-content .product-wedding .product-image-wedding .hot::before {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 500;
         font-size: 14px;
         color: black;
@@ -1182,7 +1182,7 @@ nav {
         padding: 2px 0 0 9px;
         right: 0; }
       .wedding .wedding-content .product-wedding .product-image-wedding .sale::before {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 500;
         font-size: 14px;
         color: black;
@@ -1204,7 +1204,7 @@ nav {
     .holiday .product-holiday .product-title-holiday h5 {
       margin-top: 20px; }
       .holiday .product-holiday .product-title-holiday h5 a {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 16px;
         color: black; }
@@ -1216,7 +1216,7 @@ nav {
       .holiday .product-holiday .product-title-holiday .star i {
         padding-right: 2px; }
     .holiday .product-holiday .product-title-holiday .prince {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 600;
       font-size: 18px;
       color: black;
@@ -1258,7 +1258,7 @@ nav {
         .holiday .product-holiday .product-image-holiday .product-icon-holiday a:hover {
           color: black; }
     .holiday .product-holiday .product-image-holiday .hot::before {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 500;
       font-size: 14px;
       color: black;
@@ -1271,7 +1271,7 @@ nav {
       padding: 2px 0 0 9px;
       right: 0; }
     .holiday .product-holiday .product-image-holiday .sale::before {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 500;
       font-size: 14px;
       color: black;
@@ -1294,25 +1294,25 @@ nav {
       left: 40px;
       text-align: center; }
       .holiday .banner-holiday .title-holiday h1 {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 36px;
         color: black; }
       .holiday .banner-holiday .title-holiday p {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 16px;
         color: black;
         width: 79%;
         padding-left: 117px; }
       .holiday .banner-holiday .title-holiday span {
-        font-family: Abril Fatface;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 36px;
         color: black;
         float: left; }
         .holiday .banner-holiday .title-holiday span#sale30 {
-          font-family: Abril Fatface;
+          font-family: Baloo 2;
           font-weight: 400;
           font-size: 115px;
           color: black;
@@ -1320,7 +1320,7 @@ nav {
           display: inline-block;
           margin-top: -26px; }
         .holiday .banner-holiday .title-holiday span#pt {
-          font-family: Abril Fatface;
+          font-family: Baloo 2;
           font-weight: 400;
           font-size: 60px;
           color: black; }
@@ -1339,17 +1339,17 @@ nav {
     right: 0;
     top: 240px; }
     .count .title-count h1 {
-      font-family: Abril Fatface;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 60px;
       color: black; }
     .count .title-count p {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 14px;
       color: black; }
     .count .title-count a {
-      font-family: Abril Fatface;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 18px;
       color: black;
@@ -1379,7 +1379,7 @@ nav {
       .count .title-count #countdown #tiles span {
         width: 90px;
         max-width: 90px;
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-size: 36px;
         font-weight: 600;
         text-align: center;
@@ -1392,7 +1392,7 @@ nav {
         padding: 0; }
         .count .title-count #countdown .labels li {
           width: 100px;
-          font-family: Poppins;
+          font-family: Baloo 2;
           font-size: 14px;
           font-weight: 400;
           color: grey;
@@ -1437,14 +1437,14 @@ nav {
     background-repeat: no-repeat; }
 
 .blog h1 {
-  font-family: Abril Fatface;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 60px;
   color: black;
   text-align: center;
   padding-top: 30px; }
 .blog p {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 16px;
   color: black;
@@ -1456,7 +1456,7 @@ nav {
   opacity: .7;
   transform: scale(0.98); }
 .blog .product-blog h2 a {
-  font-family: Abril Fatface;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 24px;
   color: black;
@@ -1467,7 +1467,7 @@ nav {
     text-decoration: none;
     color: pink; }
 .blog .product-blog p {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -1482,7 +1482,7 @@ nav {
     color: grey;
     padding-right: 10px; }
   .blog .product-blog .time-blog .time span {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 14px;
     color: black;
@@ -1502,7 +1502,7 @@ footer {
   footer .info-footer {
     padding-top: 280px; }
     footer .info-footer h3 {
-      font-family: Abril Fatface;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 18px;
       color: black;
@@ -1520,7 +1520,7 @@ footer {
           transition: all .3s ease; }
         footer .info-footer ul li a {
           transition: all .3s ease;
-          font-family: Poppins;
+          font-family: Baloo 2;
           font-weight: 400;
           font-size: 14px;
           color: black;
@@ -1542,7 +1542,7 @@ footer {
     footer .info-footer .social-text {
       clear: left; }
       footer .info-footer .social-text span {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 500;
         font-size: 12px;
         color: black;
@@ -1589,13 +1589,13 @@ footer {
       background-repeat: no-repeat;
       margin-top: 300px; }
       footer .new-letter .form-new h1 {
-        font-family: Abril Fatface;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 30px;
         color: black;
         padding: 35px 0 0 50px; }
       footer .new-letter .form-new p {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 14px;
         color: black;
@@ -1608,7 +1608,7 @@ footer {
         box-shadow: none;
         padding-left: 20px;
         border: 1px solid black;
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 14px;
         color: black;
@@ -1621,7 +1621,7 @@ footer {
         border: 0;
         background: black;
         color: white;
-        font-family: Abril Fatface;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 18px;
         color: black;
@@ -1660,7 +1660,7 @@ footer {
           margin-left: 34px; }
         footer .footer-logo .footer-row .col-lg-4 span {
           display: inline-block;
-          font-family: Poppins;
+          font-family: Baloo 2;
           font-weight: 300;
           font-size: 14px;
           color: black;

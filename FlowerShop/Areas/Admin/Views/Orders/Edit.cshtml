@@ -43,15 +43,34 @@
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                 <div class="form-group">
                                     <label asp-for="UserId" class="control-label">Khách hàng:</label>
-                                    <select asp-for="UserId" form-control" asp-items="ViewBag.UserId">
-                                        <option value="0" selected>--[Khách hàng]--</option>
+                                    <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId">
+                                        <option value="0" selected>--[Tài khoản người đặt]--</option>
                                     </select>
+                                </div>
+                                
+
+                                <div class="form-group">
+                                    <label asp-for="FullName" class="control-label">Người nhận:</label>
+                                    <input asp-for="FullName" class="form-control" />
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
                                 </div>
 
                                 <div class="form-group">
-                                    <label asp-for="ShippingAddress" class="control-label">Địa chỉ:</label>
-                                    <input asp-for="ShippingAddress" class="form-control" />
-                                    <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+                                    <label asp-for="Phone" class="control-label">Số điện thoại:</label>
+                                    <input asp-for="Phone" class="form-control" />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Address" class="control-label">Địa chỉ:</label>
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Note" class="control-label">Ghi chú:</label>
+                                    <textarea asp-for="Note" class="form-control" rows="3"></textarea>
+                                    <span asp-validation-for="Note" class="text-danger"></span>
                                 </div>
 
                                 <div class="form-group">
@@ -63,7 +82,7 @@
                                 <div class="form-group">
                                     <label asp-for="VoucherId" class="control-label">Voucher:</label>
                                     <select asp-for="VoucherId" class="form-control" asp-items="ViewBag.VoucherId">
-                                        <option value="0" selected>--[Chọn voucher]--</option>
+                                        <option value="" selected>--[Chọn voucher]--</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

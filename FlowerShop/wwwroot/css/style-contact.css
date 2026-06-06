@@ -93,7 +93,7 @@ ul.breadcrumb li {
 /* Add a slash symbol (/) before/behind each list item */
 ul.breadcrumb li + li:before {
   padding: 5px 10px;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 16px;
   color: black;
@@ -102,7 +102,7 @@ ul.breadcrumb li + li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 14px;
   color: black;
@@ -178,7 +178,7 @@ ul.breadcrumb li a:hover {
 
 .range-p input {
   border: 0;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -200,7 +200,7 @@ ul.breadcrumb li a:hover {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -229,7 +229,7 @@ ul.breadcrumb li a:hover {
     right: 12px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    font-family: Baloo 2; }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -353,7 +353,7 @@ header {
             header .menu-main li.menu-home .dropdown-menu.menu-home-lv2 .li-home a {
               display: inline-block;
               transition: all .3s ease;
-              font-family: Poppins;
+              font-family: Baloo 2;
               font-weight: 400;
               font-size: 14px;
               color: black;
@@ -405,7 +405,7 @@ header {
         header .menu-main li.shop-menu .dropdown-menu ul {
           padding: 10px 0; }
           header .menu-main li.shop-menu .dropdown-menu ul a {
-            font-family: Poppins;
+            font-family: Baloo 2;
             font-weight: 600;
             font-size: 14px;
             color: black; }
@@ -426,7 +426,7 @@ header {
                 padding-top: 30px; }
               header .menu-main li.shop-menu .dropdown-menu ul li .menu-home-lv2 ul .li-home a {
                 transition: all .3s ease;
-                font-family: Poppins;
+                font-family: Baloo 2;
                 font-weight: 400;
                 font-size: 14px;
                 color: black;
@@ -522,7 +522,7 @@ header {
             header .menu-main li.blog-menu .dropdown-menu.menu-home-lv2 .li-home a {
               display: inline-block;
               transition: all .3s ease;
-              font-family: Poppins;
+              font-family: Baloo 2;
               font-weight: 400;
               font-size: 14px;
               color: black;
@@ -562,7 +562,7 @@ header {
         opacity: 1;
         left: 15px; }
       header .menu-main li a {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: lighter;
         font-size: 18px;
         color: black; }
@@ -634,7 +634,7 @@ header {
       header .icon-menu .cart-menu .dropdown-menu #div-cart-menu {
         display: inline-flex; }
       header .icon-menu .cart-menu .dropdown-menu a {
-        font-family: Abril Fatface;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 18px;
         color: black;
@@ -650,7 +650,7 @@ header {
         background-position: 0%;
         -webkit-transition: background .3s ease-in-out;
         transition: background .3s ease-in-out;
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 14px;
         color: black;
@@ -674,13 +674,13 @@ header {
       padding-left: 15px;
       float: left; }
       header .icon-menu .cart-menu .info-cart h1 {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 600;
         font-size: 14px;
         color: black;
         margin-top: 0; }
       header .icon-menu .cart-menu .info-cart span {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 500;
         font-size: 14px;
         color: black; }
@@ -690,7 +690,7 @@ header {
           font-weight: 600; }
     header .icon-menu .cart-menu .total {
       padding: 0 15px 30px 0;
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 600;
       font-size: 16px;
       color: black; }
@@ -750,14 +750,14 @@ header {
     top: 30%;
   }
     .banner .title-banner h1 {
-      font-family: Abril Fatface;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 60px;
       color: black;
       text-align: center;
       color: #fff; }
     .banner .title-banner p {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 14px;
       color: black;
@@ -772,14 +772,14 @@ header {
     .img-link .img-content img {
       margin: 0 auto; }
   .img-link h1 {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 600;
     font-size: 24px;
     color: black;
     text-align: center;
     margin-bottom: 5px; }
   .img-link h2 {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 20px;
     color: black;
@@ -841,14 +841,14 @@ header {
     animation: shine-left .3s linear forwards;
     overflow: hidden; }
 .message .message-contact h1 {
-  font-family: Abril Fatface;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 30px;
   color: black;
   margin-top: 0;
   margin: 0 0 5px 15px; }
 .message .message-contact form label {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 600;
   font-size: 18px;
   color: black;
@@ -866,7 +866,7 @@ header {
   padding-left: 20px;
   background: #fff; }
   .message .message-contact form input::placeholder {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 14px;
     color: black;
@@ -883,7 +883,7 @@ header {
   resize: none;
   padding: 10px 20px; }
   .message .message-contact form textarea::placeholder {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 14px;
     color: black;
@@ -893,7 +893,7 @@ header {
   border: 0;
   background: black;
   color: white;
-  font-family: Abril Fatface;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 18px;
   color: black;
@@ -926,7 +926,7 @@ header {
   padding: 150px 0;
   border-top: 1px solid #ddd; }
   .info-footer h3 {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -944,7 +944,7 @@ header {
         transition: all .3s ease; }
       .info-footer ul li a {
         transition: all .3s ease;
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 14px;
         color: black;
@@ -964,7 +964,7 @@ header {
         font-weight: 600;
         transform: translateX(16px); }
   .info-footer .social p {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 500;
     font-size: 14px;
     color: black;
@@ -999,13 +999,13 @@ header {
     .info-footer .social a:hover {
       opacity: 1; }
   .info-footer .social h1 {
-    font-family: Abril Fatface;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 30px;
     color: black;
     padding-top: 10px; }
   .info-footer .social h2 {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 14px;
     color: black;
@@ -1024,7 +1024,7 @@ header {
       width: 100%;
       padding-left: 20px; }
       .info-footer .social form input::-webkit-input-placeholder {
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 14px;
         color: black; }
@@ -1054,7 +1054,7 @@ footer {
     margin-top: 40px; }
   footer span {
     display: inline-block;
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 300;
     font-size: 14px;
     color: black;

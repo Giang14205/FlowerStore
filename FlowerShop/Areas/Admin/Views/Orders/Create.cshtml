@@ -6,12 +6,11 @@
 }
 
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Thêm sản phẩm </h1>
+                    <h1>Thêm đơn hàng </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -20,24 +19,18 @@
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- left column -->
                 <div class="col-md">
-                    <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
                             <h3 class="card-title">Thêm mới đơn hàng </h3>
                         </div>
                         <div asp-validation-summary="All" class="text-danger"></div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <!--thêm cái này ở enctype="multipart/form-data ở sau Create khi thêm ảnh -->
                         <form asp-action="Create">
 
                             <div class="card-body">
@@ -48,14 +41,30 @@
                                         <option value="0" selected>--[Khách hàng]--</option>
                                     </select>
                                 </div>
-                               
 
                                 <div class="form-group">
-                                    <label asp-for="ShippingAddress" class="control-label">Địa chỉ:</label>
-                                    <input asp-for="ShippingAddress" class="form-control" />
-                                    <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+                                    <label asp-for="FullName" class="control-label">Người nhận:</label>
+                                    <input asp-for="FullName" class="form-control" />
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
                                 </div>
 
+                                <div class="form-group">
+                                    <label asp-for="Phone" class="control-label">Số điện thoại:</label>
+                                    <input asp-for="Phone" class="form-control" />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Address" class="control-label">Địa chỉ:</label>
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Note" class="control-label">Ghi chú:</label>
+                                    <textarea asp-for="Note" class="form-control" rows="3"></textarea>
+                                    <span asp-validation-for="Note" class="text-danger"></span>
+                                </div>
                                 <div class="form-group">
                                     <label asp-for="OrderNumber" class="control-label">Mã số đơn:</label>
                                     <input asp-for="OrderNumber" class="form-control" />
@@ -65,7 +74,7 @@
                                 <div class="form-group">
                                     <label asp-for="VoucherId" class="control-label">Voucher:</label>
                                     <select asp-for="VoucherId" class="form-control" asp-items="ViewBag.VoucherId">
-                                        <option value="0" selected>--[Chọn voucher]--</option>
+                                        <option value="" selected>--[Chọn voucher]--</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -111,15 +120,11 @@
                 </div>
 
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- /.content -->
-
 </div>
 
 
-<!--Phải có scrip này nhé lưu ý ở trang layout phải có-->
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");

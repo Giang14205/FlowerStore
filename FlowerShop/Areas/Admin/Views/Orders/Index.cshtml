@@ -52,15 +52,20 @@
                                 <thead>
                                     <tr>
                                         <th>STT:</th>
-                                        <th>Khách hàng:</th>
+                                        <th>Tài khoản đặt:</th>
+
+                                        <th>Người nhận:</th>
+                                        <th>Số điện thoại:</th>
                                         <th>Địa chỉ:</th>
+
                                         <th>Mã số đơn:</th>
                                         <th>Voucher:</th>
                                         <th>Tổng tiền:</th>
                                         <th>Phí vận chuyển:</th>
-                                        <th>Thanh toán :</th>
+                                        <th>Thanh toán:</th>
                                         <th>Trạng thái:</th>
                                         <th>Ngày đặt:</th>
+                                        <th>Thao tác:</th>
 
 
                                     </tr>
@@ -74,7 +79,10 @@
                                         <tr>
                                             <td>@(i++)</td>
                                             <td>@Html.DisplayFor(modelItem => item.User.FullName)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
+
+                                            <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Address)</td>
                                             <td>@Html.DisplayFor(modelItem => item.OrderNumber)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Voucher.VoucherName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>

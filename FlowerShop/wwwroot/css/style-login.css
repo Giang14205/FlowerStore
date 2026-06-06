@@ -93,7 +93,7 @@ ul.breadcrumb li {
 /* Add a slash symbol (/) before/behind each list item */
 ul.breadcrumb li + li:before {
   padding: 5px 10px;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 16px;
   color: black;
@@ -102,7 +102,7 @@ ul.breadcrumb li + li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 14px;
   color: black;
@@ -178,7 +178,7 @@ ul.breadcrumb li a:hover {
 
 .range-p input {
   border: 0;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -200,7 +200,7 @@ ul.breadcrumb li a:hover {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -229,7 +229,7 @@ ul.breadcrumb li a:hover {
     right: 12px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    font-family: Baloo 2; }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -312,12 +312,13 @@ figure.bg-input::after {
 
 .page-login .social {
   text-align: center; }
-  .page-login .social a {
-    display: inline-block;
-    width: calc(50% - 5px);
-    color: #fff;
-    font: 500 14px/40px "Poppins";
-    background: #3b5998; }
+    .page-login .social a {
+        display: inline-block;
+        width: calc(50% - 5px);
+        color: #fff;
+        font: 500 14px/40px "Baloo 2";
+        background: #3b5998;
+    }
     .page-login .social a i {
       margin-right: 5px; }
     .page-login .social a:last-child {
@@ -325,15 +326,17 @@ figure.bg-input::after {
     .page-login .social a:hover {
       text-decoration: none; }
 .page-login h3 {
-  font: 700 16px/20px "Poppins";
-  text-transform: uppercase;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-  position: relative; }
+    font: 700 16px/20px "Baloo 2";
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
 .page-login p {
-  font: 300 14px/20px "Poppins";
-  color: #888;
-  margin-bottom: 20px; }
+    font: 300 14px/20px "Baloo 2";
+    color: #888;
+    margin-bottom: 20px;
+}
 .page-login form input[type=checkbox] {
   display: none; }
   .page-login form input[type=checkbox]:checked + label:before {
@@ -343,22 +346,24 @@ figure.bg-input::after {
     text-align: center;
     line-height: 18px; }
 .page-login form .control-label {
-  font: 700 14px/20px "Poppins";
-  color: #000;
-  text-transform: uppercase; }
+    font: 700 14px/20px "Baloo 2";
+    color: #000;
+    text-transform: uppercase;
+}
 .page-login form .remember {
   float: left;
   width: 100%; }
-  .page-login form .remember label.label-check {
-    width: auto;
-    color: #888;
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
-    padding-left: 30px;
-    float: left;
-    margin: 10px 0px;
-    font: 300 14px "Poppins"; }
+    .page-login form .remember label.label-check {
+        width: auto;
+        color: #888;
+        cursor: pointer;
+        position: relative;
+        display: inline-block;
+        padding-left: 30px;
+        float: left;
+        margin: 10px 0px;
+        font: 300 14px "Baloo 2";
+    }
     .page-login form .remember label.label-check:before {
       content: "";
       display: inline-block;
@@ -370,20 +375,22 @@ figure.bg-input::after {
       bottom: 1px;
       border: 1px solid #b5b5b5;
       background-color: #fff; }
-  .page-login form .remember .help {
-    float: right;
-    font: 300 14px/20px "Poppins";
-    vertical-align: bottom;
-    margin-top: 12px; }
+    .page-login form .remember .help {
+        float: right;
+        font: 300 14px/20px "Baloo 2";
+        vertical-align: bottom;
+        margin-top: 12px;
+    }
 .page-login form label.label-check {
-  position: relative;
-  width: 100%;
-  display: inline-block;
-  padding-left: 30px;
-  float: left;
-  margin: 10px 0px;
-  font: 400 14px "Poppins";
-  color: #373737; }
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    padding-left: 30px;
+    float: left;
+    margin: 10px 0px;
+    font: 400 14px "Baloo 2";
+    color: #373737;
+}
   .page-login form label.label-check:before {
     content: "";
     display: inline-block;
@@ -413,17 +420,18 @@ figure.bg-input::after {
   margin-bottom: 20px !important; }
 
 .form-control {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 0;
-  color: #888888;
-  padding: 9px 20px;
-  line-height: 1.625;
-  height: 47px;
-  display: block;
-  width: 100%;
-  font: 400 16px "Poppins";
-  box-shadow: unset; }
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    color: #888888;
+    padding: 9px 20px;
+    line-height: 1.625;
+    height: 47px;
+    display: block;
+    width: 100%;
+    font: 400 16px "Baloo 2";
+    box-shadow: unset;
+}
 
 .form-horizontal label.control-label {
   margin-bottom: 10px;
@@ -431,7 +439,7 @@ figure.bg-input::after {
   text-align: left; }
 
 .form-horizontal button {
-  font-family: Abril Fatface;
+  font-family: Baloo 2Abril Fatface;
   font-weight: 400;
   font-size: 18px;
   color: black;

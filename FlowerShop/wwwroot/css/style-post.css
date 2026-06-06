@@ -93,7 +93,7 @@ ul.breadcrumb li {
 /* Add a slash symbol (/) before/behind each list item */
 ul.breadcrumb li + li:before {
   padding: 5px 10px;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 16px;
   color: black;
@@ -102,7 +102,7 @@ ul.breadcrumb li + li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 14px;
   color: black;
@@ -178,7 +178,7 @@ ul.breadcrumb li a:hover {
 
 .range-p input {
   border: 0;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -200,7 +200,7 @@ ul.breadcrumb li a:hover {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -229,7 +229,7 @@ ul.breadcrumb li a:hover {
     right: 12px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    font-family: Baloo 2; }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -394,7 +394,7 @@ ul.breadcrumb li {
 /* Add a slash symbol (/) before/behind each list item */
 ul.breadcrumb li + li:before {
   padding: 5px 10px;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 16px;
   color: black;
@@ -403,7 +403,7 @@ ul.breadcrumb li + li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 14px;
   color: black;
@@ -479,7 +479,7 @@ ul.breadcrumb li a:hover {
 
 .range-p input {
   border: 0;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -501,7 +501,7 @@ ul.breadcrumb li a:hover {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -530,7 +530,7 @@ ul.breadcrumb li a:hover {
     right: 12px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    font-family: Baloo 2; }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -621,7 +621,7 @@ figure.bg-input::after {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -650,7 +650,7 @@ figure.bg-input::after {
     right: 12px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    font-family: Baloo 2; }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -714,13 +714,13 @@ figure.bg-input::after {
     color: black;
     padding-right: 10px; }
   .posted span {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
     color: #888888; }
   .posted a {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -732,7 +732,7 @@ figure.bg-input::after {
 .social {
   padding-bottom: 90px; }
   .social span {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 600;
     font-size: 18px;
     color: black;
@@ -770,7 +770,7 @@ figure.bg-input::after {
       opacity: 1; }
 
 .article .number-cmt {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 18px;
   color: black;
@@ -779,7 +779,7 @@ figure.bg-input::after {
 .article .sort {
   padding-left: 45px; }
   .article .sort span {
-    font-family: Poppins;
+    font-family: Baloo 2;
     font-weight: 400;
     font-size: 18px;
     color: black;
@@ -814,7 +814,7 @@ figure.bg-input::after {
     padding-left: 20px;
     height: 60px; }
     .media .media-body input::-webkit-input-placeholder {
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: 400;
       font-size: 18px;
       color: black;

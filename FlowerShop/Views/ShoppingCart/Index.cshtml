@@ -103,7 +103,7 @@
                     <div class="bg-light p-4 rounded border text-end" style="min-width: 350px;">
                         <h3 class="mb-3">Tổng cộng: <span class="text-danger fw-bold">@Model.Sum(x => x.Total).ToString("#,##0") đ</span></h3>
                        
-                        <a asp-controller="ShoppingCart" asp-action="Checkout" class="btn btn-success btn-lg w-100 mt-2">
+                        <a asp-controller="Checkout" asp-action="Checkout" class="btn btn-success btn-lg w-100 mt-2">
                             Tiến hành Thanh Toán <i class="fa fa-arrow-right"></i>
                         </a>
                     </div>

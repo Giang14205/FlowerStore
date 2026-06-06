@@ -91,23 +91,25 @@ ul.breadcrumb li {
   display: inline; }
 
 /* Add a slash symbol (/) before/behind each list item */
-ul.breadcrumb li + li:before {
-  padding: 5px 10px;
-  font-family: Poppins;
-  font-weight: 500;
-  font-size: 16px;
-  color: black;
-  color: #888888;
-  content: ">"; }
+    ul.breadcrumb li + li:before {
+        padding: 5px 10px;
+        font-family: Playfair Display;
+        font-weight: 500;
+        font-size: 16px;
+        color: black;
+        color: #888888;
+        content: ">";
+    }
 
 /* Add a color to all links inside the list */
-ul.breadcrumb li a {
-  font-family: Poppins;
-  font-weight: 500;
-  font-size: 14px;
-  color: black;
-  color: #888888;
-  text-decoration: none; }
+    ul.breadcrumb li a {
+        font-family: Playfair Display;
+        font-weight: 500;
+        font-size: 14px;
+        color: black;
+        color: #888888;
+        text-decoration: none;
+    }
 
 ul.breadcrumb li:last-child a {
   color: black;
@@ -177,12 +179,13 @@ ul.breadcrumb li a:hover {
   background: #9a9a9a; }
 
 .range-p input {
-  border: 0;
-  font-family: Poppins;
-  font-weight: 400;
-  font-size: 14px;
-  color: black;
-  outline: 0; }
+    border: 0;
+    font-family: Playfair Display;
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+    outline: 0;
+}
 
 /*end*/
 /*---------*/
@@ -197,16 +200,17 @@ ul.breadcrumb li a:hover {
   padding-right: 10px; }
 
 .select {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  font-family: Poppins;
-  font-weight: 400;
-  font-size: 14px;
-  color: black;
-  width: 154px;
-  height: 36px;
-  margin-left: 20px; }
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    font-family: Playfair Display;
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+    width: 154px;
+    height: 36px;
+    margin-left: 20px;
+}
 
 .select:nth-child(2) {
   width: 70px;
@@ -222,14 +226,15 @@ ul.breadcrumb li a:hover {
   background: #eeeeee;
   padding: 8px 15px;
   transition: all 0.2s ease-in; }
-  .select-styled:after {
-    content: "\f107";
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    .select-styled:after {
+        content: "\f107";
+        position: absolute;
+        top: 8px;
+        right: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: Playfair Display;
+    }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -350,14 +355,15 @@ header {
               @media (min-width: 1025px) {
                 header .menu-main li.menu-home .dropdown-menu.menu-home-lv2 .li-home i {
                   margin-left: -18px; } }
-            header .menu-main li.menu-home .dropdown-menu.menu-home-lv2 .li-home a {
-              display: inline-block;
-              transition: all .3s ease;
-              font-family: Poppins;
-              font-weight: 400;
-              font-size: 14px;
-              color: black;
-              color: grey; }
+header .menu-main li.menu-home .dropdown-menu.menu-home-lv2 .li-home a {
+    display: inline-block;
+    transition: all .3s ease;
+    font-family: Playfair Display;
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+    color: grey;
+}
               header .menu-main li.menu-home .dropdown-menu.menu-home-lv2 .li-home a:hover {
                 text-decoration: none;
                 color: black;
@@ -404,11 +410,12 @@ header {
         transition: all .35s ease; }
         header .menu-main li.shop-menu .dropdown-menu ul {
           padding: 10px 0; }
-          header .menu-main li.shop-menu .dropdown-menu ul a {
-            font-family: Poppins;
-            font-weight: 600;
-            font-size: 14px;
-            color: black; }
+            header .menu-main li.shop-menu .dropdown-menu ul a {
+                font-family: Playfair Display;
+                font-weight: 600;
+                font-size: 14px;
+                color: black;
+            }
             header .menu-main li.shop-menu .dropdown-menu ul a:hover {
               text-decoration: none;
               opacity: .5; }
@@ -424,13 +431,14 @@ header {
                 transition: all .3s ease; }
               header .menu-main li.shop-menu .dropdown-menu ul li .menu-home-lv2 ul .li-home.li-one {
                 padding-top: 30px; }
-              header .menu-main li.shop-menu .dropdown-menu ul li .menu-home-lv2 ul .li-home a {
-                transition: all .3s ease;
-                font-family: Poppins;
-                font-weight: 400;
-                font-size: 14px;
-                color: black;
-                color: grey; }
+                header .menu-main li.shop-menu .dropdown-menu ul li .menu-home-lv2 ul .li-home a {
+                    transition: all .3s ease;
+                    font-family: Playfair Display;
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: black;
+                    color: grey;
+                }
                 header .menu-main li.shop-menu .dropdown-menu ul li .menu-home-lv2 ul .li-home a:hover {
                   text-decoration: none;
                   color: black;
@@ -522,15 +530,16 @@ header {
               @media (min-width: 1025px) {
                 header .menu-main li.blog-menu .dropdown-menu.menu-home-lv2 .li-home i {
                   margin-left: -18px; } }
-            header .menu-main li.blog-menu .dropdown-menu.menu-home-lv2 .li-home a {
-              display: inline-block;
-              transition: all .3s ease;
-              font-family: Poppins;
-              font-weight: 400;
-              font-size: 14px;
-              color: black;
-              color: grey;
-              padding-left: 5px; }
+header .menu-main li.blog-menu .dropdown-menu.menu-home-lv2 .li-home a {
+    display: inline-block;
+    transition: all .3s ease;
+    font-family: Playfair Display;
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+    color: grey;
+    padding-left: 5px;
+}
               header .menu-main li.blog-menu .dropdown-menu.menu-home-lv2 .li-home a:hover {
                 text-decoration: none;
                 color: black;
@@ -566,11 +575,12 @@ header {
         opacity: 1;
         transform: translateX(5px);
         transition: all .35s ease; }
-      header .menu-main li a {
-        font-family: Poppins;
-        font-weight: lighter;
-        font-size: 18px;
-        color: black; }
+header .menu-main li a {
+    font-family: Playfair Display;
+    font-weight: lighter;
+    font-size: 18px;
+    color: black;
+}
         header .menu-main li a:hover {
           background-color: unset; }
         header .menu-main li a#about-menu {
@@ -638,29 +648,30 @@ header {
       padding: 20px; }
       header .icon-menu .cart-menu .dropdown-menu #div-cart-menu {
         display: inline-flex; }
-      header .icon-menu .cart-menu .dropdown-menu a {
-        font-family: Abril Fatface;
-        font-weight: 400;
-        font-size: 18px;
-        color: black;
-        transition: all .3s ease-in-out 0.08s;
-        color: white;
-        padding: 10px 40px;
-        background-color: black;
-        border: 1px solid black;
-        background-image: -webkit-linear-gradient(90deg, black 50%, transparent 50%);
-        background-image: linear-gradient(90deg, black 50%, transparent 50%);
-        background-size: 600px;
-        background-repeat: no-repeat;
-        background-position: 0%;
-        -webkit-transition: background .3s ease-in-out;
-        transition: background .3s ease-in-out;
-        font-family: Poppins;
-        font-weight: 400;
-        font-size: 14px;
-        color: black;
-        color: #fff;
-        padding: 10px 15px; }
+        header .icon-menu .cart-menu .dropdown-menu a {
+            font-family: Playfair Display;
+            font-weight: 400;
+            font-size: 18px;
+            color: black;
+            transition: all .3s ease-in-out 0.08s;
+            color: white;
+            padding: 10px 40px;
+            background-color: black;
+            border: 1px solid black;
+            background-image: -webkit-linear-gradient(90deg, black 50%, transparent 50%);
+            background-image: linear-gradient(90deg, black 50%, transparent 50%);
+            background-size: 600px;
+            background-repeat: no-repeat;
+            background-position: 0%;
+            -webkit-transition: background .3s ease-in-out;
+            transition: background .3s ease-in-out;
+            font-family: Playfair Display;
+            font-weight: 400;
+            font-size: 14px;
+            color: black;
+            color: #fff;
+            padding: 10px 15px;
+        }
         header .icon-menu .cart-menu .dropdown-menu a:hover {
           background-position: 100%;
           background-color: #fff;
@@ -678,27 +689,30 @@ header {
     header .icon-menu .cart-menu .info-cart {
       padding-left: 15px;
       float: left; }
-      header .icon-menu .cart-menu .info-cart h1 {
-        font-family: Poppins;
-        font-weight: 600;
-        font-size: 14px;
-        color: black;
-        margin-top: 0; }
-      header .icon-menu .cart-menu .info-cart span {
-        font-family: Poppins;
-        font-weight: 500;
-        font-size: 14px;
-        color: black; }
+        header .icon-menu .cart-menu .info-cart h1 {
+            font-family: Playfair Display;
+            font-weight: 600;
+            font-size: 14px;
+            color: black;
+            margin-top: 0;
+        }
+        header .icon-menu .cart-menu .info-cart span {
+            font-family: Playfair Display;
+            font-weight: 500;
+            font-size: 14px;
+            color: black;
+        }
         header .icon-menu .cart-menu .info-cart span.number {
           padding-right: 30px; }
         header .icon-menu .cart-menu .info-cart span.prince-cart {
           font-weight: 600; }
     header .icon-menu .cart-menu .total {
-      padding: 0 15px 30px 0;
-      font-family: Poppins;
-      font-weight: 600;
-      font-size: 16px;
-      color: black; }
+        padding: 0 15px 30px 0;
+        font-family: Playfair Display;
+        font-weight: 600;
+        font-size: 16px;
+        color: black;
+    }
       header .icon-menu .cart-menu .total span {
         margin-right: 40px; }
 
@@ -755,20 +769,22 @@ header {
     top: 28%;
     left: 36%; }
     .banner .title-banner h1 {
-      font-family: Abril Fatface;
-      font-weight: 400;
-      font-size: 60px;
-      color: black;
-      text-align: center;
-      color: #fff; }
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 60px;
+        color: black;
+        text-align: center;
+        color: #fff;
+    }
     .banner .title-banner p {
-      font-family: Poppins;
-      font-weight: 400;
-      font-size: 14px;
-      color: black;
-      color: #f4f4f4;
-      text-align: center;
-      opacity: .8; }
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 14px;
+        color: black;
+        color: #f4f4f4;
+        text-align: center;
+        opacity: .8;
+    }
 
 .wellcome {
   padding-bottom: 130px; }
@@ -776,33 +792,37 @@ header {
     padding-bottom: 20px; }
     .wellcome .media .media-body {
       padding-left: 40px; }
-      .wellcome .media .media-body h1 {
-        font-family: Poppins;
+        .wellcome .media .media-body h1 {
+            font-family: Playfair Display;
+            font-weight: 400;
+            font-size: 18px;
+            color: black;
+            margin-top: 10px;
+            color: #4e4e4e;
+        }
+        .wellcome .media .media-body h2 {
+            font-family: Playfair Display;
+            font-weight: 400;
+            font-size: 30px;
+            color: black;
+            margin-top: 0;
+        }
+    .wellcome p {
+        font-family: Playfair Display;
         font-weight: 400;
-        font-size: 18px;
+        font-size: 16px;
         color: black;
-        margin-top: 10px;
-        color: #4e4e4e; }
-      .wellcome .media .media-body h2 {
-        font-family: Abril Fatface;
-        font-weight: 400;
-        font-size: 30px;
+        padding: 0 90px 20px 0;
+    }
+    .wellcome .social-well span {
+        font-family: Playfair Display;
+        font-weight: 600;
+        font-size: 16px;
         color: black;
-        margin-top: 0; }
-  .wellcome p {
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 16px;
-    color: black;
-    padding: 0 90px 20px 0; }
-  .wellcome .social-well span {
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 16px;
-    color: black;
-    padding-right: 20px;
-    position: relative;
-    top: -10px; }
+        padding-right: 20px;
+        position: relative;
+        top: -10px;
+    }
   .wellcome .social-well a {
     display: inline-block;
     width: 35px;
@@ -880,33 +900,37 @@ header {
 
 .team {
   padding-bottom: 120px; }
-  .team h1 {
-    font-family: Abril Fatface;
-    font-weight: 400;
-    font-size: 60px;
-    color: black;
-    text-align: center; }
-  .team h3 {
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 16px;
-    color: black;
-    text-align: center;
-    color: #888888;
-    padding-bottom: 50px; }
-  .team .team-account .title-acc h2 {
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 16px;
-    color: black;
-    text-align: center; }
-  .team .team-account .title-acc p {
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 16px;
-    color: black;
-    text-align: center;
-    color: #888888; }
+    .team h1 {
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 60px;
+        color: black;
+        text-align: center;
+    }
+    .team h3 {
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 16px;
+        color: black;
+        text-align: center;
+        color: #888888;
+        padding-bottom: 50px;
+    }
+    .team .team-account .title-acc h2 {
+        font-family: Playfair Display;
+        font-weight: 600;
+        font-size: 16px;
+        color: black;
+        text-align: center;
+    }
+    .team .team-account .title-acc p {
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 16px;
+        color: black;
+        text-align: center;
+        color: #888888;
+    }
   .team .team-account .title-acc .social-acc {
     text-align: center; }
     .team .team-account .title-acc .social-acc a {
@@ -941,34 +965,38 @@ header {
         opacity: 1; }
 
 .feedback h1 {
-  font-family: Abril Fatface;
-  font-weight: 400;
-  font-size: 60px;
-  color: black;
-  text-align: center; }
+    font-family: Playfair Display;
+    font-weight: 400;
+    font-size: 60px;
+    color: black;
+    text-align: center;
+}
 .feedback h2 {
-  font-family: Abril Fatface;
-  font-weight: 400;
-  font-size: 200px;
-  color: black;
-  text-align: center;
-  transform: rotate(180deg);
-  margin: 50px 0 -100px 0; }
+    font-family: Playfair Display;
+    font-weight: 400;
+    font-size: 200px;
+    color: black;
+    text-align: center;
+    transform: rotate(180deg);
+    margin: 50px 0 -100px 0;
+}
 .feedback p {
-  font-family: Poppins;
-  font-weight: 400;
-  font-size: 14px;
-  color: black;
-  color: #b7b7b7;
-  text-align: center; }
+    font-family: Playfair Display;
+    font-weight: 400;
+    font-size: 14px;
+    color: black;
+    color: #b7b7b7;
+    text-align: center;
+}
 .feedback .img-customer {
   text-align: center;
   padding-top: 25px; }
-  .feedback .img-customer h1 {
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 16px;
-    color: black; }
+    .feedback .img-customer h1 {
+        font-family: Playfair Display;
+        font-weight: 600;
+        font-size: 16px;
+        color: black;
+    }
     .feedback .img-customer h1 span {
       font-size: 14px;
       font-weight: 400;
@@ -988,20 +1016,22 @@ header {
     text-align: center; }
     .img-link .img-content img {
       margin: 0 auto; }
-  .img-link h1 {
-    font-family: Abril Fatface;
-    font-weight: 400;
-    font-size: 30px;
-    color: black;
-    text-align: center;
-    margin-bottom: 5px; }
-  .img-link h2 {
-    font-family: Abril Fatface;
-    font-weight: 400;
-    font-size: 26px;
-    color: black;
-    text-align: center;
-    margin-top: 0; }
+    .img-link h1 {
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 30px;
+        color: black;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .img-link h2 {
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 26px;
+        color: black;
+        text-align: center;
+        margin-top: 0;
+    }
   .img-link .img-color-1 {
     background-color: #f5e7e6;
     padding: 31px 0 32px 0; }
@@ -1015,12 +1045,13 @@ header {
 .info-footer {
   padding: 150px 0;
   border-top: 1px solid #ddd; }
-  .info-footer h3 {
-    font-family: Abril Fatface;
-    font-weight: 400;
-    font-size: 18px;
-    color: black;
-    padding-bottom: 30px; }
+    .info-footer h3 {
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 18px;
+        color: black;
+        padding-bottom: 30px;
+    }
   .info-footer ul {
     padding: 0; }
     .info-footer ul li {
@@ -1032,13 +1063,14 @@ header {
         visibility: hidden;
         opacity: 0;
         transition: all .3s ease; }
-      .info-footer ul li a {
-        transition: all .3s ease;
-        font-family: Poppins;
-        font-weight: 400;
-        font-size: 14px;
-        color: black;
-        color: grey; }
+        .info-footer ul li a {
+            transition: all .3s ease;
+            font-family: Playfair Display;
+            font-weight: 400;
+            font-size: 14px;
+            color: black;
+            color: grey;
+        }
         .info-footer ul li a:hover {
           text-decoration: none;
           color: black;
@@ -1053,12 +1085,13 @@ header {
         color: black;
         font-weight: 600;
         transform: translateX(16px); }
-  .info-footer .social p {
-    font-family: Poppins;
-    font-weight: 500;
-    font-size: 14px;
-    color: black;
-    padding-top: 20px; }
+    .info-footer .social p {
+        font-family: Playfair Display;
+        font-weight: 500;
+        font-size: 14px;
+        color: black;
+        padding-top: 20px;
+    }
   .info-footer .social a {
     display: inline-block;
     width: 35px;
@@ -1088,18 +1121,20 @@ header {
       background-repeat: no-repeat; }
     .info-footer .social a:hover {
       opacity: 1; }
-  .info-footer .social h1 {
-    font-family: Abril Fatface;
-    font-weight: 400;
-    font-size: 30px;
-    color: black;
-    padding-top: 10px; }
-  .info-footer .social h2 {
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 14px;
-    color: black;
-    color: #888888; }
+    .info-footer .social h1 {
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 30px;
+        color: black;
+        padding-top: 10px;
+    }
+    .info-footer .social h2 {
+        font-family: Playfair Display;
+        font-weight: 400;
+        font-size: 14px;
+        color: black;
+        color: #888888;
+    }
   .info-footer .social form {
     position: relative;
     margin-top: 10px; }
@@ -1113,11 +1148,12 @@ header {
       border: 1px solid #cfcfcf;
       width: 100%;
       padding-left: 20px; }
-      .info-footer .social form input::-webkit-input-placeholder {
-        font-family: Poppins;
-        font-weight: 400;
-        font-size: 14px;
-        color: black; }
+        .info-footer .social form input::-webkit-input-placeholder {
+            font-family: Playfair Display;
+            font-weight: 400;
+            font-size: 14px;
+            color: black;
+        }
     .info-footer .social form button {
       outline: 0;
       border: 0;
@@ -1142,13 +1178,14 @@ footer {
     background-repeat: no-repeat;
     width: 104px;
     margin-top: 40px; }
-  footer span {
-    display: inline-block;
-    font-family: Poppins;
-    font-weight: 300;
-    font-size: 14px;
-    color: black;
-    padding-top: 40px; }
+    footer span {
+        display: inline-block;
+        font-family: Playfair Display;
+        font-weight: 300;
+        font-size: 14px;
+        color: black;
+        padding-top: 40px;
+    }
     footer span#gmail-footer {
       padding-top: 45px; }
       footer span#gmail-footer a {

@@ -390,7 +390,7 @@ ul.breadcrumb li {
 /* Add a slash symbol (/) before/behind each list item */
 ul.breadcrumb li + li:before {
   padding: 5px 10px;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 16px;
   color: black;
@@ -399,7 +399,7 @@ ul.breadcrumb li + li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 14px;
   color: black;
@@ -475,7 +475,7 @@ ul.breadcrumb li a:hover {
 
 .range-p input {
   border: 0;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -497,7 +497,7 @@ ul.breadcrumb li a:hover {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -526,7 +526,7 @@ ul.breadcrumb li a:hover {
     right: 12px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    font-family: Baloo 2; }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -639,7 +639,7 @@ figure.bg-input::after {
         color: black; }
     .content-search .container-100 h3 {
       padding-bottom: 232px;
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: bold;
       font-size: 50px;
       color: black;
@@ -657,18 +657,18 @@ figure.bg-input::after {
         box-shadow: none;
         padding-left: 20px;
         border-bottom: 1px solid #ddd;
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 30px;
         color: black; }
         .content-search .container-100 form input::-webkit-input-placeholder {
-          font-family: Poppins;
+          font-family: Baloo 2;
           font-weight: 400;
           font-size: 30px;
           color: black;
           color: #ddd; }
       .content-search .container-100 form .button_search {
-        font-family: Abril Fatface;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 18px;
         color: black;
@@ -908,7 +908,7 @@ ul.breadcrumb li {
 /* Add a slash symbol (/) before/behind each list item */
 ul.breadcrumb li + li:before {
   padding: 5px 10px;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 16px;
   color: black;
@@ -917,7 +917,7 @@ ul.breadcrumb li + li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 14px;
   color: black;
@@ -993,7 +993,7 @@ ul.breadcrumb li a:hover {
 
 .range-p input {
   border: 0;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -1015,7 +1015,7 @@ ul.breadcrumb li a:hover {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -1044,7 +1044,7 @@ ul.breadcrumb li a:hover {
     right: 12px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    font-family: Baloo 2; }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -1157,7 +1157,7 @@ figure.bg-input::after {
         color: black; }
     .content-search .container-100 h3 {
       padding-bottom: 232px;
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: bold;
       font-size: 50px;
       color: black;
@@ -1175,18 +1175,18 @@ figure.bg-input::after {
         box-shadow: none;
         padding-left: 20px;
         border-bottom: 1px solid #ddd;
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 30px;
         color: black; }
         .content-search .container-100 form input::-webkit-input-placeholder {
-          font-family: Poppins;
+          font-family: Baloo 2;
           font-weight: 400;
           font-size: 30px;
           color: black;
           color: #ddd; }
       .content-search .container-100 form .button_search {
-        font-family: Abril Fatface;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 18px;
         color: black;
@@ -1427,7 +1427,7 @@ ul.breadcrumb li {
 /* Add a slash symbol (/) before/behind each list item */
 ul.breadcrumb li + li:before {
   padding: 5px 10px;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 16px;
   color: black;
@@ -1436,7 +1436,7 @@ ul.breadcrumb li + li:before {
 
 /* Add a color to all links inside the list */
 ul.breadcrumb li a {
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 500;
   font-size: 14px;
   color: black;
@@ -1512,7 +1512,7 @@ ul.breadcrumb li a:hover {
 
 .range-p input {
   border: 0;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -1534,7 +1534,7 @@ ul.breadcrumb li a:hover {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  font-family: Poppins;
+  font-family: Baloo 2;
   font-weight: 400;
   font-size: 14px;
   color: black;
@@ -1563,7 +1563,7 @@ ul.breadcrumb li a:hover {
     right: 12px;
     font-size: 16px;
     font-weight: 600;
-    font-family: Font Awesome\ 5 Free; }
+    font-family: Baloo 2; }
   .select-styled:active:after, .select-styled.active:after {
     transform: rotate(180deg); }
 
@@ -1676,7 +1676,7 @@ figure.bg-input::after {
         color: black; }
     .content-search .container-100 h3 {
       padding-bottom: 232px;
-      font-family: Poppins;
+      font-family: Baloo 2;
       font-weight: bold;
       font-size: 50px;
       color: black;
@@ -1694,18 +1694,18 @@ figure.bg-input::after {
         box-shadow: none;
         padding-left: 20px;
         border-bottom: 1px solid #ddd;
-        font-family: Poppins;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 30px;
         color: black; }
         .content-search .container-100 form input::-webkit-input-placeholder {
-          font-family: Poppins;
+          font-family: Baloo 2;
           font-weight: 400;
           font-size: 30px;
           color: black;
           color: #ddd; }
       .content-search .container-100 form .button_search {
-        font-family: Abril Fatface;
+        font-family: Baloo 2;
         font-weight: 400;
         font-size: 18px;
         color: black;

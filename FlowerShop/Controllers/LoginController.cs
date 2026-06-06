@@ -57,24 +57,25 @@ namespace FlowerShop.Controllers
 
 
 
-            var a = new List<Claim>
-             {
-             new Claim(ClaimTypes.NameIdentifier, check.UserId.ToString()),
-             new Claim(ClaimTypes.Name, check.FullName ?? check.Email),
-             new Claim(ClaimTypes.Role, roleName) // <--- QUAN TRỌNG: Lưu quyền ở đây
-             };
+            //var a = new List<Claim>
+            // {
+            // new Claim(ClaimTypes.NameIdentifier, check.UserId.ToString()),
+            // new Claim(ClaimTypes.Name, check.FullName ?? check.Email),
+            // new Claim(ClaimTypes.Role, roleName) // <--- QUAN TRỌNG: Lưu quyền ở đây
+            // };
 
-            var claimsIdentityy = new ClaimsIdentity(a, CookieAuthenticationDefaults.AuthenticationScheme);
+            //var claimsIdentityy = new ClaimsIdentity(a, CookieAuthenticationDefaults.AuthenticationScheme);
 
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentityy));
+            //await HttpContext.SignInAsync(
+            //    CookieAuthenticationDefaults.AuthenticationScheme,
+            //    new ClaimsPrincipal(claimsIdentityy));
             // 🛑 BƯỚC SỬA 1: TẠO CLAIMS VÀ SIGN IN (Authentication)
             var claims = new List<Claim>
             {
                 // QUAN TRỌNG: Lấy UserId để ShoppingCartController sử dụng
                 new Claim(ClaimTypes.NameIdentifier, check.UserId.ToString()),
                 new Claim(ClaimTypes.Name, check.FullName ?? check.Email),
+                 new Claim(ClaimTypes.Role, roleName) // <--- QUAN TRỌNG: Lưu quyền ở đây
             };
 
             // TẠM THỜI BỎ QUA LOGIC LẤY ROLE ĐỂ TRÁNH PHỨC TẠP

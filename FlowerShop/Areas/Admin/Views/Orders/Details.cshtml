@@ -35,13 +35,28 @@
                         <div class="card-body">
 
                             <div class="form-group">
-                                <label>Khách hàng:</label>
+                                <label>Tài khoản đặt hàng:</label>
                                 <p>@Model.User?.FullName</p>
                             </div>
 
                             <div class="form-group">
+                                <label>Người nhận:</label>
+                                <p>@Model.FullName</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Số điện thoại:</label>
+                                <p>@Model.Phone</p>
+                            </div>
+
+                            <div class="form-group">
                                 <label>Địa chỉ:</label>
-                                <p>@Model.ShippingAddress</p>
+                                <p>@Model.Address</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ghi chú:</label>
+                                <p>@Model.Note</p>
                             </div>
 
                             <div class="form-group">

@@ -308,7 +308,10 @@ public partial class QlbhtContext : DbContext
             entity.Property(e => e.OrderNumber).HasMaxLength(50);
             entity.Property(e => e.OrderStatusId).HasColumnName("OrderStatusID");
             entity.Property(e => e.PayMethodId).HasColumnName("PayMethodID");
-            entity.Property(e => e.ShippingAddress).HasMaxLength(150);
+            //entity.Property(e => e.ShippingAddress).HasMaxLength(150);
+            entity.Property(e => e.FullName).HasMaxLength(100);
+            entity.Property(e => e.Phone).HasMaxLength(20).IsUnicode(false);
+            entity.Property(e => e.Address).HasMaxLength(255);
             entity.Property(e => e.ShippingAmount).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.TotalAmount).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.UserId).HasColumnName("UserID");

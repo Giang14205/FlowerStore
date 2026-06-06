@@ -1,0 +1,76 @@
+﻿@model FlowerShop.Models.OrderStatus
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Thêm trạng thái đơn hàng </h1>
+                </div>
+                
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Thêm trạng thái đơn hàng </h3>
+                        </div>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <!--thêm cái này ở enctype="multipart/form-data ở sau Create khi thêm ảnh -->
+                        <form asp-action="Create">
+
+                            <div class="card-body">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="OrderStatusName" class="control-label">Tên Trạng Thái:</label>
+                                    <input asp-for="OrderStatusName" class="form-control" />
+                                    <span asp-validation-for="OrderStatusName" class="text-danger"></span>
+                                </div>
+                                
+
+                                <div class="form-group">
+                                    <input type="submit" value="Thêm mới" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+</div>
+
+@{
+    var summerNote = new FlowerShop.Areas.Admin.Models.SummerNote("#Summary");
+    <partial name="_SummerNote" model="summerNote" />
+}
+<!--Phải có scrip này nhé lưu ý ở trang layout phải có-->
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

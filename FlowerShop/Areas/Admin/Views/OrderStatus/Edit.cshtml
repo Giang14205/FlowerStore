@@ -1,0 +1,81 @@
+﻿@model FlowerShop.Models.OrderStatus
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Sửa Trạng Thái</h1>
+                </div>
+               
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <Trạngh3 class="card-title">Sửa Trạng Thái<h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+
+                        <form asp-action="Edit">
+                            <input type="hidden" asp-for="OrderStatusId" />
+                            <div class="card-body">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="OrderStatusName" class="control-label">bài viết:</label>
+                                    <input asp-for="OrderStatusName" class="form-control" />
+                                    <span asp-validation-for="OrderStatusName" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="submit" value="Sửa" class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+@{
+    var summerNote = new FlowerShop.Areas.Admin.Models.SummerNote("#Summary");
+    <partial name="_SummerNote" model="summerNote" />
+}
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+
+}
+
+
+
+
+
+
