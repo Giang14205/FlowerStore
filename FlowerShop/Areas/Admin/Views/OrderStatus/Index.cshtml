@@ -59,6 +59,7 @@
                                     <tr>
                                         <th>STT:</th>
                                         <th>Tên Trạng Thái:</th>
+                                        <th>Trạng thái:</th>
                                         <th>Thao Tác:</th>
 
                                     </tr>
@@ -72,7 +73,16 @@
                                         <tr>
                                             <td>@(i++)</td>
                                             <td>@Html.DisplayFor(modelItem => item.OrderStatusName)</td>
-                                            
+                                            <td>
+                                                @if (item.IsActive == true)
+                                                {
+                                                    <span class="badge badge-success"><i class="fa fa-check"></i> Đang hoạt động</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger"><i class="fa fa-eye-slash"></i> Đã ẩn/Tạm ngưng</span>
+                                                }
+                                            </td>
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.OrderStatusId" class="btn btn-primary">Sửa</a>
                                                 <a asp-action="Details" asp-route-id="@item.OrderStatusId" class="btn btn-success">Chi tiết</a>

@@ -14,7 +14,7 @@ namespace FlowerShop.Controllers
         public IActionResult DetailHome1(int? id)
         {
             var productNew = _context.Products
-                .Where(p => p.IsNew == true && p.IsActive == true)
+                .Where(p => p.IsNew == true && p.IsActive == true && p.IsMaterial==false)
                 .OrderByDescending(p => p.ProductId)
                 .ToList();
 

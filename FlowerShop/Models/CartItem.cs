@@ -15,6 +15,8 @@ public partial class CartItem
 
     public decimal Price { get; set; }
 
+    public string? Note { get; set; }
+
     public virtual Cart Cart { get; set; } = null!;
 
     public virtual Product Product { get; set; } = null!;

@@ -13,12 +13,7 @@
                 <div class="col-sm-6">
                     <h1>Quản lý đơn hàng </h1>
                 </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Simple Tables</li>
-                    </ol>
-                </div>
+               
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -88,7 +83,28 @@
                                             <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
                                             <td>@Html.DisplayFor(modelItem => item.ShippingAmount)</td>
                                             <td>@Html.DisplayFor(modelItem => item.PayMethod.PayMethodName)</td>
-                                            <td> <span class="badge bg-info"> @item.OrderStatus?.OrderStatusName </span></td>
+                                            <td>
+                                                @if (item.OrderStatusId == 6) @* Giả định ID 5 là trạng thái Hủy đơn của má *@
+                                                {
+                                                    <span class="badge badge-danger" style="font-size: 12px; padding: 5px 10px;">
+                                                        <i class="fa fa-times-circle"></i> @item.OrderStatus?.OrderStatusName
+                                                    </span>
+                                                }
+                                                else if (item.OrderStatusId == 3)
+    
+                                                {
+                                                    <span class="badge badge-success" style="font-size: 12px; padding: 5px 10px;">
+                                                        <i class="fa fa-check-circle"></i> @item.OrderStatus?.OrderStatusName
+                                                    </span>
+                                                }
+                                                else
+
+                                                {
+                                                    <span class="badge badge-warning" style="font-size: 12px; padding: 5px 10px; color: #212529;">
+                                                        <i class="fa fa-clock"></i> @item.OrderStatus?.OrderStatusName
+                                                    </span>
+                                                }
+                                            </td>
                                             <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
 
 

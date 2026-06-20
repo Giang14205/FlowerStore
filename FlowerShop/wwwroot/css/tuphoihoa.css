@@ -1,0 +1,424 @@
+﻿/* ==========================================================================
+   JENSTORE FLOWERS - STUDIO TỰ PHỐI HOA LUXURY CSS
+   ========================================================================== */
+
+/* 1. KHUNG CHỨA TỔNG THỂ (3 CỘT CHUẨN TỈ LỆ) */
+.studio-container {
+    display: flex;
+    gap: 25px;
+    max-width: 1450px;
+    /* Đẩy lề trên xuống hẳn 150px để chừa một khoảng trống an toàn cho Navbar cố định trên đỉnh */
+    margin: 150px auto 30px auto;
+    /* Tính toán chiều cao hợp lý trừ đi phần Header cố định */
+    height: calc(100vh - 180px);
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* 2. ĐỊNH DẠNG PANEL CHUNG (PHONG CÁCH KÍNH MỜ SANG TRỌNG) */
+.pallet-panel, .workspace-panel, .checkout-panel {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(240, 173, 181, 0.3);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(163, 80, 92, 0.05);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+    .pallet-panel:hover, .checkout-panel:hover {
+        box-shadow: 0 15px 35px rgba(163, 80, 92, 0.1);
+    }
+
+/* Phân chia kích thước 3 cột theo tỉ lệ vàng */
+.pallet-panel {
+    width: 25%;
+    overflow-y: auto;
+}
+
+.workspace-panel {
+    width: 50%;
+    position: relative;
+}
+
+.checkout-panel {
+    width: 25%;
+    justify-content: space-between;
+}
+
+/* 3. TIÊU ĐỀ (HEADERS) */
+h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #4a2c31;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #fce4e6;
+    padding-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-title {
+    font-weight: 700;
+    color: #a3505c;
+    font-size: 0.85rem;
+    margin: 20px 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 4. DANH SÁCH NGUYÊN LIỆU LẺ (CARD ITEMS) */
+.material-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.material-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border: 1px solid #f5e6e8;
+    border-radius: 14px;
+    cursor: grab;
+    background: #ffffff;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+    .material-item:active {
+        cursor: grabbing;
+    }
+
+    .material-item:hover {
+        background: #fff5f6;
+        border-color: #ffb6c1;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 6px 15px rgba(233, 30, 99, 0.08);
+    }
+
+    .material-item img {
+        width: 55px;
+        height: 55px;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+        transition: transform 0.3s ease;
+    }
+
+    .material-item:hover img {
+        transform: rotate(10deg);
+    }
+
+    .material-item .info b {
+        color: #4a2c31;
+        font-size: 0.95rem;
+    }
+
+    .material-item .info {
+        font-size: 0.85rem;
+        color: #8c7679;
+        line-height: 1.4;
+    }
+
+/* 5. KHU VỰC CHỌN GIẤY GÓI VÀ LÀM WORKSPACE */
+.wrap-options {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.btn-wrap {
+    flex: 1;
+    padding: 12px 8px;
+    border: 1px solid #e8d5d7;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #ffffff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #61464b;
+    transition: all 0.2s ease;
+}
+
+    .btn-wrap:hover {
+        background: #4a2c31;
+        color: #ffffff;
+        border-color: #4a2c31;
+    }
+
+/* KHÔNG GIAN CẮM HOA CHÍNH (BOUQUET ZONE) */
+.bouquet-zone {
+    flex: 1;
+    border: 3px dashed #ffcad2;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.02);
+    transition: background-color 0.4s ease;
+}
+
+/* Các tone màu nền giấy gói cực đỉnh */
+.wrap-pink {
+    background: #ffe5ec;
+    border-color: #ffb3c1;
+}
+
+.wrap-vintage {
+    background: #f7ede2;
+    border-color: #f5cac3;
+}
+
+.wrap-black {
+    background: #2b2d42;
+    border-color: #6c757d;
+}
+
+.hint-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(140, 118, 121, 0.6);
+    font-style: italic;
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.wrap-black .hint-text {
+    color: #8d99ae;
+    text-shadow: none;
+}
+
+/* ẢNH HOA XUẤT HIỆN SAU KHI THẢ VÀO GIẤY GÓI */
+.placed-flower {
+    position: absolute;
+    width: 80px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+    z-index: 2;
+}
+
+@keyframes cắmHoaPhátMột {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* 6. CỘT TÍNH TIỀN ĐƠN HÀNG (RECEIPT) */
+.receipt-list {
+    list-style: none;
+    overflow-y: auto;
+    max-height: 250px;
+    padding-right: 5px;
+    margin-bottom: 20px;
+}
+
+    .receipt-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px dashed #f2dbde;
+        font-size: 0.95rem;
+        color: #4a2c31;
+    }
+
+.price-summary p {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: #7d6367;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-weight: 600;
+    color: #4a2c31;
+}
+
+.total {
+    color: #d81b60;
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* NÚT THÊM VÀO GIỎ HÀNG CHUYÊN NGHIỆP */
+.btn-add-to-cart {
+    width: 100%;
+    background: linear-gradient(135deg, #ec407a, #d81b60);
+    color: #ffffff;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(216, 27, 96, 0.25);
+    transition: all 0.3s ease;
+}
+
+    .btn-add-to-cart:hover {
+        background: linear-gradient(135deg, #d81b60, #c2185b);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(216, 27, 96, 0.35);
+    }
+
+    .btn-add-to-cart:active {
+        transform: translateY(1px);
+    }
+
+/* Custom thanh cuộn dọc */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fcf8f8;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffcad2;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a3505c;
+    }
+
+/* Định dạng tấm thiệp hoa ẩn hiện trên vùng cắm */
+.live-card {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 240px;
+    height: 150px;
+    background-image: url('../img/thiep.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    z-index: 5;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px 20px 50px;
+}
+
+    .live-card.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.card-title-preview {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #8c525a;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 5px;
+    border-bottom: 1px dashed rgba(140, 82, 90, 0.3);
+    padding-bottom: 3px;
+}
+
+.card-body-preview {
+    font-size: 0.75rem;
+    color: #4a2c31;
+    font-style: italic;
+    line-height: 1.3;
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* KHUNG ĐIỀU KHIỂN BAO QUANH BÔNG HOA */
+.flower-wrapper {
+    position: absolute;
+    cursor: move;
+    display: inline-block;
+    padding: 15px;
+    touch-action: none;
+    z-index: 10;
+    user-select: none;
+}
+
+    .flower-wrapper .control-handle {
+        display: none;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #d81b60;
+        color: white;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 18px;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 15;
+    }
+
+    .flower-wrapper.active {
+        border: 1px dashed #d81b60;
+    }
+
+        .flower-wrapper.active .control-handle {
+            display: block;
+        }
+
+    .flower-wrapper .btn-delete {
+        top: -5px;
+        right: -5px;
+        background: #ff3366;
+    }
+
+    .flower-wrapper .btn-transform {
+        bottom: -5px;
+        right: -5px;
+        background: #00cd6c;
+        cursor: nwse-resize;
+    }
+
+/* Thẻ img hoa bên trong khung wrapper */
+.placed-flower {
+    display: block;
+    width: 80px;
+    height: auto;
+    user-select: none;
+}
+
+.flower-wrapper .btn-layer-down {
+    bottom: -5px;
+    left: -5px;
+    background: #4a90e2;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+/* 🌟 GIẢI PHÁP ĐỘC QUYỀN: Ép thanh menu v3 cố định chắc chắn trên đỉnh màn hình, không cho phép ẩn */
+#header-v3 {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: #ffffff !important; /* Đảm bảo nền trắng không bị trong suốt nhìn xuyên qua */
+    z-index: 99999 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important; /* Tạo đường đổ bóng mờ cho đẹp */
+}

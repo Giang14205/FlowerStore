@@ -1,0 +1,437 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+    // Sử dụng System.Text.Json để chuyển đổi Anonymous Type thành ExpandoObject
+    // Giải pháp này giúp giữ nguyên cú pháp gọi thuộc tính @item.ThuocTinh ở dưới HTML mà không bị lỗi Runtime Binder
+    var topProductsJson = System.Text.Json.JsonSerializer.Serialize(ViewBag.TopProducts ?? new List<object>());
+    var topCustomersJson = System.Text.Json.JsonSerializer.Serialize(ViewBag.TopCustomers ?? new List<object>());
+
+    var topProductsList = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<System.Dynamic.ExpandoObject>>(topProductsJson);
+    var topCustomersList = System.Text.Json.JsonSerializer.Deserialize<IEnumerable<System.Dynamic.ExpandoObject>>(topCustomersJson);
+}
+
+<div class="content-wrapper bg-light-pink py-3">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between">
+                <h1 class="m-0 fw-bold text-pink-dark"><i class="fas fa-chart-pie mr-2"></i>Bảng Điều Hành Kinh Doanh</h1>
+                
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <a asp-action="ExportToExcel" class="btn btn-primary">
+            <i class="fas fa-file-excel"></i> Xuất Báo Cáo Excel
+        </a>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row g-3 mb-4">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box shadow-sm border-pink rounded-4 bg-white p-3 h-100">
+                        <span class="info-box-icon bg-danger-subtle text-danger rounded-circle"><i class="fas fa-wallet"></i></span>
+                        <div class="info-box-content ml-3">
+                            <span class="info-box-text text-muted text-uppercase font-weight-bold small">Doanh thu tổng</span>
+                            <span class="info-box-number text-danger h5 font-weight-bold m-0">@String.Format("{0:N0}", ViewBag.TotalRevenue) đ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box shadow-sm border-pink rounded-4 bg-white p-3 h-100">
+                        <span class="info-box-icon bg-primary-subtle text-primary rounded-circle"><i class="fas fa-hand-holding-usd"></i></span>
+                        <div class="info-box-content ml-3">
+                            <span class="info-box-text text-muted text-uppercase font-weight-bold small">Giá trị đơn TB (AOV)</span>
+                            <span class="info-box-number text-primary h5 font-weight-bold m-0">@String.Format("{0:N0}", ViewBag.AverageOrderValue) đ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box shadow-sm border-pink rounded-4 bg-white p-3 h-100">
+                        <span class="info-box-icon bg-success-subtle text-success rounded-circle"><i class="fas fa-star"></i></span>
+                        <div class="info-box-content ml-3">
+                            <span class="info-box-text text-muted text-uppercase font-weight-bold small">Đơn thành công</span>
+                            <span class="info-box-number text-success h5 font-weight-bold m-0">@ViewBag.CompletedOrders / @ViewBag.TotalOrders đơn</span>
+                            <small class="text-muted text-xs">Tỷ lệ: <b>@ViewBag.SuccessRate%</b></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box shadow-sm border-pink rounded-4 bg-white p-3 h-100">
+                        <span class="info-box-icon bg-warning-subtle text-warning rounded-circle"><i class="fas fa-ban"></i></span>
+                        <div class="info-box-content ml-3">
+                            <span class="info-box-text text-muted text-uppercase font-weight-bold small">Tỷ lệ hủy đơn</span>
+                            <span class="info-box-number @(ViewBag.CancelRate > 12 ? "text-danger" : "text-warning") h5 font-weight-bold m-0">@ViewBag.CancelRate%</span>
+                            <small class="text-xs text-muted">Trạng thái: @(ViewBag.CancelRate > 12 ? "⚠️ Cảnh báo" : "An toàn")</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-12 col-lg-8 mb-4 mb-lg-0">
+                    <div class="card shadow-sm border-pink rounded-4 bg-white p-3 mb-3">
+                        <h6 class="font-weight-bold text-dark mb-2">
+                            <i class="fas fa-magic mr-2 text-purple"></i>Mô phỏng mục tiêu Tháng @ViewBag.CurrentMonthName
+                        </h6>
+                        <div class="row align-items-center">
+                            <div class="col-md-5 border-right">
+                                <span class="text-muted d-block small text-uppercase">Thực thu tháng này:</span>
+                                <h4 class="font-weight-bold text-dark m-0">@String.Format("{0:N0}", ViewBag.CurrentMonthRevenue) đ</h4>
+                                <span class="text-muted text-xs">Mục tiêu: <code>@String.Format("{0:N0}", ViewBag.MonthTarget) đ</code></span>
+                            </div>
+                            <div class="col-md-7 pl-md-3 mt-3 mt-md-0">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <span class="text-purple small font-weight-bold text-uppercase"><i class="fas fa-bullseye mr-1"></i>Dự báo cuối tháng:</span>
+                                    <span class="badge bg-purple text-white font-weight-bold">@ViewBag.CompletionRate%</span>
+                                </div>
+                                <h4 class="font-weight-bold text-purple-dark m-0">@String.Format("{0:N0}", ViewBag.ForecastedRevenue) đ</h4>
+                                <div class="progress rounded-pill style-progress mt-1" style="height: 8px;">
+                                    <div class="progress-bar bg-purple-gradient progress-bar-striped progress-bar-animated" role="progressbar" style="width: @ViewBag.CompletionRate%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm border-pink rounded-4 p-3 bg-white">
+                        <div class="card-header border-0 bg-transparent p-0 mb-2">
+                            <h6 class="card-title font-weight-bold text-dark m-0">
+                                <i class="fas fa-chart-line mr-2 text-pink-main"></i>Doanh thu 7 ngày gần nhất
+                            </h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div style="position: relative; height: 260px; width: 100%;">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="card shadow-sm border-pink rounded-4 p-3 bg-white h-100">
+                        <div class="card-header border-0 bg-transparent p-0 mb-3">
+                            <h6 class="card-title font-weight-bold text-dark m-0">
+                                <i class="fas fa-chart-pie mr-2 text-info"></i>Tỷ trọng phân khúc hoa
+                            </h6>
+                        </div>
+                        <div class="card-body p-0 d-flex align-items-center justify-content-center">
+                            <div style="position: relative; height: 280px; width: 100%;">
+                                <canvas id="categoryPieChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <div class="card shadow-sm border-pink rounded-4 p-3 bg-white h-100">
+                        <div class="card-header border-0 bg-transparent p-0 mb-2">
+                            <h6 class="card-title font-weight-bold text-dark m-0">
+                                <i class="fas fa-fire mr-2 text-orange"></i>Top 5 sản phẩm bán chạy nhất
+                            </h6>
+                        </div>
+                        <div class="card-body p-0 table-responsive">
+                            <table class="table table-hover align-middle m-0 text-sm">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th class="text-center">Số lượng</th>
+                                        <th class="text-end">Tổng doanh thu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (topProductsList != null)
+                                    {
+                                        foreach (var item in topProductsList)
+                                        {
+                                            // Ép kiểu ExpandoObject sang IDictionary để trích xuất thuộc tính chuỗi an toàn
+                                            var itemDict = item as IDictionary<string, object>;
+                                            string itemImage = itemDict != null && itemDict.ContainsKey("Image") ? itemDict["Image"]?.ToString() : "";
+                                            string productName = itemDict != null && itemDict.ContainsKey("ProductName") ? itemDict["ProductName"]?.ToString() : "";
+
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="@(string.IsNullOrEmpty(itemImage) ? "/images/no-image.png" : itemImage)" class="rounded-2 mr-2 object-fit-cover" style="width: 40px; height: 40px;" alt="" />
+                                                        <span class="text-truncate font-weight-bold text-dark" style="max-width: 180px;">@productName</span>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center font-weight-bold text-secondary">@((item as dynamic).TotalQuantity)</td>
+                                                <td class="text-end font-weight-bold text-pink-main">@String.Format("{0:N0}", (item as dynamic).TotalRevenue) đ</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="card shadow-sm border-pink rounded-4 p-3 bg-white h-100">
+                        <div class="card-header border-0 bg-transparent p-0 mb-2">
+                            <h6 class="card-title font-weight-bold text-dark m-0">
+                                <i class="fas fa-crown mr-2 text-warning"></i>Top 5 khách hàng VIP chi tiêu mạnh nhất
+                            </h6>
+                        </div>
+                        <div class="card-body p-0 table-responsive">
+                            <table class="table table-hover align-middle m-0 text-sm">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Tên khách hàng</th>
+                                        <th class="text-center">Số đơn mua</th>
+                                        <th class="text-end">Tổng chi tiêu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (topCustomersList != null)
+                                    {
+                                        foreach (var customer in topCustomersList)
+                                        {
+                                            // Ép kiểu tương tự cho bảng khách hàng
+                                            var customerDict = customer as IDictionary<string, object>;
+                                            string fullName = customerDict != null && customerDict.ContainsKey("FullName") ? customerDict["FullName"]?.ToString() : "";
+
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="bg-warning-subtle text-warning rounded-circle d-flex align-items-center justify-content-center font-weight-bold mr-2" style="width: 36px; height: 36px;">
+                                                            @if (string.IsNullOrEmpty(fullName))
+                                                            {
+                                                                @:"K"
+                                                            }
+                                                            else
+                                                            {
+                                                                @fullName.Substring(0, 1).ToUpper()
+                                                            }
+                                                        </div>
+                                                        <span class="font-weight-bold text-dark">@fullName</span>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center font-weight-bold text-secondary">@((customer as dynamic).TotalOrders) đơn</td>
+                                                <td class="text-end font-weight-bold text-success">@String.Format("{0:N0}", (customer as dynamic).TotalSpent) đ</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            const labelsData = @Html.Raw(ViewBag.ChartLabels ?? "[]");
+            const valuesData = @Html.Raw(ViewBag.ChartValues ?? "[]");
+
+            const ctxLine = document.getElementById('revenueChart').getContext('2d');
+
+            let gradientFill = ctxLine.createLinearGradient(0, 0, 0, 250);
+            gradientFill.addColorStop(0, 'rgba(214, 51, 132, 0.25)');
+            gradientFill.addColorStop(1, 'rgba(214, 51, 132, 0.01)');
+
+            new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: labelsData,
+                    datasets: [{
+                        label: 'Doanh thu',
+                        data: valuesData,
+                        fill: true,
+                        backgroundColor: gradientFill,
+                        borderColor: '#d63384',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#d63384',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 1.5,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        tension: 0.35
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: { display: false },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function(value) {
+                                    return value.toLocaleString('vi-VN') + ' đ';
+                                }
+                            },
+                            gridLines: { color: '#f5f5f5' }
+                        }],
+                        xAxes: [{
+                            gridLines: { display: false }
+                        }]
+                    }
+                }
+            });
+
+            const pieLabelsData = @Html.Raw(ViewBag.PieLabels ?? "[]");
+            const pieValuesData = @Html.Raw(ViewBag.PieValues ?? "[]");
+            const ctxPie = document.getElementById('categoryPieChart').getContext('2d');
+
+            new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: pieLabelsData,
+                    datasets: [{
+                        data: pieValuesData,
+                        backgroundColor: [
+                            '#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff', '#ff9f40', '#20c997'
+                        ],
+                        borderWidth: 1,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 12,
+                            padding: 15,
+                            fontSize: 11
+                        }
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                let dataset = data.datasets[tooltipItem.datasetIndex];
+                                let value = dataset.data[tooltipItem.index];
+                                let label = data.labels[tooltipItem.index] || '';
+                                return label + ': ' + value.toLocaleString('vi-VN') + ' đ';
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    .bg-light-pink {
+        background-color: #fdf5f6 !important;
+    }
+
+    .text-pink-dark {
+        color: #6c464e;
+    }
+
+    .text-pink-main {
+        color: #d63384;
+    }
+
+    .bg-pink-light {
+        background-color: #fff0f5 !important;
+    }
+
+    .border-pink {
+        border: 1px solid #fce4e9 !important;
+    }
+
+    .rounded-4 {
+        border-radius: 16px !important;
+    }
+
+    .object-fit-cover {
+        object-fit: cover;
+    }
+
+    .info-box-icon {
+        width: 55px !important;
+        height: 55px !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bg-danger-subtle {
+        background-color: #fee2e2 !important;
+    }
+
+    .bg-primary-subtle {
+        background-color: #e0f2fe !important;
+    }
+
+    .bg-success-subtle {
+        background-color: #dcfce7 !important;
+    }
+
+    .bg-warning-subtle {
+        background-color: #fef3c7 !important;
+    }
+
+    .bg-orange-subtle {
+        background-color: #ffedd5 !important;
+    }
+
+    .text-orange {
+        color: #f97316 !important;
+    }
+
+    .text-warning {
+        color: #f59e0b !important;
+    }
+
+    .text-purple {
+        color: #6f42c1 !important;
+    }
+
+    .text-purple-dark {
+        color: #4b238f;
+    }
+
+    .bg-purple {
+        background-color: #6f42c1 !important;
+    }
+
+    .bg-purple-gradient {
+        background: linear-gradient(45deg, #6f42c1, #a06ee1) !important;
+    }
+
+    .style-progress {
+        background-color: #ebe3f5 !important;
+    }
+
+    .table th {
+        font-weight: 600;
+        color: #4b5563;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+    .text-sm {
+        font-size: 0.875rem;
+    }
+
+    .text-xs {
+        font-size: 0.75rem;
+    }
+
+    .mr-2 {
+        margin-right: 0.5rem !important;
+    }
+
+    .text-end {
+        text-align: right !important;
+    }
+</style>

@@ -65,7 +65,7 @@
                                         <th>Ngày:</th>
                                         <th>Bí danh:</th>
                                         <th>Ảnh:</th>
-                                        <th>hiển thị:</th>
+                                        <th>Trạng thái:</th>
                                         <th>Tác giả:</th>
 
                                     </tr>
@@ -86,7 +86,16 @@
                                             <td>@Html.DisplayFor(modelItem => item.CreatedBlog)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Alias)</td>
                                             <td><img src="@Html.Raw(item.Image)" alt="@item.Title" width="50" height="50" /></td>
-                                            <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                            <td>
+                                                @if (item.IsActive == true)
+                                                {
+                                                    <span class="badge badge-success"><i class="fa fa-check"></i> Đang hiện</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger"><i class="fa fa-eye-slash"></i> Đã ẩn/gỡ</span>
+                                                }
+                                            </td>
                                             <td>@Html.DisplayFor(modelItem => item.AuthorName)</td>
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.BlogId" class="btn btn-primary">Sửa</a>

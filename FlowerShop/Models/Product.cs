@@ -1,5 +1,7 @@
-﻿using System;
+﻿using QLBHT.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FlowerShop.Models;
 
@@ -19,7 +21,7 @@ public partial class Product
 
     public string? ProductDescription { get; set; }
 
-    public int? ManufacturerId { get; set; }
+   
 
     public int? PriceSale { get; set; }
 
@@ -35,13 +37,20 @@ public partial class Product
 
     public int? Star { get; set; }
 
+    public int? ManufacturerId { get; set; }
+    [ForeignKey("ManufacturerId")]
+
+    public bool IsMaterial { get; set; }
+    public string? MaterialType { get; set; }
+    public virtual Manufacturer? Manufacturer { get; set; }
+
     public virtual ICollection<CartItem> CartItems { get; set; } = new List<CartItem>();
 
-    public virtual ICollection<Color> Colors { get; set; } = new List<Color>();
+   
 
     public virtual ICollection<FeedbackCustomer> FeedbackCustomers { get; set; } = new List<FeedbackCustomer>();
 
-    public virtual Manufacturer? Manufacturer { get; set; }
+    
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
@@ -51,5 +60,5 @@ public partial class Product
 
     public virtual ICollection<ProductSize> ProductSizes { get; set; } = new List<ProductSize>();
 
-    public virtual ICollection<Color> ColorsNavigation { get; set; } = new List<Color>();
+    
 }

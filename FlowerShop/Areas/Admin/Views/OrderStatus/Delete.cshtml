@@ -35,6 +35,10 @@
                             <div class="form-group">
                                 <label for="exempleInputEmail1">Trạng thái:</label>
                                 @Html.DisplayFor(model => model.OrderStatusName)
+                                <div class="form-group">
+                                    <label for="exempleInputPassword1">Trạng thái hoạt động:</label>
+                                    @Html.DisplayFor(model => model.IsActive)
+                                </div>
                                 <form asp-action="Delete">
                                     <input type="hidden" asp-for="OrderStatusId" />
                                     <input type="submit" value="Xóa" class="btn btn-danger" />

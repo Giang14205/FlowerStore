@@ -1,0 +1,105 @@
+﻿@model IEnumerable<FlowerShop.Models.Product>
+
+@{
+    ViewData["Title"] = "Studio Tự Phối Hoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/css/tuphoihoa.css" asp-append-version="true" />
+
+<div class="studio-container">
+    <div class="pallet-panel">
+        <h2>Nguyên Liệu Lẻ</h2>
+
+        <div class="section-title">Hoa Chủ Đạo</div>
+        <div class="material-list">
+            @foreach (var item in Model.Where(m => m.MaterialType == "HoaChinh"))
+            {
+                <div class="material-item" draggable="true"
+                     data-id="@item.ProductId"
+                     data-name="@item.ProductName"
+                     data-price="@item.ProductPrice"
+                     data-img="@item.ImagePopular">
+
+                    <img src="@item.ImagePopular" alt="@item.ProductName" draggable="false">
+
+                    <div class="info">
+                        <b>@item.ProductName</b><br>
+                        @(string.Format("{0:N0}", item.ProductPrice))đ/bông
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="section-title">Lá & Hoa Phụ</div>
+        <div class="material-list">
+            @foreach (var item in Model.Where(m => m.MaterialType == "HoaPhu" || m.MaterialType == "Lagoi" || m.MaterialType == "no"))
+            {
+                <div class="material-item" draggable="true"
+                     data-id="@item.ProductId"
+                     data-name="@item.ProductName"
+                     data-price="@item.ProductPrice"
+                     data-img="@item.ImagePopular">
+                    <img src="@item.ImagePopular" alt="@item.ProductName">
+                    <div class="info">
+                        <b>@item.ProductName</b><br>
+                        @(string.Format("{0:N0}", item.ProductPrice))đ/cành
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="workspace-panel">
+        <h2>Chọn Màu Giấy Gói</h2>
+        <div class="wrap-options">
+            <button class="btn-wrap" onclick="changeWrap('wrap-pink')">Giấy Hồng</button>
+            <button class="btn-wrap" onclick="changeWrap('wrap-vintage')">Kraft Cổ Điển</button>
+            <button class="btn-wrap" onclick="changeWrap('wrap-black')">Đen Huyền Bí</button>
+        </div>
+
+        <div class="bouquet-zone wrap-pink" id="drop-zone">
+            <div class="hint-text">Cầm giữ chuột kéo hoa bên trái thả vào đây!</div>
+            <div class="live-card" id="live-card">
+                <div class="card-title-preview" id="card-title-preview">Chúc Mừng Sinh Nhật</div>
+                <div class="card-body-preview" id="card-body-preview">Lời chúc của bạn sẽ hiện ở đây...</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-panel">
+        <div class="card-panel" style="margin-top: 15px; border-top: 1px dashed #f2dbde; padding-top: 15px;">
+            <h3 style="font-size: 0.9rem; color: #a3505c; text-transform: uppercase; margin-bottom: 10px; font-weight: 700;">
+                ✉️ Đính kèm thiệp lời chúc
+            </h3>
+            <div class="card-options" style="display: flex; gap: 8px; margin-bottom: 10px;">
+                <label style="flex: 1; text-align: center; padding: 6px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-size: 0.8rem; background: #fff;">
+                    <input type="radio" name="card-style" value="Chúc Mừng Sinh Nhật" checked style="margin-right: 4px;"> Sinh Nhật
+                </label>
+                <label style="flex: 1; text-align: center; padding: 6px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-size: 0.8rem; background: #fff;">
+                    <input type="radio" name="card-style" value="Kỷ Niệm Ngày Yêu" style="margin-right: 4px;"> Kỷ Niệm
+                </label>
+                <label style="flex: 1; text-align: center; padding: 6px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer; font-size: 0.8rem; background: #fff;">
+                    <input type="radio" name="card-style" value="Lời Xin Lỗi Chân Thành" style="margin-right: 4px;"> Xin Lỗi
+                </label>
+            </div>
+            <textarea id="card-message" rows="3" placeholder="Nhập lời chúc của bạn tại đây (Ví dụ: Chúc mừng sinh nhật người thương...)"
+                      style="width: 100%; border: 1px solid #f2dbde; border-radius: 8px; padding: 8px; font-size: 0.85rem; resize: none; box-sizing: border-box; font-family: inherit;"></textarea>
+        </div>
+        <h2>Bảng Chi Phí</h2>
+        <ul class="receipt-list" id="receipt-list"></ul>
+        <div class="price-summary">
+            <p>Phí dịch vụ cắm: <span class="price">50.000đ</span></p>
+            <hr style="margin: 10px 0; border: 1px dashed #eee;">
+            <h3>Tổng tính: <span id="total-price" class="total">50.000</span>đ</h3>
+        </div>
+        <button class="btn-add-to-cart" onclick="sendCartToBackend()">Đặt sản phẩm này</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script src="~/js/tuphoihoa.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+}

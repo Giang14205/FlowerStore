@@ -1,15 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FlowerShop.Models;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FlowerShop.Models;
-
-public partial class Manufacturer
+namespace QLBHT.Models // Hãy sửa lại đúng tên Namespace đồ án của bạn nếu khác
 {
-    public int ManufacturerId { get; set; }
+    public class Manufacturer
+    {
+        [Key]
+        public int ManufacturerId { get; set; }
 
-    public string ManufacturerName { get; set; } = null!;
+        [Required]
+        [StringLength(150)]
+        public string Name { get; set; } = null!;
 
-    public string? Country { get; set; }
+        [StringLength(100)]
+        public string? Country { get; set; }
 
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+        // Một hãng sản xuất có thể cung cấp danh sách nhiều sản phẩm
+        public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    }
 }

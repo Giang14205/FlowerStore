@@ -66,7 +66,7 @@ namespace FlowerShop.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public IActionResult Create()
         {
-            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "ManufacturerName");
+            ViewData["ManufacturerId"] = new SelectList(_context.Manufacturers, "ManufacturerId", "Name");
             ViewData["ProductCategoryId"] = new SelectList(_context.ProductCategories, "ProductCategoryId", "ProductCategoryName");
             return View();
         }
@@ -76,7 +76,7 @@ namespace FlowerShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,ProductCategoryId,ProductPrice,DiscountPrice,Stock,ProductDescription,ManufacturerId,PriceSale,Alias,IsNew,IsBestSeller,IsActive,ImagePopular,Star")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,ProductCategoryId,ProductPrice,DiscountPrice,Stock,ProductDescription,ManufacturerId,PriceSale,Alias,IsNew,IsBestSeller,IsActive,ImagePopular,Star,IsMaterial,MaterialType")] Product product)
         {
             product.Alias = FlowerShop.Utilities.Function.TitleSlugGenerationAlias(product.ProductName);
 
@@ -115,7 +115,7 @@ namespace FlowerShop.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ProductCategoryId,ProductPrice,DiscountPrice,Stock,ProductDescription,ManufacturerId,PriceSale,Alias,IsNew,IsBestSeller,IsActive,ImagePopular,Star")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,ProductCategoryId,ProductPrice,DiscountPrice,Stock,ProductDescription,ManufacturerId,PriceSale,Alias,IsNew,IsBestSeller,IsActive,ImagePopular,Star,IsMaterial,MaterialType")] Product product)
         {
             if (id != product.ProductId)
             {
@@ -175,10 +175,12 @@ namespace FlowerShop.Areas.Admin.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product != null)
             {
-                _context.Products.Remove(product);
-            }
+                // 2. 🔥 THAY VÌ XÓA CỨNG: Má chuyển trạng thái hoạt động về false (Xóa mềm/Tạm ẩn)
+                product.IsActive = false;
 
-            await _context.SaveChangesAsync();
+                _context.Update(product);
+                await _context.SaveChangesAsync(); // Lưu cập nhật xuống Database
+            }
             return RedirectToAction(nameof(Index));
         }
 

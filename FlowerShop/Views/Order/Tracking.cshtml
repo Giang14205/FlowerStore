@@ -1,0 +1,190 @@
+﻿@model List<FlowerShop.Models.Order>
+@{
+    ViewData["Title"] = "Lịch sử đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="tracking-page">
+    <div class="container tracking-container">
+        <h3 class="page-title"><i class="fas fa-history"></i> Đơn hàng của tôi</h3>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" style="margin-bottom: 20px;">@TempData["SuccessMessage"]</div>
+        }
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" style="margin-bottom: 20px;">@TempData["ErrorMessage"]</div>
+        }
+
+        @if (Model == null || !Model.Any())
+        {
+            <div class="empty-state">Bạn chưa có đơn hàng nào.</div>
+        }
+        else
+        {
+            @foreach (var order in Model)
+            {
+                <div class="order-item">
+                    <div class="order-header">
+                        <span class="order-id">Mã đơn: #@order.OrderId</span>
+                        <span class="order-status">@(order.OrderStatus?.OrderStatusName ?? "Đang xử lý")</span>
+                    </div>
+                    <div class="order-body">
+                        <div class="info-group">
+                            <span class="label">Ngày đặt</span>
+                            <span class="value">@order.OrderDate?.ToString("dd/MM/yyyy HH:mm")</span>
+                        </div>
+                        <div class="info-group">
+                            <span class="label">Tổng tiền</span>
+                            <span class="value total-price">@order.TotalAmount.ToString("N0") VNĐ</span>
+                        </div>
+                        <div class="action-group">
+                            <a href="/Order/DetailOrder?id=@order.OrderId" class="btn-custom btn-view">Xem chi tiết</a>
+
+                            @if (order.OrderStatusId <= 3) // Thêm điều kiện để chỉ hiện nút khi còn hủy được
+                            {
+                                <form asp-action="CancelOrder" method="post" onsubmit="return confirm('Bạn chắc chắn muốn hủy đơn hàng này?');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="orderId" value="@order.OrderId" />
+                                    <button type="submit" class="btn-custom btn-cancel">Hủy đơn</button>
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<style>
+    /* 1. Nền trang và Layout */
+    .tracking-page {
+        background-color: #fdf5f6;
+        min-height: 100vh;
+        padding: 150px 0 50px;
+    }
+
+    .tracking-container {
+        max-width: 850px;
+    }
+
+    .page-title {
+        color: #d63384;
+        margin-bottom: 2.5rem;
+        font-weight: 700;
+        font-size: 2.2rem !important;
+    }
+
+    /* 2. Card */
+    .order-item {
+        background: #fff;
+        border-radius: 25px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 25px rgba(214, 51, 132, 0.12);
+        border: 1px solid #fce4e9;
+    }
+
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #fdf5f6;
+        padding-bottom: 20px;
+    }
+
+    .order-id {
+        font-weight: 800;
+        color: #6c464e;
+        font-size: 1.5rem !important;
+    }
+
+    .order-status {
+        background: #fff0f5;
+        color: #d63384;
+        padding: 8px 22px;
+        border-radius: 50px;
+        font-size: 1rem !important;
+        font-weight: 700;
+    }
+
+    /* 3. CĂN LỀ TRÁI CHO BỐ CỤC */
+    .order-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; /* Chia 3 cột bằng nhau */
+        text-align: left !important; /* Ép toàn bộ nội dung căn trái */
+        justify-items: start; /* Ép các phần tử bắt đầu từ lề trái */
+        gap: 20px;
+    }
+
+    .info-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Đảm bảo nội dung trong group căn trái */
+        width: 100%;
+    }
+
+    .label {
+        font-size: 0.95rem !important;
+        color: #a99297;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+    }
+
+    .value {
+        font-weight: 700;
+        color: #6c464e;
+        font-size: 1.25rem !important;
+    }
+
+    .total-price {
+        color: #d63384;
+        font-size: 1.4rem !important;
+    }
+
+    /* 4. Nhóm hành động căn trái hoặc phải tùy bạn (đây là căn phải cho đẹp mắt) */
+    .action-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-end;
+        width: 100%;
+    }
+
+    .btn-custom {
+        padding: 12px 25px !important;
+        border-radius: 50px;
+        border: none;
+        font-weight: 700;
+        font-size: 1rem !important;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-view {
+        background: #f8f9fa;
+        color: #6c464e;
+        border: 2px solid #eee;
+    }
+
+        .btn-view:hover {
+            background: #fce4e9;
+            border-color: #fce4e9;
+        }
+
+    .btn-cancel {
+        background: #d63384;
+        color: #fff;
+    }
+
+        .btn-cancel:hover {
+            background: #b02a6b;
+        }
+</style>

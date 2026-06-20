@@ -1,4 +1,4 @@
-﻿@model List<FlowerShop.Models.CartItemVM>
+﻿@model List<FlowerShop.Controllers.CheckoutController.CheckoutItemDto>
 
 @{
     ViewData["Title"] = "Giỏ hàng của bạn";
@@ -9,17 +9,23 @@
             <figure id="banner-about"><a href="#"><img src="~/img/banner-about.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
             <div class="title-banner">
                 <h1>GIO HANG</h1>
-               
             </div>
-
         </div>
-
     </div>
     <section class="container py-5">
         <h2 class="text-center mb-4">GIỎ HÀNG CỦA BẠN</h2>
 
         @if (Model.Count > 0)
         {
+            // 🔥 KHU VỰC PHÂN LOẠI & GỘP NHÓM HOA THÔNG MINH TRƯỚC KHI IN GIAO DIỆN
+            // 1. Lọc lấy các sản phẩm có sẵn gốc của Cửa hàng (Session)
+            var normalProducts = Model.Where(x => string.IsNullOrEmpty(x.Note) || x.Note == "Sản phẩm cửa hàng");
+
+            // 2. Gom nhóm toàn bộ hoa lẻ thuộc chung một bó lại dựa vào trường Note dưới Database
+            var customBouquetsGroups = Model
+            .Where(x => x.Note != null && x.Note.Contains("|"))
+            .GroupBy(x => x.Note.Split('|')[0]);
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-responsive">
@@ -35,52 +41,105 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @* ------------------------------------------------------------------ *@
+                                @* [LUỒNG 1]: DUYỆT IN SẢN PHẨM THƯỜNG CỦA SHOP (GIỮ NGUYÊN HOÀN TOÀN LOGIC CŨ) *@
+                                @* ------------------------------------------------------------------ *@
+                                @foreach (var item in normalProducts)
                                 {
                                     <tr style="vertical-align: middle !important;">
-
                                         <td style="width: 15%; vertical-align: middle !important;">
                                             <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-                                                <img src="@item.Image" alt="@item.ProductName" class="img-fluid" style="max-height: 100px;">
+                                                <img src="@item.ProductImage" alt="@item.ProductName" class="img-fluid" style="max-height: 100px;">
                                             </div>
                                         </td>
-
                                         <td style="vertical-align: middle !important;">
                                             <h5 class="mb-0">@item.ProductName</h5>
                                         </td>
-
                                         <td style="vertical-align: middle !important;">
                                             @item.Price.ToString("#,##0") đ
                                         </td>
-
                                         <td style="width: 150px; vertical-align: middle !important;">
                                             <div style="display: inline-flex !important; flex-direction: row !important; align-items: center !important; justify-content: center !important;">
-
                                                 <a href="javascript:void(0)" onclick="updateQuantity(@item.ProductId, -1)"
                                                    style="display: flex !important; align-items: center; justify-content: center; width: 30px !important; height: 30px !important; border: 1px solid #ccc; text-decoration: none; color: #333; background-color: #f0f0f0; font-weight: bold; cursor: pointer;">
                                                     -
                                                 </a>
-
                                                 <input type="text" id="quantity-@item.ProductId" value="@item.Quantity" readonly
                                                        style="width: 40px !important; height: 30px !important; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; border-left: none; border-right: none; text-align: center; padding: 0 !important; margin: 0 !important; background-color: #fff !important; color: #333 !important; outline: none !important;" />
-
                                                 <a href="javascript:void(0)" onclick="updateQuantity(@item.ProductId, 1)"
                                                    style="display: flex !important; align-items: center; justify-content: center; width: 30px !important; height: 30px !important; border: 1px solid #ccc; text-decoration: none; color: #333; background-color: #f0f0f0; font-weight: bold; cursor: pointer;">
                                                     +
                                                 </a>
-
                                             </div>
                                         </td>
-
                                         <td class="fw-bold text-danger" style="vertical-align: middle !important;" id="total-@item.ProductId">
-                                            @item.Total.ToString("#,##0") đ
+                                            @((item.Quantity * item.Price).ToString("#,##0")) đ
                                         </td>
-
                                         <td style="vertical-align: middle !important;">
                                             <a asp-controller="ShoppingCart" asp-action="Remove" asp-route-productId="@item.ProductId"
                                                class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa món này?');">
                                                 <i class="fa fa-trash"></i> Xóa
                                             </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                                @* ------------------------------------------------------------------ *@
+                                @* [LUỒNG 2]: 🔥 GỘP MỚ HOA LẺ THÀNH ĐÚNG 1 DÒNG DUY NHẤT & HIỆN ẢNH PHỐI STUDIO *@
+                                @* ------------------------------------------------------------------ *@
+                                @foreach (var bouquet in customBouquetsGroups)
+                                {
+                                    string bouquetRealImage = "/images/default-bouquet.png";
+                                    string bouquetTitle = bouquet.Key; // Lúc này chính là phần chữ trước dấu |
+
+                                    // Tìm phần tử đầu tiên trong nhóm gộp để lôi chuỗi Note có chứa ảnh Base64 thật ra
+                                    var firstItemInGroup = bouquet.FirstOrDefault();
+                                    if (firstItemInGroup != null && firstItemInGroup.Note != null && firstItemInGroup.Note.Contains("|"))
+                                    {
+                                        var parts = firstItemInGroup.Note.Split('|');
+                                        if (parts.Length > 1 && !string.IsNullOrEmpty(parts[1]))
+                                        {
+                                            bouquetRealImage = parts[1]; // Lấy chuỗi ảnh Base64 chuẩn của bó hoa
+                                        }
+                                    }
+
+                                    // Tính tổng tiền bằng cách cộng dồn (Số lượng * Giá) của cả nhóm
+                                    decimal bouquetTotalPrice = bouquet.Sum(x => x.Quantity * x.Price)+50000;
+
+                                    int repProductId = firstItemInGroup != null ? firstItemInGroup.ProductId : 0;
+
+                                    <tr style="vertical-align: middle !important; background-color: #fffafb;">
+                                        <td style="width: 15%; vertical-align: middle !important;">
+                                            <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+                                                <img src="@bouquetRealImage" alt="Ảnh mẫu bó hoa" class="img-fluid" style="max-height: 110px; border-radius: 6px; border: 1px solid #ffb6c1;">
+                                            </div>
+                                        </td>
+                                        <td style="vertical-align: middle !important; text-align: left !important; padding-left: 20px;">
+                                            <h5 class="mb-1" style="color: #d9534f; font-weight: bold;">💐 Hoa tự phối thiết kế độc bản</h5>
+                                            <p class="mb-0 text-muted" style="font-size: 12px;">
+                                                @bouquetTitle.Replace("Bó tự phối", "Mã thiết kế:")
+                                            </p>
+                                        </td>
+                                        <td style="vertical-align: middle !important;">
+                                            @bouquetTotalPrice.ToString("#,##0") đ
+                                        </td>
+                                        <td style="vertical-align: middle !important;">
+                                            <span class="badge bg-danger" style="background-color: #ffb6c1; color: #fff; padding: 6px 12px;">1 Bó</span>
+                                        </td>
+                                        <td class="fw-bold text-danger" style="vertical-align: middle !important;">
+                                            @bouquetTotalPrice.ToString("#,##0") đ
+                                        </td>
+                                        <td style="vertical-align: middle !important;">
+                                            @{
+                                                var firstItem = bouquet.FirstOrDefault();
+                                                string fullNoteWithBase64 = firstItem != null ? firstItem.Note : "";
+                                            }
+                                            <form action="/ShoppingCart/RemoveCustomBouquet" method="post" onsubmit="return confirm('Bạn có chắc muốn hủy toàn bộ bó hoa thiết kế tự phối này không?');" style="display:inline;">
+                                                <input type="hidden" name="bouquetNote" value="@fullNoteWithBase64" />
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i> Xóa
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 }
@@ -91,18 +150,14 @@
             </div>
 
             <div class="row mt-4 align-items-center">
-
                 <div class="col-md-9 text-start">
                     <a asp-controller="Home1" asp-action="DetailHome1" class="btn btn-secondary btn-lg w-100 mt-2">
                         <i class="fa fa-arrow-left"></i> Tiếp tục mua sắm
                     </a>
-                    
                 </div>
-
                 <div class="col-md-3 d-flex justify-content-end">
                     <div class="bg-light p-4 rounded border text-end" style="min-width: 350px;">
-                        <h3 class="mb-3">Tổng cộng: <span class="text-danger fw-bold">@Model.Sum(x => x.Total).ToString("#,##0") đ</span></h3>
-                       
+                        <h3 class="mb-3">Tổng cộng: <span class="text-danger fw-bold">@(((decimal?)ViewBag.Total ?? 0).ToString("#,##0")) đ</span></h3>
                         <a asp-controller="Checkout" asp-action="Checkout" class="btn btn-success btn-lg w-100 mt-2">
                             Tiến hành Thanh Toán <i class="fa fa-arrow-right"></i>
                         </a>
@@ -119,9 +174,7 @@
             </div>
         }
     </section>
-
 </main>
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -140,12 +193,11 @@
                     $('#total-' + productId).text(result.itemTotal);
                     $('#cart-total').text(result.cartTotal);
                 } else {
-                    // Nếu Controller chưa sửa đúng, nó sẽ nhảy vào đây hoặc im lặng
                     console.log("Dữ liệu trả về không đúng format JSON");
                 }
             },
             error: function (xhr) {
-                console.log(xhr.responseText); // Xem lỗi chi tiết trong Console
+                console.log(xhr.responseText);
                 alert("Lỗi kết nối Server!");
             }
         });

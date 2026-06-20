@@ -79,7 +79,9 @@
                                         <th>Sản phẩm mới:</th>
                                         <th>Bán chạy:</th>
                                         <th>Sao:</th>
-                                        <th>Hiển thị:</th>
+                                        <th>Trạng thái:</th>
+                                         <th>Loại vật liệu:</th>
+                                        <th>Vật liệu bán lẻ:</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -106,7 +108,18 @@
                                             <td>@Html.DisplayFor(modelItem => item.IsNew)</td>
                                             <td>@Html.DisplayFor(modelItem => item.IsBestSeller)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Star)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                            <td>
+                                                @if (item.IsActive == true)
+                                                {
+                                                    <span class="badge badge-success"><i class="fa fa-check"></i> Đang bán</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger"><i class="fa fa-eye-slash"></i> Đã ẩn/Ngừng bán</span>
+                                                }
+                                            </td>
+                                            <td>@Html.DisplayFor(modelItem => item.MaterialType)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.IsMaterial)</td>
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-primary">Sửa</a>
                                                 <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-success">Chi tiết</a>

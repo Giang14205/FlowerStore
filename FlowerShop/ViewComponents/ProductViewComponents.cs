@@ -15,7 +15,7 @@ namespace FlowerShop.ViewComponents
         public async Task <IViewComponentResult> InvokeAsync()
         {
             var items = _context.Products.Include(m => m.ProductCategory)
-                .Where(m => m.IsActive==true).Where(m => m.IsNew==true);
+                .Where(m => m.IsActive==true).Where(m => m.IsNew==true).Where(m=> m.IsMaterial == false);
            
             return await Task.FromResult<IViewComponentResult>(View(items.OrderByDescending(m => m.ProductId).ToList()));
             

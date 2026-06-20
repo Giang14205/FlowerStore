@@ -127,6 +127,18 @@
                                         <input class="form-check-input" asp-for="IsActive" /> Hiển thị:
                                     </label>
                                 </div>
+                                
+                                <div class="form-group">
+                                    <label asp-for="MaterialType" class="control-label">Loại chất liệu:</label>
+                                    <input asp-for="MaterialType" class="form-control" />
+                                    <span asp-validation-for="MaterialType" class="text-danger"></span>
+                                </div>
+                                <div class="form-group form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" asp-for="IsMaterial" /> Nguyên liệu bán lẻ:
+                                    </label>
+                                </div>
+                                
                                 <div class="form-group">
                                     <input type="submit" value="Thêm mới" class="btn btn-primary" />
                                 </div>

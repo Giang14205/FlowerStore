@@ -170,15 +170,22 @@ namespace FlowerShop.Areas.Admin.Controllers
         // POST: Admin/Blogs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // 1. Tìm bài viết cần ẩn theo ID
             var blog = await _context.Blogs.FindAsync(id);
+
             if (blog != null)
             {
-                _context.Blogs.Remove(blog);
+                // 2. 🔥 THAY VÌ XÓA CỨNG: Má chỉ cần gán trạng thái hiển thị bằng false
+                blog.IsActive = false;
+
+                _context.Update(blog);
+                await _context.SaveChangesAsync(); // Lưu thay đổi xuống Database
             }
 
-            await _context.SaveChangesAsync();
+            // 3. Điều hướng Admin quay về trang danh sách bài viết
             return RedirectToAction(nameof(Index));
         }
 

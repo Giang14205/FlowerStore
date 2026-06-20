@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using QLBHT.Models;
+using System;
 using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
 
 namespace FlowerShop.Models;
 
@@ -15,25 +16,17 @@ public partial class QlbhtContext : DbContext
     {
     }
 
-    public virtual DbSet<AboutSection> AboutSections { get; set; }
-
-    public virtual DbSet<AboutSocial> AboutSocials { get; set; }
-
     public virtual DbSet<Blog> Blogs { get; set; }
 
     public virtual DbSet<Cart> Carts { get; set; }
 
     public virtual DbSet<CartItem> CartItems { get; set; }
 
-    public virtual DbSet<Color> Colors { get; set; }
-
     public virtual DbSet<ContactMessage> ContactMessages { get; set; }
 
     public virtual DbSet<ContactReply> ContactReplies { get; set; }
 
     public virtual DbSet<FeedbackCustomer> FeedbackCustomers { get; set; }
-
-    public virtual DbSet<Manufacturer> Manufacturers { get; set; }
 
     public virtual DbSet<Menu> Menus { get; set; }
 
@@ -59,54 +52,22 @@ public partial class QlbhtContext : DbContext
 
     public virtual DbSet<Tag> Tags { get; set; }
 
-    public virtual DbSet<TeamMember> TeamMembers { get; set; }
-
-    public virtual DbSet<TeamSocial> TeamSocials { get; set; }
+    public virtual DbSet<Manufacturer> Manufacturers { get; set; } = null!;
 
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<UserRole> UserRoles { get; set; }
     public virtual DbSet<Voucher> Vouchers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("data source=LAPTOP-PPPI9RCS; initial catalog=QLBHT; integrated security=True; \nTrustServerCertificate=True;");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-I9JFI54\\SQLEXPRESS; Initial Catalog=QLBHT; Integrated Security=True; Encrypt=False; TrustServerCertificate=True;");
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<AboutSection>(entity =>
-        {
-            entity.HasKey(e => e.AboutId).HasName("PK__AboutSec__717FC95C7C62E0DA");
-
-            entity.ToTable("AboutSection");
-
-            entity.Property(e => e.AboutId).HasColumnName("AboutID");
-            entity.Property(e => e.Content).HasMaxLength(500);
-            entity.Property(e => e.ImageUrl)
-                .HasMaxLength(500)
-                .HasColumnName("ImageURL");
-            entity.Property(e => e.ListImageUrl)
-                .HasMaxLength(500)
-                .HasColumnName("ListImageURL");
-            entity.Property(e => e.Title).HasMaxLength(200);
-        });
-
-        modelBuilder.Entity<AboutSocial>(entity =>
-        {
-            entity.HasKey(e => e.SocialId).HasName("PK__AboutSoc__67CF717ACD1267FB");
-
-            entity.ToTable("AboutSocial");
-
-            entity.Property(e => e.SocialId).HasColumnName("SocialID");
-            entity.Property(e => e.AboutId).HasColumnName("AboutID");
-            entity.Property(e => e.SocialPlatform).HasMaxLength(70);
-            entity.Property(e => e.Url).HasMaxLength(300);
-
-            entity.HasOne(d => d.About).WithMany(p => p.AboutSocials)
-                .HasForeignKey(d => d.AboutId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__AboutSoci__About__797309D9");
-        });
-
         modelBuilder.Entity<Blog>(entity =>
         {
             entity.HasKey(e => e.BlogId).HasName("PK__Blog__54379E509EA0CE3A");
@@ -192,20 +153,6 @@ public partial class QlbhtContext : DbContext
                 .HasConstraintName("FK__CartItem__Produc__5BE2A6F2");
         });
 
-        modelBuilder.Entity<Color>(entity =>
-        {
-            entity.HasKey(e => e.ColorId).HasName("PK__Color__8DA7676D5781B1A3");
-
-            entity.ToTable("Color");
-
-            entity.Property(e => e.ColorId).HasColumnName("ColorID");
-            entity.Property(e => e.ColorName).HasMaxLength(20);
-
-            entity.HasOne(d => d.Product).WithMany(p => p.Colors)
-                .HasForeignKey(d => d.ProductId)
-                .HasConstraintName("FK_Color_Product");
-        });
-
         modelBuilder.Entity<ContactMessage>(entity =>
         {
             entity.HasKey(e => e.ContactMessageId).HasName("PK__ContactM__2B0D4DDC40B0061B");
@@ -268,17 +215,6 @@ public partial class QlbhtContext : DbContext
                 .HasConstraintName("FK_FeedbackCustomer_Product");
         });
 
-        modelBuilder.Entity<Manufacturer>(entity =>
-        {
-            entity.HasKey(e => e.ManufacturerId).HasName("PK__Manufact__357E5CA143AF9E26");
-
-            entity.ToTable("Manufacturer");
-
-            entity.Property(e => e.ManufacturerId).HasColumnName("ManufacturerID");
-            entity.Property(e => e.Country).HasMaxLength(100);
-            entity.Property(e => e.ManufacturerName).HasMaxLength(150);
-        });
-
         modelBuilder.Entity<Menu>(entity =>
         {
             entity.HasKey(e => e.MenuId).HasName("PK__Menu__C99ED250A409C84E");
@@ -297,89 +233,12 @@ public partial class QlbhtContext : DbContext
                 .HasConstraintName("FK__Menu__ParentID__0C85DE4D");
         });
 
-        modelBuilder.Entity<Order>(entity =>
+        modelBuilder.Entity<Manufacturer>(entity =>
         {
-            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BAF9D46EF4D");
-
-            entity.ToTable("Order");
-
-            entity.Property(e => e.OrderId).HasColumnName("OrderID");
-            entity.Property(e => e.OrderDate).HasColumnType("datetime");
-            entity.Property(e => e.OrderNumber).HasMaxLength(50);
-            entity.Property(e => e.OrderStatusId).HasColumnName("OrderStatusID");
-            entity.Property(e => e.PayMethodId).HasColumnName("PayMethodID");
-            //entity.Property(e => e.ShippingAddress).HasMaxLength(150);
-            entity.Property(e => e.FullName).HasMaxLength(100);
-            entity.Property(e => e.Phone).HasMaxLength(20).IsUnicode(false);
-            entity.Property(e => e.Address).HasMaxLength(255);
-            entity.Property(e => e.ShippingAmount).HasColumnType("decimal(18, 2)");
-            entity.Property(e => e.TotalAmount).HasColumnType("decimal(18, 2)");
-            entity.Property(e => e.UserId).HasColumnName("UserID");
-            entity.Property(e => e.VoucherId).HasColumnName("VoucherID");
-
-            entity.HasOne(d => d.OrderStatus).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.OrderStatusId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Order__OrderStat__6754599E");
-
-            entity.HasOne(d => d.PayMethod).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.PayMethodId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Order__PayMethod__66603565");
-
-            entity.HasOne(d => d.User).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Order__UserID__6477ECF3");
-
-            entity.HasOne(d => d.Voucher).WithMany(p => p.Orders)
-                .HasForeignKey(d => d.VoucherId)
-                .HasConstraintName("FK__Order__VoucherID__656C112C");
-        });
-
-        modelBuilder.Entity<OrderItem>(entity =>
-        {
-            entity.HasKey(e => e.OrderItemId).HasName("PK__OrderIte__57ED06A1A39D9B9D");
-
-            entity.ToTable("OrderItem");
-
-            entity.Property(e => e.OrderItemId).HasColumnName("OrderItemID");
-            entity.Property(e => e.LineTotal)
-                .HasComputedColumnSql("([Quantity]*[UnitPrice])", true)
-                .HasColumnType("decimal(29, 2)");
-            entity.Property(e => e.OrderId).HasColumnName("OrderID");
-            entity.Property(e => e.ProductId).HasColumnName("ProductID");
-            entity.Property(e => e.UnitPrice).HasColumnType("decimal(18, 2)");
-
-            entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
-                .HasForeignKey(d => d.OrderId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OrderItem__Order__6A30C649");
-
-            entity.HasOne(d => d.Product).WithMany(p => p.OrderItems)
-                .HasForeignKey(d => d.ProductId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__OrderItem__Produ__6B24EA82");
-        });
-
-        modelBuilder.Entity<OrderStatus>(entity =>
-        {
-            entity.HasKey(e => e.OrderStatusId).HasName("PK__OrderSta__BC674F415F7A4291");
-
-            entity.ToTable("OrderStatus");
-
-            entity.Property(e => e.OrderStatusId).HasColumnName("OrderStatusID");
-            entity.Property(e => e.OrderStatusName).HasMaxLength(50);
-        });
-
-        modelBuilder.Entity<PayMethod>(entity =>
-        {
-            entity.HasKey(e => e.PayMethodId).HasName("PK__PayMetho__E3C33F3D06166718");
-
-            entity.ToTable("PayMethod");
-
-            entity.Property(e => e.PayMethodId).HasColumnName("PayMethodID");
-            entity.Property(e => e.PayMethodName).HasMaxLength(50);
+            entity.ToTable("Manufacturer");
+            entity.HasKey(e => e.ManufacturerId);
+            entity.Property(e => e.Name).IsRequired().HasMaxLength(150);
+            entity.Property(e => e.Country).HasMaxLength(100);
         });
 
         modelBuilder.Entity<Product>(entity =>
@@ -400,32 +259,14 @@ public partial class QlbhtContext : DbContext
             entity.Property(e => e.ProductPrice).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.Stock).HasDefaultValue(0);
 
-            entity.HasOne(d => d.Manufacturer).WithMany(p => p.Products)
-                .HasForeignKey(d => d.ManufacturerId)
-                .HasConstraintName("FK__Product__Manufac__44FF419A");
-
             entity.HasOne(d => d.ProductCategory).WithMany(p => p.Products)
                 .HasForeignKey(d => d.ProductCategoryId)
                 .HasConstraintName("FK__Product__Product__440B1D61");
 
-            entity.HasMany(d => d.ColorsNavigation).WithMany(p => p.Products)
-                .UsingEntity<Dictionary<string, object>>(
-                    "ProductColor",
-                    r => r.HasOne<Color>().WithMany()
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__ProductCo__Color__5441852A"),
-                    l => l.HasOne<Product>().WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__ProductCo__Produ__534D60F1"),
-                    j =>
-                    {
-                        j.HasKey("ProductId", "ColorId").HasName("PK__ProductC__7CD6B09B8AEA4D8D");
-                        j.ToTable("ProductColor");
-                        j.IndexerProperty<int>("ProductId").HasColumnName("ProductID");
-                        j.IndexerProperty<int>("ColorId").HasColumnName("ColorID");
-                    });
+            entity.HasOne(d => d.Manufacturer)
+                  .WithMany(p => p.Products)
+                  .HasForeignKey(d => d.ManufacturerId)
+                  .HasConstraintName("FK_Product_Manufacturer");
         });
 
         modelBuilder.Entity<ProductCategory>(entity =>
@@ -520,43 +361,6 @@ public partial class QlbhtContext : DbContext
                 .HasConstraintName("FK_Tag_Blog");
         });
 
-        modelBuilder.Entity<TeamMember>(entity =>
-        {
-            entity.HasKey(e => e.TeamMemberId).HasName("PK__TeamMemb__C7C09285A47895BF");
-
-            entity.ToTable("TeamMember");
-
-            entity.Property(e => e.TeamMemberId).HasColumnName("TeamMemberID");
-            entity.Property(e => e.AvatarUrl)
-                .HasMaxLength(500)
-                .HasColumnName("AvatarURL");
-            entity.Property(e => e.FullName).HasMaxLength(300);
-            entity.Property(e => e.Position).HasMaxLength(500);
-            entity.Property(e => e.UserId).HasColumnName("UserID");
-
-            entity.HasOne(d => d.User).WithMany(p => p.TeamMembers)
-                .HasForeignKey(d => d.UserId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TeamMembe__UserI__7C4F7684");
-        });
-
-        modelBuilder.Entity<TeamSocial>(entity =>
-        {
-            entity.HasKey(e => e.SocialId).HasName("PK__TeamSoci__67CF717A8BC86DBD");
-
-            entity.ToTable("TeamSocial");
-
-            entity.Property(e => e.SocialId).HasColumnName("SocialID");
-            entity.Property(e => e.SocialPlatform).HasMaxLength(50);
-            entity.Property(e => e.TeamMemberId).HasColumnName("TeamMemberID");
-            entity.Property(e => e.Url).HasMaxLength(500);
-
-            entity.HasOne(d => d.TeamMember).WithMany(p => p.TeamSocials)
-                .HasForeignKey(d => d.TeamMemberId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__TeamSocia__TeamM__7F2BE32F");
-        });
-
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("PK__User__1788CCAC0E5A6DF4");
@@ -572,17 +376,13 @@ public partial class QlbhtContext : DbContext
             entity.Property(e => e.Password).HasMaxLength(50);
             entity.Property(e => e.Phone).HasMaxLength(50);
             entity.Property(e => e.UserName).HasMaxLength(50);
-
-            
         });
+
         modelBuilder.Entity<UserRole>(entity =>
         {
             entity.ToTable("UserRole");
-            // Khai báo kết hợp UserId và RoleId là khóa chính
             entity.HasKey(e => new { e.UserId, e.RoleId });
         });
-
-
 
         modelBuilder.Entity<Voucher>(entity =>
         {
@@ -597,6 +397,90 @@ public partial class QlbhtContext : DbContext
             entity.Property(e => e.MinOrder).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.StartDate).HasColumnType("datetime");
             entity.Property(e => e.VoucherName).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<Order>(entity =>
+        {
+            entity.HasKey(e => e.OrderId).HasName("PK__Order__C3905BAF9D46EF4D");
+
+            entity.ToTable("Order");
+
+            entity.Property(e => e.OrderId).HasColumnName("OrderID");
+            entity.Property(e => e.OrderDate).HasColumnType("datetime");
+            entity.Property(e => e.OrderNumber).HasMaxLength(50);
+            entity.Property(e => e.OrderStatusId).HasColumnName("OrderStatusID");
+            entity.Property(e => e.PayMethodId).HasColumnName("PayMethodID");
+            entity.Property(e => e.FullName).HasMaxLength(100);
+            entity.Property(e => e.Phone).HasMaxLength(20).IsUnicode(false);
+            entity.Property(e => e.Address).HasMaxLength(255);
+            entity.Property(e => e.ShippingAmount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.TotalAmount).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+            entity.Property(e => e.VoucherId).HasColumnName("VoucherID");
+
+            entity.HasOne(d => d.OrderStatus).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.OrderStatusId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Order__OrderStat__6754599E");
+
+            entity.HasOne(d => d.PayMethod).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.PayMethodId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Order__PayMethod__66603565");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Order__UserID__6477ECF3");
+
+            entity.HasOne(d => d.Voucher).WithMany(p => p.Orders)
+                .HasForeignKey(d => d.VoucherId)
+                .HasConstraintName("FK__Order__VoucherID__656C112C");
+        });
+
+        modelBuilder.Entity<OrderItem>(entity =>
+        {
+            entity.HasKey(e => e.OrderItemId).HasName("PK__OrderIte__57ED06A1A39D9B9D");
+
+            entity.ToTable("OrderItem");
+
+            entity.Property(e => e.OrderItemId).HasColumnName("OrderItemID");
+            entity.Property(e => e.LineTotal)
+                .HasComputedColumnSql("([Quantity]*[UnitPrice])", true)
+                .HasColumnType("decimal(29, 2)");
+            entity.Property(e => e.OrderId).HasColumnName("OrderID");
+            entity.Property(e => e.ProductId).HasColumnName("ProductID");
+            entity.Property(e => e.UnitPrice).HasColumnType("decimal(18, 2)");
+
+            entity.HasOne(d => d.Order).WithMany(p => p.OrderItems)
+                .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__OrderItem__Order__6A30C649");
+
+            entity.HasOne(d => d.Product).WithMany(p => p.OrderItems)
+                .HasForeignKey(d => d.ProductId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__OrderItem__Produ__6B24EA82");
+        });
+
+        modelBuilder.Entity<OrderStatus>(entity =>
+        {
+            entity.HasKey(e => e.OrderStatusId).HasName("PK__OrderSta__BC674F415F7A4291");
+
+            entity.ToTable("OrderStatus");
+
+            entity.Property(e => e.OrderStatusId).HasColumnName("OrderStatusID");
+            entity.Property(e => e.OrderStatusName).HasMaxLength(50);
+        });
+
+        modelBuilder.Entity<PayMethod>(entity =>
+        {
+            entity.HasKey(e => e.PayMethodId).HasName("PK__PayMetho__E3C33F3D06166718");
+
+            entity.ToTable("PayMethod");
+
+            entity.Property(e => e.PayMethodId).HasColumnName("PayMethodID");
+            entity.Property(e => e.PayMethodName).HasMaxLength(50);
         });
 
         OnModelCreatingPartial(modelBuilder);

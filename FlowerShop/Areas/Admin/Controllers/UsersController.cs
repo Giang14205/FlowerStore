@@ -152,13 +152,19 @@ namespace FlowerShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // 1. Tìm tài khoản người dùng cần xử lý
             var user = await _context.Users.FindAsync(id);
+
             if (user != null)
             {
-                _context.Users.Remove(user);
+                // 2. 🔥 THAY VÌ XÓA CỨNG: Má chỉ cần hạ trạng thái hoạt động về 0 (Khóa)
+                user.Status = 0;
+
+                _context.Update(user);
+                await _context.SaveChangesAsync(); // Lưu cập nhật xuống Database
             }
 
-            await _context.SaveChangesAsync();
+            // 3. Quay trở lại trang danh sách quản lý tài khoản
             return RedirectToAction(nameof(Index));
         }
 

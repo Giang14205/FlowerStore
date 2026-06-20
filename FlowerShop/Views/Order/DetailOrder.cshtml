@@ -1,130 +1,417 @@
-﻿
+﻿@model FlowerShop.Models.Order
 @{
-    ViewData["Title"] = "DetailOrder";
+    ViewData["Title"] = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // 🛑 LOGIC MỚI: Phân nhóm trạng thái và tính toán mốc cho thanh Tiến trình
+    int step = 0;
+    if (Model != null)
+    {
+        int statusId = Model.OrderStatusId;
+
+        if (statusId == 1 || statusId == 2 || statusId == 3)
+        {
+            step = 1; // Sáng mốc "Chờ Duyệt"
+        }
+        else if (statusId == 4)
+        {
+            step = 2; // Sáng đến mốc "Đang Giao Hoa"
+        }
+        else if (statusId == 5)
+        {
+            step = 3; // Sáng toàn bộ 3 mốc (Giao thành công)
+        }
+    }
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 <main>
-	<div class="content-search">
+    <div class="content-search">
+        <div class="container container-100">
+            <i class="far fa-times-circle" id="close-search"></i>
+            <h3 class="text-center">Xin chao, rat vui khi duoc phuc vu ban...</h3>
+            <form method="get" action="/Search/Index" role="search" style="position: relative;">
+                <input type="text" class="form-control control-search" value="" autocomplete="off" placeholder="Nhap ten hoa can tim..." aria-label="SEARCH" name="q">
+                <button class="button_search" type="submit">Tìm kiếm</button>
+            </form>
+        </div>
+    </div>
 
-		<div class="container container-100">
-			<i class="far fa-times-circle" id="close-search"></i>
-			<h3 class="text-center">Xin chao, rat vui khi duoc phuc vu ban...</h3>
-			<form method="get" action="/Search/Index" role="search" style="position: relative;">
-				<input type="text" class="form-control control-search" value="" autocomplete="off" placeholder="Nhap ten hoa can tim..." aria-label="SEARCH" name="q">
-				<button class="button_search" type="submit">Tìm kiếm</button>
-			</form>
-		</div>
+    <div class="banner">
+        <div class="container">
+            <figure id="banner-about"><a href="#"><img src="~/img/banner-about.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
+            <div class="title-banner">
+                <h1>Chi Tiết Đơn Hàng</h1>
+                <p><a href="/" title="Home">Trang chủ</a><i class="fa fa-caret-right"></i><a href="/Order/Tracking">Đơn hàng</a><i class="fa fa-caret-right"></i>Chi tiết</p>
+            </div>
+        </div>
+    </div>
 
+    <div class="container container-ver2 space-padding-tb-30">
+        <div class="row head-cart">
+            <div class="col-md-4 space-30">
+                <div class="item active center">
+                    <p class="icon">01</p>
+                    <h3>Đa dạng </h3>
+                </div>
+            </div>
+            <div class="col-md-4 space-30">
+                <div class="item active center">
+                    <p class="icon">02</p>
+                    <h3>Bảo mật  </h3>
+                </div>
+            </div>
+            <div class="col-md-4 space-30">
+                <div class="item center active">
+                    <p class="icon">03</p>
+                    <h3>Nhanh chóng</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	</div>
-	<div class="banner">
-		<div class="container">
-			<figure id="banner-about"><a href="#"><img src="~/img/banner-about.jpg" class="img-responsive" alt="img-holiwood"></a></figure>
-			<div class="title-banner">
-				<h1>Order Completed</h1>
-				<p><a href="#" title="Home">Home</a><i class="fa fa-caret-right"></i>Order Completed</p>
-			</div>
+    <div class="container container-ver2 text-start" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-bottom: 50px;">
+        <div class="max-width-box mx-auto" style="max-width: 900px; margin: 0 auto;">
 
-		</div>
+            <a href="/Order/Tracking" class="text-success fw-bold text-decoration-none d-inline-block mb-4 transition-all hover-back" style="font-size: 15px;">
+                <i class="fas fa-arrow-left me-2"></i> Trở về lịch sử đơn hàng
+            </a>
 
-	</div>
-	<div class="container container-ver2 space-padding-tb-30">
-		<div class="row head-cart">
-			<div class="col-md-4 space-30">
-				<div class="item active center">
-					<p class="icon">01</p>
-					<h3>Shopping cart</h3>
-				</div>
-			</div>
-			<!-- End col-md-4 -->
-			<div class="col-md-4 space-30">
-				<div class="item active center">
-					<p class="icon">02</p>
-					<h3>Check out</h3>
-				</div>
-			</div>
-			<!-- End col-md-4 -->
-			<div class="col-md-4 space-30">
-				<div class="item center active">
-					<p class="icon">03</p>
-					<h3>Order completed</h3>
-				</div>
-			</div>
-			<!-- End col-md-4 -->
-		</div>
-	</div>
-	<!-- End container -->
-	<div class="container container-ver2">
-		<div class="box float-left order-complete center space-50">
-			<div class="icon space-20">
-				<img src="~/img/icon-order-complete.png" alt="icon">
-			</div>
-			<p class="box center space-50">Thank you for shopping with us, your order is complete!</p>
-			<div class="box">
-				<a class="link-v1 lh-50 margin-right-20 space-20 color-brand" href="#" title="HOME PAGE">HOME PAGE</a>
-				<a class="link-v1 lh-50 rt space-20" href="#" title="CONTINUS SHOPPING">CONTINUS SHOPPING</a>
-			</div>
-		</div>
-	</div>
-	<!-- End container -->
-	<div class="info-footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-						<h3>About</h3>
-						<ul>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">News & Stories</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">History</a> </li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Our Studio</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Shop</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Stockists</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-						<h3>Customer sevices</h3>
-						<ul>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Contact Us</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Trade Services</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Login/Register</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Delivery & Returns</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">FAQs</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-						<h3>Store</h3>
-						<ul>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Shop</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Wedding</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Birthday</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Women's day</a></li>
-						</ul>
-					</div>
-					<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-						<h3>Shop collection</h3>
-						<ul>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">New Arrivals</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Hot</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Sale</a></li>
-							<li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Deal of the day</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 social">
-					<p>CONNECT WITH US:</p>
-					<a href="#" id="link-insta"></a>
-					<a href="#" id="link-fb"></a>
-					<a href="#" id="link-tw"></a>
-					<a href="#" id="link-sky"></a>
-					<h1>Newsletter</h1>
-					<h2>Sign up for our mailing list to get latest updates and offers</h2>
-					<form class="form-group" action="https://landing.engotheme.com/html/jenstore/demo/mail" method="post">
-						<input type="text" name="input-mail" placeholder="Your mail here" class="input-lg">
-						<button type="submit"><img src="~/img/Send.png" alt="img-holiwood"></button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4" style="box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important; border-radius: 16px !important;">
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+                    <div class="text-start">
+                        <h4 class="fw-bold text-dark m-0">MÃ ĐƠN HÀNG: #@Model.OrderId</h4>
+                        <small class="text-muted">Số hóa đơn hệ thống: @Model.OrderNumber</small>
+                    </div>
+
+                    @* Tự động đổi màu Badge trạng thái dựa theo từng nhóm để tăng tính thẩm mỹ *@
+                    @{
+                        string badgeClass = "bg-success";
+                        if (Model.OrderStatusId == 6) badgeClass = "bg-secondary";
+                        else if (Model.OrderStatusId == 7 || Model.OrderStatusId == 8) badgeClass = "bg-danger";
+                    }
+                    <span class="badge @badgeClass text-white px-4 py-2 rounded-pill text-uppercase fw-bold shadow-sm" style="font-size: 12px;">
+                        @(Model.OrderStatus != null ? Model.OrderStatus.OrderStatusName : "Đang xử lý")
+                    </span>
+                </div>
+
+                <hr style="opacity: 0.1; margin-bottom: 25px; margin-top: 10px;">
+
+                @* 🛑 LUỒNG XỬ LÝ GIAO DIỆN MỚI CHO TRẠNG THÁI ĐẶC BIỆT CHẤM ĐỒ ÁN SIÊU ĐẸP *@
+                @if (Model.OrderStatusId == 6 || Model.OrderStatusId == 7 || Model.OrderStatusId == 8)
+                {
+                    <div class="alert-status-box text-center p-4 rounded-3 mb-2" style="border-radius: 12px; background-color: @(Model.OrderStatusId == 6 ? "#f8f9fa" : "#fff5f5"); border: 1px solid @(Model.OrderStatusId == 6 ? "#e9ecef" : "#ffe3e3");">
+                        <h4 class="fw-bold mb-2" style="color: @(Model.OrderStatusId == 6 ? "#6c757d" : "#e03131"); font-size: 18px;">
+                            @if (Model.OrderStatusId == 6)
+                            {
+                                <text><i class="fas fa-times-circle me-2"></i> ĐƠN HÀNG NÀY ĐÃ ĐƯỢC HỦY</text>
+                            }
+                            else if (Model.OrderStatusId == 7)
+                            {
+
+                                <text><i class="fas fa-exclamation-triangle me-2"></i> ĐƠN HÀNG GIAO THẤT BẠI</text>
+                            }
+                            else if (Model.OrderStatusId == 8)
+                            {
+
+                                <text><i class="fas fa-wallet me-2"></i> ĐƠN HÀNG ĐÃ HOÀN TIỀN THÀNH CÔNG</text>
+                            }
+                        </h4>
+                        <p class="mb-0 text-muted small">Cửa hàng không tiếp tục chạy tiến trình giao hoa thông thường cho đơn hàng này.</p>
+                    </div>
+                }
+                else
+                {
+                    @* THANH TIẾN TRÌNH TIÊU CHUẨN KHI ĐƠN HÀNG HOẠT ĐỘNG BÌNH THƯỜNG *@
+                    <div class="timeline-container my-3 position-relative" style="width: 100%; padding: 10px 0; position: relative;">
+                        <div class="timeline-bar" style="position: absolute; width: 70%; height: 4px; background: #e0e0e0; top: 22px; left: 15%; z-index: 1;">
+                            <div class="timeline-bar-fill" style="height: 100%; background: #198754; transition: width 0.8s ease; width: @(step == 1 ? "0%" : step == 2 ? "50%" : "100%")"></div>
+                        </div>
+                        <div class="timeline-steps-row" style="display: flex; justify-content: space-between; width: 100%; position: relative; z-index: 2;">
+                            <div class="timeline-step text-center @(step >= 1 ? "active" : "")" style="flex: 1;">
+                                <div class="step-icon"><i class="fas fa-file-invoice"></i></div>
+                                <p class="mt-2 mb-0 small fw-bold text-secondary">Chờ Duyệt</p>
+                            </div>
+                            <div class="timeline-step text-center @(step >= 2 ? "active" : "")" style="flex: 1;">
+                                <div class="step-icon"><i class="fas fa-shipping-fast"></i></div>
+                                <p class="mt-2 mb-0 small fw-bold text-secondary">Đang Giao Hoa</p>
+                            </div>
+                            <div class="timeline-step text-center @(step >= 3 ? "active" : "")" style="flex: 1;">
+                                <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                                <p class="mt-2 mb-0 small fw-bold text-secondary">Đã Nhận Hoa</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="row g-4 mb-4" style="display: flex; flex-wrap: wrap; margin-bottom: 25px;">
+                <div class="col-md-6" style="flex: 1; min-width: 300px; padding: 10px;">
+                    <div class="card border-0 shadow-sm p-4 bg-white h-100 text-start" style="box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important; border-radius: 16px; height: 100%;">
+                        <h5 class="text-success fw-bold mb-3"><i class="fas fa-map-marker-alt me-2"></i> Địa chỉ nhận hoa</h5>
+                        <hr class="my-2" style="opacity: 0.1;">
+                        <p class="mb-2"><strong>Người nhận:</strong> <span class="text-secondary">@Model.FullName</span></p>
+                        <p class="mb-2"><strong>Số điện thoại:</strong> <span class="text-secondary">@Model.Phone</span></p>
+                        <p class="mb-0"><strong>Địa chỉ giao:</strong> <span class="text-secondary">@Model.Address</span></p>
+                    </div>
+                </div>
+                <div class="col-md-6" style="flex: 1; min-width: 300px; padding: 10px;">
+                    <div class="card border-0 shadow-sm p-4 bg-white h-100 text-start" style="box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important; border-radius: 16px; height: 100%;">
+                        <h5 class="text-success fw-bold mb-3"><i class="fas fa-credit-card me-2"></i> Thanh toán & Ghi chú</h5>
+                        <hr class="my-2" style="opacity: 0.1;">
+                        <p class="mb-2"><strong>Thời gian đặt:</strong> <span class="text-secondary">@Model.OrderDate?.ToString("dd/MM/yyyy HH:mm")</span></p>
+                        <p class="mb-2"><strong>Phương thức:</strong> <span class="text-secondary">@(Model.PayMethod != null ? Model.PayMethod.PayMethodName : "Tiền mặt khi nhận hàng")</span></p>
+                        <p class="mb-0"><strong>Ghi chú:</strong> <span class="text-secondary fst-italic">@(string.IsNullOrEmpty(Model.Note) ? "Không có ghi chú" : Model.Note)</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-start" style="box-shadow: 0 4px 20px rgba(0,0,0,0.05) !important; border-radius: 16px !important;">
+                <h5 class="text-dark fw-bold mb-3"><i class="fas fa-box-open text-success me-2"></i> Danh sách sản phẩm hoa</h5>
+                <div class="table-responsive">
+                    <table class="table align-middle" style="width: 100%; margin-bottom: 1rem; vertical-align: middle;">
+                        <thead>
+                            <tr class="text-muted small border-bottom">
+                                <th class="py-3">Sản phẩm</th>
+                                <th class="py-3">Đơn giá</th>
+                                <th class="py-3 text-center">Số lượng</th>
+                                <th class="py-3 text-end">Tạm tính</th>
+                            </tr>
+                        </thead>
+                        @* <tbody>
+                            @if (Model.OrderItems != null && Model.OrderItems.Count > 0)
+                            {
+                                foreach (var item in Model.OrderItems)
+                                {
+                                    <tr class="border-bottom">
+                                        <td class="py-3">
+                                            <div style="display: flex; align-items: center; gap: 15px;">
+                                                <img src="~/img/@(item.Product != null ? item.Product.ImagePopular : "default-flower.jpg")" class="rounded-3 shadow-sm" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;" />
+                                                <div>
+                                                    <h6 class="mb-0 fw-bold text-dark">@(item.Product != null ? item.Product.ProductName : "Sản phẩm hoa")</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-3">@(item.UnitPrice?.ToString("N0") ?? "0") VNĐ</td>
+                                        <td class="py-3 text-center">x @item.Quantity</td>
+                                        <td class="py-3 text-end fw-bold text-dark">@(item.LineTotal?.ToString("N0") ?? "0") VNĐ</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody> *@
+
+                        <tbody>
+                            @if (Model.OrderItems != null && Model.OrderItems.Any())
+                            {
+                                // 1. Nhóm các mục thông thường (không phải hoa tự phối)
+                                var normalItems = Model.OrderItems.Where(x => string.IsNullOrEmpty(x.Note) || !x.Note.Contains("|")).ToList();
+
+                                // 2. Nhóm các mục hoa tự phối (có ký tự '|')
+                                var customBouquetGroups = Model.OrderItems
+                                    .Where(x => !string.IsNullOrEmpty(x.Note) && x.Note.Contains("|"))
+                                    .GroupBy(x => x.Note.Split('|')[0]) // Nhóm theo mã/tên bó
+                                    .ToList();
+
+                                // HIỂN THỊ SẢN PHẨM THÔNG THƯỜNG
+                                foreach (var item in normalItems)
+                                {
+                                    <tr class="border-bottom">
+                                        <td class="py-3">
+                                            <div style="display: flex; align-items: center; gap: 15px;">
+                                                <img src="@item.Product?.ImagePopular" style="width: 70px; height: 70px; object-fit: cover; border-radius: 4px;" />
+                                                <h6 class="mb-0">@item.Product?.ProductName</h6>
+                                            </div>
+                                        </td>
+                                        <td class="py-3">@item.UnitPrice?.ToString("N0") VNĐ</td>
+                                        <td class="py-3 text-center">x @item.Quantity</td>
+                                        <td class="py-3 text-end fw-bold">@item.LineTotal?.ToString("N0") VNĐ</td>
+                                    </tr>
+                                }
+
+                                // HIỂN THỊ HOA TỰ PHỐI (Bó hoa thiết kế)
+                                foreach (var bouquet in customBouquetGroups)
+                                {
+                                    var firstItem = bouquet.First();
+                                    var parts = firstItem.Note.Split('|');
+                                    string bouquetTitle = parts[0];
+                                    string bouquetImage = parts.Length > 1 ? parts[1] : "/images/default-bouquet.png";
+                                    decimal itemsTotal = bouquet.Sum(x => (x.Quantity * x.UnitPrice).GetValueOrDefault());
+                                    decimal finalPrice = itemsTotal + 50000; // Công cắm 50k
+
+                                    <tr style="background-color: #fffafb;">
+                                        <td class="py-3" colspan="4">
+                                            <div style="display: flex; gap: 15px;">
+                                                <img src="@bouquetImage" style="width: 85px; height: 85px; object-fit: cover; border-radius: 6px; border: 1px solid #ffb6c1;" />
+                                                <div style="flex: 1;">
+                                                    <span class="badge bg-danger mb-1">💐 Hoa tự phối độc bản</span>
+                                                    <h6 class="text-bold mb-1">Bó hoa thiết kế: @bouquetTitle</h6>
+                                                    <ul class="text-muted" style="font-size: 12px; padding-left: 20px;">
+                                                        @foreach (var comp in bouquet)
+                                                        {
+                                                            <li>@comp.Product?.ProductName (x@comp.Quantity)</li>
+                                                        }
+                                                        <li class="text-danger">Công cắm: 50,000 VNĐ</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="text-end fw-bold text-danger">
+                                                    @finalPrice.ToString("N0") VNĐ
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center py-4">Không có sản phẩm nào trong đơn hàng.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+                    <div class="text-end" style="min-width: 250px; text-align: right;">
+                        <p class="mb-2 text-secondary" style="margin-bottom: 8px;">Phí vận chuyển: <span class="text-dark fw-semibold">@Model.ShippingAmount.ToString("N0") VNĐ</span></p>
+                        <h5 class="fw-bold text-dark">Tổng thanh toán: <span class="text-danger fw-bold" style="font-size: 22px; color: #dc3545;">@Model.TotalAmount.ToString("N0") VNĐ</span></h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="info-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <h3>About</h3>
+                        <ul>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">News & Stories</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">History</a> </li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Our Studio</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Shop</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Stockists</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <h3>Customer sevices</h3>
+                        <ul>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Contact Us</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Trade Services</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Login/Register</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Delivery & Returns</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <h3>Store</h3>
+                        <ul>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Shop</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Wedding</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Birthday</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Women's day</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                        <h3>Shop collection</h3>
+                        <ul>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">New Arrivals</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Hot</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Sale</a></li>
+                            <li><i class="fas fa-long-arrow-alt-right"></i><a href="#">Deal of the day</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 social">
+                    <p>CONNECT WITH US:</p>
+                    <a href="#" id="link-insta"></a>
+                    <a href="#" id="link-fb"></a>
+                    <a href="#" id="link-tw"></a>
+                    <a href="#" id="link-sky"></a>
+                    <h1>Newsletter</h1>
+                    <h2>Sign up for our mailing list to get latest updates and offers</h2>
+                    <form class="form-group" action="https://landing.engotheme.com/html/jenstore/demo/mail" method="post">
+                        <input type="text" name="input-mail" placeholder="Your mail here" class="input-lg">
+                        <button type="submit"><img src="~/img/Send.png" alt="img-holiwood"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 
+<style>
+    .hover-back {
+        transition: all 0.2s ease;
+    }
+
+        .hover-back:hover {
+            transform: translateX(-4px);
+            color: #11683f !important;
+        }
+
+    /* STYLE CHO THANH TIMELINE TIẾN ĐỘ */
+    .timeline-bar {
+        position: absolute !important;
+        width: 70% !important;
+        height: 4px !important;
+        background: #e0e0e0 !important;
+        top: 22px !important;
+        left: 15% !important;
+        z-index: 1 !important;
+    }
+
+    .timeline-bar-fill {
+        height: 100% !important;
+        background: #198754 !important;
+        transition: width 0.8s ease;
+    }
+
+    .timeline-steps-row {
+        display: flex !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        position: relative;
+        z-index: 2;
+    }
+
+    .timeline-step {
+        flex: 1 !important;
+        text-align: center !important;
+    }
+
+        .timeline-step .step-icon {
+            width: 44px;
+            height: 44px;
+            background: #ffffff !important;
+            border: 3px solid #e0e0e0 !important;
+            color: #b0bec5 !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            margin: 0 auto !important;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-step.active .step-icon {
+            background: #198754 !important;
+            border-color: #198754 !important;
+            color: white !important;
+            transform: scale(1.1) !important;
+            box-shadow: 0 0 12px rgba(25, 135, 84, 0.4) !important;
+        }
+
+        .timeline-step.active p {
+            color: #198754 !important;
+            font-weight: bold !important;
+        }
+
+    .table th {
+        border-top: none !important;
+    }
+</style>

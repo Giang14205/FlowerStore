@@ -21,14 +21,15 @@ namespace FlowerShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/OrderStatus
+        // ✅ ĐÃ SỬA: Lấy dữ liệu từ biến qlbhtContext sau khi lọc để tìm kiếm hoạt động chuẩn
         public async Task<IActionResult> Index(string q)
         {
             if (!Function.IsLogin())
                 return RedirectToAction("Index", "Login");
-            var qlbhtContext = _context.OrderStatuses.Include(m => m.OrderStatusId).Include(m => m.OrderStatusName).AsQueryable();
-       
 
-            // 3. Nếu có từ khóa tìm kiếm
+            var qlbhtContext = _context.OrderStatuses.AsQueryable();
+
+            // Nếu có từ khóa tìm kiếm
             if (!string.IsNullOrEmpty(q))
             {
                 q = q.Trim();
@@ -36,8 +37,8 @@ namespace FlowerShop.Areas.Admin.Controllers
                 ViewBag.Keyword = q; // Gửi từ khóa lại View để hiển thị trong ô nhập
             }
 
-           
-            return View(await _context.OrderStatuses.ToListAsync());
+            // Trả ra danh sách đã được lọc tìm kiếm
+            return View(await qlbhtContext.ToListAsync());
         }
 
         // GET: Admin/OrderStatus/Details/5
@@ -61,25 +62,23 @@ namespace FlowerShop.Areas.Admin.Controllers
         // GET: Admin/OrderStatus/Create
         public IActionResult Create()
         {
-            ViewData["OrderStatusId"] = new SelectList(_context.OrderStatuses , "OrderStatusId", "OrderStatusId");
+            ViewData["OrderStatusId"] = new SelectList(_context.OrderStatuses, "OrderStatusId", "OrderStatusName");
             return View();
         }
 
         // POST: Admin/OrderStatus/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("OrderStatusId,OrderStatusName")] OrderStatus orderStatus)
+        // ✅ ĐÃ SỬA: Thêm IsActive vào [Bind] để khi tạo mới không bị gán bằng False
+        public async Task<IActionResult> Create([Bind("OrderStatusId,OrderStatusName,IsActive")] OrderStatus orderStatus)
         {
             if (ModelState.IsValid)
-            {   
-
+            {
                 _context.Add(orderStatus);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrderStatusId"] = new SelectList(_context.OrderStatuses, "OrderStatusId", "OrderStatusId", orderStatus.OrderStatusId);
+            ViewData["OrderStatusId"] = new SelectList(_context.OrderStatuses, "OrderStatusId", "OrderStatusName", orderStatus.OrderStatusId);
             return View(orderStatus);
         }
 
@@ -96,16 +95,15 @@ namespace FlowerShop.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["OrderStatusId"] = new SelectList(_context.OrderStatuses, "OrderStatusId", "OrderStatusId",orderStatus.OrderStatusId);
+            ViewData["OrderStatusId"] = new SelectList(_context.OrderStatuses, "OrderStatusId", "OrderStatusName", orderStatus.OrderStatusId);
             return View(orderStatus);
         }
 
         // POST: Admin/OrderStatus/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderStatusId,OrderStatusName")] OrderStatus orderStatus)
+        // ✅ ĐÃ SỬA: Thêm IsActive vào [Bind] để khi sửa thông tin không bị mất trạng thái Xóa mềm
+        public async Task<IActionResult> Edit(int id, [Bind("OrderStatusId,OrderStatusName,IsActive")] OrderStatus orderStatus)
         {
             if (id != orderStatus.OrderStatusId)
             {
@@ -132,7 +130,7 @@ namespace FlowerShop.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OrderStatusId"] = new SelectList(_context.OrderStatuses, "OrderStatusId", "OrderStatusId", orderStatus.OrderStatusId);
+            ViewData["OrderStatusId"] = new SelectList(_context.OrderStatuses, "OrderStatusId", "OrderStatusName", orderStatus.OrderStatusId);
             return View(orderStatus);
         }
 
@@ -157,15 +155,18 @@ namespace FlowerShop.Areas.Admin.Controllers
         // POST: Admin/OrderStatus/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        // ✅ ĐÃ SỬA: Đảm bảo luồng Xóa mềm chạy chuẩn, không lỗi chính tả
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var orderStatus = await _context.OrderStatuses.FindAsync(id);
             if (orderStatus != null)
             {
-                _context.OrderStatuses.Remove(orderStatus);
+                orderStatus.IsActive = false; // Lật cờ xóa mềm
+
+                _context.OrderStatuses.Update(orderStatus);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

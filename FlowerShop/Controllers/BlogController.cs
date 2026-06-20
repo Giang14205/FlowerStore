@@ -18,7 +18,7 @@ namespace FlowerShop.Controllers
                 .OrderByDescending(b => b.BlogId)
                 .Take(3)
                 .ToListAsync();
-            ViewBag.blogrecent = _context.Blogs.Where(i => i.BlogId != id ).OrderByDescending(i => i.BlogId).ToList();
+            ViewBag.blogrecent = _context.Blogs.Where(i => i.BlogId != id ).Where(i=>i.IsActive==true).OrderByDescending(i => i.BlogId).ToList();
             return View(blogs); // trả về IEnumerable<Blog>
         }
         [Route("/blog/{alias}-{id}.html")]

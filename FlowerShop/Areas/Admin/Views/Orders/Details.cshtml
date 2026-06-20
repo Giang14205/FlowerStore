@@ -1,17 +1,16 @@
 ﻿@model FlowerShop.Models.Order
 
 @{
-    ViewData["Title"] = "Xóa đơn hàng";
+    ViewData["Title"] = "Xem đơn hàng";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <div class="content-wrapper">
-    <!-- Header -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Chi tiết đơn hàng</h1>
+                    <h1>Chi tiết đơn hàng: #@Model.OrderNumber</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,85 +22,177 @@
         </div>
     </section>
 
-    <!-- Main -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md">
-
-                    <div class="card card-danger">
-                        
-
+                <div class="col-md-4">
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <h3 class="card-title">Thông tin giao hàng</h3>
+                        </div>
                         <div class="card-body">
-
-                            <div class="form-group">
-                                <label>Tài khoản đặt hàng:</label>
-                                <p>@Model.User?.FullName</p>
+                            <div class="form-group mb-2">
+                                <label class="text-muted mb-0">Tài khoản đặt hàng:</label>
+                                <p class="text-bold">@Model.User?.FullName</p>
                             </div>
-
-                            <div class="form-group">
-                                <label>Người nhận:</label>
-                                <p>@Model.FullName</p>
+                            <div class="form-group mb-2">
+                                <label class="text-muted mb-0">Người nhận:</label>
+                                <p class="text-bold text-primary">@Model.FullName</p>
                             </div>
-
-                            <div class="form-group">
-                                <label>Số điện thoại:</label>
-                                <p>@Model.Phone</p>
+                            <div class="form-group mb-2">
+                                <label class="text-muted mb-0">Số điện thoại:</label>
+                                <p class="text-bold">@Model.Phone</p>
                             </div>
-
-                            <div class="form-group">
-                                <label>Địa chỉ:</label>
+                            <div class="form-group mb-2">
+                                <label class="text-muted mb-0">Địa chỉ:</label>
                                 <p>@Model.Address</p>
                             </div>
-
-                            <div class="form-group">
-                                <label>Ghi chú:</label>
-                                <p>@Model.Note</p>
+                            <div class="form-group mb-2">
+                                <label class="text-muted mb-0">Ghi chu đơn hàng:</label>
+                                <p class="text-warning">@(string.IsNullOrEmpty(Model.Note) ? "Không có ghi chú" : Model.Note)</p>
                             </div>
-
-                            <div class="form-group">
-                                <label>Mã số đơn:</label>
-                                <p>@Model.OrderNumber</p>
+                            <hr />
+                            <div class="form-group mb-2">
+                                <label class="text-muted mb-0">Phương thức thanh toán:</label>
+                                <p><span class="badge badge-info">@Model.PayMethod?.PayMethodName</span></p>
                             </div>
-
-
-                            <div class="form-group">
-                                <label>Voucher:</label>
-                                <p>@Model.Voucher?.VoucherName</p>
+                            <div class="form-group mb-2">
+                                <label class="text-muted mb-0">Trạng thái đơn hàng:</label>
+                                <p><span class="badge badge-warning">@Model.OrderStatus?.OrderStatusName</span></p>
                             </div>
-
-                            <div class="form-group">
-                                <label>Tổng tiền:</label>
-                                <p>@Model.TotalAmount</p>
+                            <div class="form-group mb-0">
+                                <label class="text-muted mb-0">Ngày đặt hàng:</label>
+                                <p>@Model.OrderDate?.ToString("dd/MM/yyyy HH:mm")</p>
                             </div>
-                            <div class="form-group">
-                                <label>Phí vận chuyển:</label>
-                                <p>@Model.ShippingAmount</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card card-danger">
+                        <div class="card-header">
+                            <h3 class="card-title">Danh sách sản phẩm trong đơn</h3>
+                        </div>
+                        <div class="card-body p-0">
+                            @{
+                                // 1. Lọc các sản phẩm mua sẵn bình thường của cửa hàng
+                                var normalItems = Model.OrderItems.Where(x => string.IsNullOrEmpty(x.Note) || !x.Note.StartsWith("Bó tự phối"));
+
+                                // 2. GỘP NHÓM HOA TỰ PHỐI: Nhận diện mớ nguyên liệu lẻ mang chung mã Note thiết kế
+                                var customBouquetGroups = Model.OrderItems.Where(x => x.Note != null && x.Note.StartsWith("Bó tự phối")).GroupBy(x => x.Note.Split('|')[0]);
+                            }
+
+                            <table class="table table-bordered table-striped align-middle mb-0">
+                                <thead class="table-dark">
+                                    <tr class="text-center">
+                                        <th style="width: 110px;">Ảnh mẫu</th>
+                                        <th>Thông tin sản phẩm / Thành phần</th>
+                                        <th style="width: 120px;">Giá lẻ/Công</th>
+                                        <th style="width: 100px;">Số lượng</th>
+                                        <th style="width: 130px;">Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @* ------------------------------------------------------------------ *@
+                                    @* LUỒNG 1: IN CÁC SẢN PHẨM CÓ SẴN CỦA SHOP *@
+                                    @* ------------------------------------------------------------------ *@
+                                    @foreach (var item in normalItems)
+                                    {
+                                        <tr>
+                                            <td class="text-center">
+                                                <img src="@item.Product?.ImagePopular" style="width: 70px; height: 70px; object-fit: cover; border-radius: 4px;" />
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success mb-1">Sản phẩm cửa hàng</span>
+                                                <h6 class="text-bold mb-0">@item.Product?.ProductName</h6>
+                                            </td>
+                                            <td class="text-right">@item.UnitPrice?.ToString("#,##0") đ</td>
+                                            <td class="text-center">@item.Quantity</td>
+                                            <td class="text-right text-bold text-danger">@item.LineTotal?.ToString("#,##0") đ</td>
+                                        </tr>
+                                    }
+
+                                    @* ------------------------------------------------------------------ *@
+                                    @* LUỒNG 2: 🔥 IN HOA TỰ PHỐI ĐÃ GỘP CỤM & HIỆN THỊ THÀNH PHẦN CHI TIẾT *@
+                                    @* ------------------------------------------------------------------ *@
+                                    @foreach (var bouquet in customBouquetGroups)
+                                    {
+                                        string bouquetRealImage = "/images/default-bouquet.png";
+                                        string bouquetTitle = bouquet.Key;
+
+                                        // Lấy chuỗi bản ghi đầu tiên để bẻ đôi lấy ảnh Base64 thật từ Studio phối
+                                        var firstItemInGroup = bouquet.FirstOrDefault();
+                                        if (firstItemInGroup != null && firstItemInGroup.Note != null && firstItemInGroup.Note.Contains("|"))
+                                        {
+                                            var parts = firstItemInGroup.Note.Split('|');
+                                            bouquetTitle = parts[0];
+                                            if (parts.Length > 1 && !string.IsNullOrEmpty(parts[1]))
+                                            {
+                                                bouquetRealImage = parts[1]; // Ảnh tổng thể không rác điều khiển của má
+                                            }
+                                        }
+
+                                        // Tính toán tổng tiền mớ nguyên liệu của cả bó
+                                        decimal itemsTotalPrice = bouquet.Sum(x => (x.Quantity * x.UnitPrice).GetValueOrDefault());
+                                        decimal finalBouquetPrice = itemsTotalPrice + 50000; // Cộng thêm 50k công cắm hoa thiết kế
+
+                                        <tr style="background-color: #fffafb;">
+                                            <td class="text-center" style="vertical-align: middle !important;">
+                                                <img src="@bouquetRealImage" style="width: 85px; height: 85px; object-fit: cover; border-radius: 6px; border: 1px solid #ffb6c1;" />
+                                            </td>
+
+                                            <td style="vertical-align: middle !important;">
+                                                <span class="badge badge-danger mb-1">💐 Hoa tự phối thiết kế độc bản</span>
+                                                <h6 class="text-bold mb-1" style="color: #d9534f;">Bó hoa tự phối độc quyền</h6>
+                                                <small class="text-muted d-block mb-2">@bouquetTitle.Replace("Bó tự phối", "Mã thiết kế:")</small>
+
+                                                <div class="p-2 rounded" style="background-color: #fdf2f4; border: 1px dashed #ffb6c1;">
+                                                    <strong style="font-size: 12px; color: #555;"><i class="fa fa-list"></i> Thành phần nguyên liệu cắm bó:</strong>
+                                                    <ul class="mb-0 pl-3" style="font-size: 12px; color: #666;">
+                                                        @foreach (var component in bouquet)
+                                                        {
+                                                            <li>
+                                                                <span class="text-bold text-dark">@component.Product?.ProductName</span>
+                                                                — Số lượng: <span class="badge badge-secondary">@component.Quantity</span>
+                                                                (Đơn giá: @component.UnitPrice?.ToString("#,##0") đ)
+                                                            </li>
+                                                        }
+                                                        <li class="text-danger"><i class="fa fa-magic"></i> <b>Công cắm và tạo dáng bó:</b> 50,000 đ</li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+
+                                            <td class="text-right" style="vertical-align: middle !important;">
+                                                <small class="text-muted d-block">Gồm @bouquet.Sum(x => x.Quantity) món</small>
+                                                <span>+ 50k công</span>
+                                            </td>
+
+                                            <td class="text-center" style="vertical-align: middle !important;">
+                                                <span class="badge badge-danger" style="font-size: 12px;">1 Bó</span>
+                                            </td>
+
+                                            <td class="text-right text-bold text-danger" style="vertical-align: middle !important; font-size: 15px;">
+                                                @finalBouquetPrice.ToString("#,##0") đ
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            <div class="p-3 bg-light text-right border-top">
+                                <p class="mb-1" style="font-size: 14px;">Phí vận chuyển: <strong class="text-dark">@Model.ShippingAmount.ToString("#,##0") đ</strong></p>
+                                @if (Model.Voucher != null)
+                                {
+                                    <p class="mb-1 style="font-size: 14px;">Voucher giảm giá (@Model.Voucher.VoucherName): <strong class="text-success">Có áp dụng</strong></p>
+                                }
+                                <h4 class="mb-0" style="font-weight: bold; color: #d9534f;">Tổng tiền hóa đơn: @Model.TotalAmount.ToString("#,##0") đ</h4>
                             </div>
-
-                            <div class="form-group">
-                                <label>Thanh toán:</label>
-                                <p>@Model.PayMethod.PayMethodName</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Trạng thái:</label>
-                                <p>@Model.OrderStatus.OrderStatusName</p>
-                            </div>
-                            <div class="form-group">
-                                <label>Ngày đặt:</label>
-                                <p>@Model.OrderDate</p>
-                            </div>
-
-
-                            
-                                <p><a asp-action="Index" class="btn btn-primary">Quay lại</a></p>
-
-                        
-
                         </div>
                     </div>
 
+                    <div class="mt-3">
+                        <a asp-action="Index" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Quay lại danh sách đơn</a>
+                    </div>
                 </div>
             </div>
         </div>

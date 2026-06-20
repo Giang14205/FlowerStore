@@ -32,6 +32,12 @@ namespace FlowerShop.Areas.Admin.Controllers
 
 
             }
+            if (check.Status == 0)
+            {
+                // Nếu trạng thái bằng 0, chặn đứng không cho nạp Session đăng nhập
+                Function._Message = "Tài khoản của bạn đã bị khóa hoặc vô hiệu hóa!";
+                return RedirectToAction("Index", "Login");
+            }
             Function._Message = string.Empty;
             Function._AccountId = check.UserId;
             Function._Username = check.UserName;

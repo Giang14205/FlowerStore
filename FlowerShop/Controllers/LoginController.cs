@@ -48,6 +48,12 @@ namespace FlowerShop.Controllers
                 ViewBag.ReturnUrl = returnUrl;
                 return View("DetailLogin");
             }
+            if (check.Status == 0)
+            {
+                // Nếu trạng thái bằng 0, chặn đứng không cho nạp Session đăng nhập
+                Function._Message = "Tài khoản của bạn đã bị khóa hoặc vô hiệu hóa!";
+                return RedirectToAction("Index", "Login");
+            }
 
 
             var roleName = (from ur in _context.UserRoles

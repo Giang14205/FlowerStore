@@ -159,13 +159,27 @@ namespace FlowerShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            // 1. Tìm ra đánh giá khách hàng theo ID
             var feedbackCustomer = await _context.FeedbackCustomers.FindAsync(id);
+
             if (feedbackCustomer != null)
             {
-                _context.FeedbackCustomers.Remove(feedbackCustomer);
+                // KỊCH BẢN A: Nếu đánh giá đang HIỂN THỊ (Đơn thật của khách nhưng muốn gỡ xuống) -> XÓA MỀM
+                if (feedbackCustomer.IsActive == true)
+                {
+                    feedbackCustomer.IsActive = false; // Hạ biển trạng thái hiển thị xuống
+                    _context.Update(feedbackCustomer);
+                    await _context.SaveChangesAsync();
+                }
+                // KỊCH BẢN B: Nếu đánh giá vốn đã ẨN SẴN rồi, hoặc là tin rác (Spam/Test) -> TIẾN HÀNH XÓA CỨNG
+                else
+                {
+                    _context.FeedbackCustomers.Remove(feedbackCustomer);
+                    await _context.SaveChangesAsync(); // Xóa sổ vĩnh viễn khỏi Database
+                }
             }
 
-            await _context.SaveChangesAsync();
+            // Xử lý xong quay về trang danh sách quản lý đánh giá
             return RedirectToAction(nameof(Index));
         }
 

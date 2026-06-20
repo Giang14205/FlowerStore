@@ -82,8 +82,12 @@
 					</form>
 
 					<div class="menu-main li a ">
-						<nav class="main-nav">
+						<nav class="main-nav" style="display: flex; align-items: center; gap: 20px;">
+
 							@await Component.InvokeAsync("MenuTop")
+
+				
+
 						</nav>
 					</div>
 
@@ -163,20 +167,59 @@
 							<li class="hidden-lg hidden-md"><a href="#"><i class="far fa-user"></i> My Account</a></li>
 							<li><figure id="btn-close-menu" class="hidden-lg hidden-md"><i class="far fa-times-circle"></i></figure></li>
 						</ul> *@
-						
 					
+
 				</div>
+
 			</div>
 			<div class="col-lg-3 col-md-3 col-sm-10 col-xs-9">
 				<ul class="nav navbar-nav navbar-right icon-menu">
 
-
 					<li id="input-search" class="hidden-sm hidden-xs">
 						<a href="#"><img id="search-img" src="~/img/Search.png" alt="img-holiwood"></a>
 					</li>
-					<li class="icon-user hidden-sm hidden-xs">
+					@* <li class="icon-user hidden-sm hidden-xs">
 						<a asp-controller="Login" asp-action="DetailLogin"><i class="far fa-user"></i></a>
-						</li>
+						</li> *@
+					<li class="hidden-sm hidden-xs" id="menuUserCha" style="position: relative; display: inline-block;">
+
+						@* Bấm thẳng vào icon user lớn này *@
+						<a asp-controller="Login" asp-action="DetailLogin" style="font-size: 18px; display: inline-block; padding: 15px 10px; color: #333; text-decoration: none;">
+							<i class="far fa-user"></i> <span class="caret" style="color: #333;"></span>
+						</a>
+
+						@* Bảng menu con tự chế độc lập, không dùng chung class dropdown-menu của Bootstrap để tránh lỗi chặn link *@
+						<ul id="menuUserCon" style="display: none; position: absolute; top: 100%; right: 0; background: #ffffff; border: 1px solid #e5e5e5; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.1); padding: 10px 0; min-width: 200px; list-style: none; margin: 0; z-index: 99999;">
+
+							@* Lựa chọn 1: Đăng nhập / Đăng ký *@
+							<li style="margin: 0; padding: 0;">
+								<a asp-controller="Login" asp-action="DetailLogin" style="padding: 10px 20px; font-weight: 500; font-size: 13px; color: #333; display: block; text-decoration: none; transition: all 0.2s;">
+									<i class="fas fa-sign-in-alt" style="margin-right: 10px; color: #666; width: 15px;"></i> Đăng nhập / Đăng ký
+								</a>
+							</li>
+
+							<li style="height: 1px; margin: 6px 0; background-color: #eee; overflow: hidden;"></li>
+
+							@* Lựa chọn 2: Studio phối hoa lẻ *@
+							<li style="margin: 0; padding: 0;">
+								<a asp-controller="Cart" asp-action="TuPhoiHoa" style="padding: 10px 20px; font-weight: 500; font-size: 13px; color: #ff6b81; display: block; text-decoration: none; transition: all 0.2s;">
+									<i class="fas fa-magic" style="margin-right: 10px; color: #ff6b81; width: 15px;"></i> Studio phối hoa
+								</a>
+							</li>
+
+							<li style="height: 1px; margin: 6px 0; background-color: #eee; overflow: hidden;"></li>
+
+							@* Lựa chọn 3: Kiểm tra đơn hàng *@
+							<li style="margin: 0; padding: 0;">
+								<a asp-controller="Order" asp-action="Tracking" style="padding: 10px 20px; font-weight: 500; font-size: 13px; color: #333; display: block; text-decoration: none; transition: all 0.2s;">
+									<i class="fas fa-truck" style="margin-right: 10px; color: #666; width: 15px;"></i> Kiểm tra đơn hàng
+								</a>
+							</li>
+
+						</ul>
+					</li>
+
+
 					<li class="dropdown cart-menu">
 						<a asp-controller="ShoppingCart" asp-action="Index" class="dropdown-toggle">
         
@@ -296,6 +339,36 @@
     <script src="~/toastr/toastr.min.js"></script>
 	<script src="~/js/chatbot.js"></script>
     
+
+	<script>
+		$(document).ready(function () {
+			// 1. Khi rê chuột vào vùng Icon User: Hiện menu con lên ngay lập tức
+			$('#menuUserCha').hover(
+				function () {
+					$('#menuUserCon').stop(true, true).fadeIn(150);
+				},
+				// Khi di chuột ra ngoài: Ẩn menu con đi cực kỳ êm ái
+				function () {
+					$('#menuUserCon').stop(true, true).fadeOut(150);
+				}
+			);
+
+			// 2. Ép hiệu ứng đổi màu nền khi chọn từng mục cho nịnh mắt
+			$('#menuUserCon li a').hover(
+				function () {
+					$(this).css({ 'background-color': '#f8f9fa', 'color': '#ff6b81' });
+				},
+				function () {
+					// Trả về màu gốc khi di chuột ra
+					if ($(this).attr('href').indexOf('Studio') >= 0) {
+						$(this).css({ 'background-color': 'transparent', 'color': '#ff6b81' });
+					} else {
+						$(this).css({ 'background-color': 'transparent', 'color': '#333' });
+					}
+				}
+			);
+		});
+	</script>
 	
 	@await RenderSectionAsync("Scripts", required: false)
 

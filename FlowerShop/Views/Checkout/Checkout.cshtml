@@ -1,10 +1,15 @@
-﻿@{
+﻿@* --- BƯỚC 1: ÉP KIỂU SANG LỚP ĐỆM ĐÃ GỘP (SESSION + DB) TỪ CONTROLLER --- *@
+@{
     ViewData["Title"] = "Thanh toán";
-    // Lấy danh sách giỏ hàng và Tổng tiền từ Controller gửi sang
-    var cart = ViewBag.Cart as List<FlowerShop.Models.CartItemVM>;
-    var totalAmount = ViewBag.Total as decimal?; // Hoặc decimal? tùy model của bạn
-   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Đổi từ CartItemVM sang CheckoutItemDto để đọc được trường Note chứa ảnh chụp canvas
+    var cart = ViewBag.CartItems as List<FlowerShop.Controllers.CheckoutController.CheckoutItemDto>;
+    var totalAmount = ViewBag.Total as decimal?;
 }
+
+
+
 
 <main>
     <div class="banner">
@@ -49,40 +54,115 @@
                             <input type="text" name="DienThoai" placeholder="Nhap so dien thoai..." class="form-control" required>
                         </div>
 
+                    
 
-                        <div class="form-group col-md-12">
-                            <label class="control-label">Đia chi giao hang <span class="color">*</span></label>
-                            <input type="text" name="DiaChi" placeholder="So nha, đuong, phuong/xa..." class="form-control" required>
-                        </div>
+                       <div class="col-md-6">
+        @* <div class="form-group">
+            <label>KHU VỰC GIAO HÀNG *</label>
+            <select name="DiaChi" class="form-control" required>
+                <option value="">-- Chọn phường/xã tại TP. Vinh --</option>
+                @foreach (var area in ViewBag.ShippingAreas)
+                {
+                    <option value="@area">@area</option>
+                }
+            </select>
+        </div> *@
+       <div class="form-group col-md-6">
+    <label class="control-label">KHU VỰC GIAO HÀNG <span class="color">*</span></label>
+    <select name="DiaChi" class="form-control" required>
+        <option value="">-- Chọn phường/xã tại TP. Vinh --</option>
+        @foreach (var area in ViewBag.ShippingAreas)
+        {
+            <option value="@area">@area</option>
+        }
+    </select>
+</div>
+    </div>
+
+
+
+                        @* <div class="form-group col-md-12" style="margin-top: 20px;">
+                            <label class="control-label">GHI CHÚ ĐƠN HÀNG</label>
+                            <textarea name="GhiChu" class="form-control" placeholder="Ví dụ: Giao giờ hành chính..."></textarea>
+                        </div> *@
 
                         <div class="form-group col-md-12">
                             <label class="control-label">Ghi chu don hang</label>
-
                             <textarea name="GhiChu" class="form-control"
                                       style="height: 150px !important; resize: vertical;"
                                       placeholder="Ví dụ: Giao gio hanh chinh..."></textarea>
                         </div>
                     </div>
+
                     <div class="col-md-6 space-30">
                         <div class="box">
                             <h3 class="title-brand">ĐON HANG CUA BẠN</h3>
                             <div class="info-order">
                                 <div class="product-name">
-                                    <ul>
-                                        <li class="head">
-                                            <span class="name">TEN SAN PHAM</span>
-                                            <span class="qty"><b>SO LUONG</b></span>
-                                            <span class="total"><b>TONG</b></span>
+                                    <ul style="padding-left: 0;">
+                                        <li class="head" style="display: flex; justify-content: space-between; border-bottom: 2px solid #ddd; padding-bottom: 8px;">
+                                            <span class="name" style="width: 55%;">TEN SAN PHAM</span>
+                                            <span class="qty" style="width: 15%; text-align: center;"><b>SO LUONG</b></span>
+                                            <span class="total" style="width: 30%; text-align: right;"><b>TONG</b></span>
                                         </li>
 
+                                        @* --- BƯỚC 2: PHÂN TÁCH LUỒNG HIỂN THỊ THÔNG MINH --- *@
                                         @if (cart != null)
                                         {
-                                            foreach (var item in cart)
+                                            // Luồng A: Lấy hàng từ Session cửa hàng (Note rỗng hoặc "Sản phẩm cửa hàng")
+                                            var normalProducts = cart.Where(x => string.IsNullOrEmpty(x.Note) || x.Note == "Sản phẩm cửa hàng");
+
+                                            // Luồng B: Lấy mớ hoa lẻ từ DB và gom nhóm theo mã thiết kế
+                                            var customBouquetsList = cart.Where(x => x.Note != null && x.Note.StartsWith("Bó tự phối")).GroupBy(x => x.Note);
+
+                                            @* 1. HIỂN THỊ HÀNG CỬA HÀNG (LẤY TỪ SESSION) *@
+                                            foreach (var item in normalProducts)
                                             {
-                                                <li>
-                                                    <span class="name">@item.ProductName</span>
-                                                    <span class="qty">@item.Quantity</span>
-                                                    <span class="total">@item.Total.ToString("#,##0") đ</span>
+                                                <li style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee;">
+                                                    <span class="name" style="width: 55%; display: flex; align-items: center; gap: 8px;">
+                                                        <img src="@item.ProductImage" style="width: 45px; height: 45px; object-fit: cover; border-radius: 4px;" />
+                                                        <span>@item.ProductName</span>
+                                                    </span>
+                                                    <span class="qty" style="width: 15%; text-align: center;">@item.Quantity</span>
+                                                    <span class="total" style="width: 30%; text-align: right;">@((item.Quantity * item.Price).ToString("#,##0")) đ</span>
+                                                </li>
+                                            }
+
+                                            @* 2. HIỂN THỊ HOA TỰ PHỐI STUDIO (ẢNH CHỤP CANVAS THẦN THÁNH) *@
+                                            foreach (var bouquet in customBouquetsList)
+                                            {
+                                                string bouquetImage = "/images/custom-bouquet-icon.png"; // Mặc định nếu lỗi bóc tách
+                                                string bouquetTitle = bouquet.Key;
+
+                                                // Bóc tách chuỗi Note lấy mã Base64 ảnh thật nằm sau dấu gạch đứng |
+                                                if (bouquet.Key != null && bouquet.Key.Contains("|"))
+                                                {
+                                                    var parts = bouquet.Key.Split('|');
+                                                    bouquetTitle = parts[0]; // Chữ "Bó tự phối [ngày giờ]..."
+                                                    if (parts.Length > 1 && !string.IsNullOrEmpty(parts[1]))
+                                                    {
+                                                        bouquetImage = parts[1]; // Chuỗi ảnh thật chụp từ Studio
+                                                    }
+                                                }
+
+                                                decimal bouquetTotalPrice = bouquet.Sum(x => x.Quantity * x.Price)+50000;
+
+                                                <li style="display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #eee; background-color: #fffafb;">
+                                                    <span class="name" style="width: 55%; display: flex; align-items: center; gap: 8px;">
+                                                        <td style="width: 100px; vertical-align: middle !important; padding-right: 0 !important; text-align: right !important;">
+                                                            <div style="display: inline-block;">
+                                                                <img src="@bouquetImage" alt="Ảnh mẫu bó hoa" class="img-fluid"
+                                                                     style="max-height: 90px; width: 90px; object-fit: cover; border-radius: 6px; border: 1px solid #ffb6c1; box-shadow: 1px 1px 4px rgba(0,0,0,0.1);">
+                                                            </div>
+                                                        </td>
+
+                                                        <td style="vertical-align: middle !important; text-align: left !important; padding-left: 15px !important;">
+                                                            <h5 class="mb-1" style="color: #d9534f; font-weight: bold; margin-bottom: 2px !important;"> Hoa tự phối thiết kế độc bản</h5>
+                                                           
+                                                        </td>
+                                                    </span>
+                                                    <span class="qty" style="width: 15%; text-align: center;">@bouquet.Sum(x => x.Quantity) Sản phẩm</span>
+                                                    <span class="total" style="width: 30%; text-align: right; color: #d9534f; font-weight: bold;">@bouquetTotalPrice.ToString("#,##0") đ</span>
                                                 </li>
                                             }
                                         }
@@ -105,54 +185,48 @@
                                 </ul>
                             </div>
 
-                            <div class="payment-order box float-left">
+                            <div class="payment-order box float-left" style="width: 100%;">
                                 <hr />
                                 <h3 class="title-brand">PHUONG THUC THANH TOAN</h3>
-                                <ul class="tabs">
+                                <ul class="tabs" style="padding-left: 0;">
 
                                     <li style="list-style: none; margin-bottom: 15px; border-bottom: 1px dashed #eee; padding-bottom: 10px;">
                                         <label style="cursor: pointer; display: flex; align-items: center;">
                                             <input type="radio" name="PaymentMethod" value="COD" checked style="width: 20px; height: 20px; margin-right: 10px;">
                                             <div>
-                                                <h4 style="margin: 0;">Thanh toan khi nhan hang (COD)</h4>
+                                                <h4 style="margin: 0; font-size: 14px; font-weight: bold;">Thanh toan khi nhan hang (COD)</h4>
                                                 <p style="margin: 0; color: #888; font-size: 12px;">Ban se thanh toan tien mat cho shipper khi nhan hang .</p>
                                             </div>
                                         </label>
                                     </li>
 
-                                    <div class="card mt-2 border-0 bg-transparent">
-                                        <div class="card-header border-0 bg-transparent p-0">
-                                            <h5 class="panel-title mb-0">
-                                                <div class="form-check d-flex align-items-center">
-                                                    <input class="form-check-input mt-0"
-                                                           type="radio"
-                                                           name="PaymentMethod"
-                                                           id="paymentVnPay"
-                                                           value="VNPAY"
-                                                           style="width: 20px; height: 20px; cursor: pointer;">
-
-                                                    <label class="form-check-label fw-bold ms-2" for="paymentVnPay" style="cursor: pointer; color: #333; display: flex; align-items: center;">
-                                                        <div style="margin-right: 10px;">
-                                                            <h4 style="margin: 0; font-size: 1rem;">
-                                                                Thanh toán qua VNPAY
-                                                                <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-VNPAY-QR.png"
-                                                                     alt="VNPay"
-                                                                     style="height: 25px; margin-left: 10px; vertical-align: middle;">
-                                                            </h4>
-                                                            <p style="margin: 0; color: #888; font-size: 12px; font-weight: normal;">
-                                                                Thanh toán online qua thẻ ATM/Internet Banking.
-                                                            </p>
-                                                        </div>
-                                                    </label>
-                                                </div>
-                                            </h5>
-                                        </div>
-                                    </div>
+                                    <li style="list-style: none; margin-bottom: 15px;">
+                                        <label style="cursor: pointer; display: flex; align-items: center;">
+                                            <input type="radio" name="PaymentMethod" value="VNPAY" style="width: 20px; height: 20px; margin-right: 10px;">
+                                            <div>
+                                                <h4 style="margin: 0; font-size: 14px; font-weight: bold; display: flex; align-items: center;">
+                                                    Thanh toán qua VNPAY
+                                                    <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Icon-VNPAY-QR.png" alt="VNPay" style="height: 20px; margin-left: 10px;">
+                                                </h4>
+                                                <p style="margin: 0; color: #888; font-size: 12px;">Thanh toán online qua thẻ ATM/Internet Banking.</p>
+                                            </div>
+                                        </label>
+                                    </li>
 
                                 </ul>
                             </div>
 
-                            <button type="submit" class="link-v1 box lh-50 rt full" style="border: none; cursor: pointer;">
+
+
+                            <div class="form-group col-md-12">
+    <label class="control-label">Chọn ngày nhận hàng <span class="color">*</span></label>
+    <input type="date" name="NgayGiao" class="form-control"
+           min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" required>
+</div>
+
+
+
+                            <button type="submit" class="link-v1 box lh-50 rt full" style="border: none; cursor: pointer; font-weight: bold; width: 100%;">
                                 ĐAT HANG NGAY
                             </button>
                         </div>
@@ -161,4 +235,7 @@
             </form>
         </div>
     </div>
+
 </main>
+
+

@@ -13,12 +13,7 @@
                 <div class="col-sm-6">
                     <h1>Quản lý Bình luận </h1>
                 </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Simple Tables</li>
-                    </ol>
-                </div>
+               
             </div>
         </div><!-- /.container-fluid -->
     </section>
@@ -64,7 +59,7 @@
                                         
                                         <th>Avata:</th>
                                         <th>sao:</th>
-                                        <th>Hiển thị:</th>
+                                        <th>Trạng thái:</th>
                                         <th>Tên sản phẩm:</th>
                                         <th>tên khách hàng:</th>
                                         <th>Email:</th>
@@ -82,7 +77,16 @@
                                           
                                             <td><img src="@Html.Raw(item.AvatarUrl)" alt="@item.Ten" width="50" height="50" /></td>
                                             <td>@Html.DisplayFor(modelItem => item.Star)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.IsActive)</td>
+                                            <td>
+                                                @if (item.IsActive == true)
+                                                {
+                                                    <span class="badge badge-success"><i class="fa fa-check"></i> Đang hiển thị</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge badge-danger"><i class="fa fa-eye-slash"></i> Đã ẩn/Gỡ</span>
+                                                }
+                                            </td>
                                             <td>@Html.DisplayFor(modelItem => item.Product.ProductName)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Ten)</td>
                                             <td>@Html.DisplayFor(modelItem => item.Email)</td>
@@ -90,8 +94,27 @@
                                             <td>
                                                 <a asp-action="Edit" asp-route-id="@item.FeedbackCustomerId" class="btn btn-primary">Sửa</a>
                                                 <a asp-action="Details" asp-route-id="@item.FeedbackCustomerId" class="btn btn-success">Chi tiết</a>
-                                                <a asp-action="Delete" asp-route-id="@item.FeedbackCustomerId" class=" btn btn-danger">Xóa</a>
+                                                @* <a asp-action="Delete" asp-route-id="@item.FeedbackCustomerId" class=" btn btn-danger">Xóa</a> *@
+
+                                           
+                                                <a asp-action="Details" asp-route-id="@item.FeedbackCustomerId" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+
+                                                @if (item.IsActive == true)
+                                                {
+                                                    @* Đang hiện: Bấm vào sẽ kích hoạt ẩn bài *@
+                                                    <a asp-action="Delete" asp-route-id="@item.FeedbackCustomerId" class="btn btn-sm btn-warning" style="color: #212529; font-weight: bold;" title="Gỡ đánh giá này khỏi trang chủ">
+                                                        <i class="fa fa-ban"></i> Gỡ hiển thị
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    @* Đã ẩn rồi: Bấm vào lần nữa sẽ kích hoạt XÓA VĨNH VIỄN *@
+                                                    <a asp-action="Delete" asp-route-id="@item.FeedbackCustomerId" class="btn btn-sm btn-danger" title="Xóa vĩnh viễn tin rác/spam">
+                                                        <i class="fa fa-trash"></i> Xóa vĩnh viễn
+                                                    </a>
+                                                }
                                             </td>
+                                            
                                         </tr>
                                     }
 
